@@ -2,15 +2,16 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2017-09-29, 19:04:40 -->
+<!-- Saved: 2017-10-01, 20:56:41 -->
 <Session version="5.0">
   <Filenames>
-    <Filename cline="56" cindex="12" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="23" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
+    <Filename cline="10" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
+    <Filename cline="0" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
     <Filename cline="38" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/one_turn.py</Filename>
     <Filename cline="35" cindex="27" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/players.py</Filename>
+    <Filename cline="10" cindex="15" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
   </Filenames>
-  <ActiveWindow cline="56" cindex="12">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ActiveWindow>
+  <ActiveWindow cline="10" cindex="15">/home/will/data/programmation/python/shiri-tori/console_mode.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -28,6 +29,7 @@
   <Bookmarks/>
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/console_mode.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_turn.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_turn.py@@3</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py</ExpandedItemName>

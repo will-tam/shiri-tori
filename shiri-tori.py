@@ -3,14 +3,11 @@
 
 # Standard library import.
 import sys
-import argparse as ap
 
 # Third-part library import.
 
 # Project library import.
-import player
-import players
-import one_turn
+import console_mode as cm
 
 ######################
 
@@ -39,7 +36,7 @@ def main(args):
     @return : 0 = all was good.
               ... = some problem occures.
     """
-    if args[0][0] != '-' or len(args) == 0:
+    if len(args) == 0 or args[0][0] != '-':
         help()
         return 1
 
@@ -54,7 +51,7 @@ def main(args):
         return 1
 
     if "c" in args:
-        pass
+        cm.console_mode()
         return 0
 
     if "g" in args:
