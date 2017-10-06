@@ -17,19 +17,25 @@ class Player():
 
 
     # Public methods.
-    def __init__(self):
+    def __init__(self, nickname):
         """
         __init__ : initiate class
         @parameters : nickname = a player nickname.
-                      win_rounds = wan rounds number.
-                      loose_rounds = lost rounds number.
-                      turn = it's player turn (True), or not (False) ?
         @return : none.
         """
         self.nickname = nickname
         self.win_rounds = 0
         self.loose_rounds = 0
         self.turn = False
+
+#    def __repr__(self):
+#        """
+#        Call when we want to print the class.
+#        @parameters : none.
+#        @return : none.
+#        """
+#        to_show = self.nickname;
+#        return to_show
 
     def add_one_point_win(self):
         """

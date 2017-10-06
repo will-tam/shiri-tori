@@ -3,6 +3,7 @@
 
 # Standard library import.
 import sys
+import random as rnd
 
 # Third-part library import.
 
@@ -43,19 +44,58 @@ def ask_nickname(nb_players):
     @parameters : nb_players = number of player(s).
     @return : an player(s) instance(s) list.
     """
-    nickname = []
+    nicknames = []
     playersI = []
 
     if nb_players == 1:
         print("\n\nOk, it's just beetween you and me\n")
-        nickname.append(input("Please, give me your nickname >>> "))
-        nickname.append("The Best IA")
+        nicknames.append(input("Please, give me your nickname >>> "))
+        nicknames.append("The Best IA")
     else:
         for i in range(1, nb_players + 1):
-            nickname.append(input("Player {} nickname >>> ".format(i)))
+            nicknames.append(input("Player {} nickname >>> ".format(i)))
 
-    print(nickname)
+    for nickname in nicknames:
+        pi = player.Player(nickname)
+        playersI.append(pi)
+
+#    print(nickname)
     return playersI
+
+def main_loop(playersI, nb_players):
+    """
+    The game main loop.
+    @parameters : playersI = intance of the players.
+                  nb_players = number of players.
+    @return : 0 = normal exit.
+              ... = something occures.
+    """
+    print("playersI =>", playersI)
+
+    if nb_players == 1:
+        some_rules = "I'm great lord, I let you begin {}.\n".format(playersI[0].nickname)
+        some_rules += "If you are to scarry, enter 0 now or "
+        some_rules += "anytime you want!" + 2 * "\n"
+        now_player = 0
+    else:
+        some_rules = "Well, let the random deciding who will begin.\n"
+        some_rules += "If one among you is to afraid, enter 0 "
+        some_rules += "at your turn.\n"
+        now_player = rnd.randrange(nb_players)
+        some_rules += "So, the first of you will be {}".format(playersI[now_player].nickname)
+        some_rules += 2 * "\n"
+
+    print(80*"\n")
+    print(some_rules)
+
+    p_answer = ""
+    while p_answer != "0":
+        print("{} your turn >>>".format(playersI[now_player].nickname), end="")
+        p_answer = input(" ")
+        if nb_players == 1:
+            pass
+        else:
+            pass
 
 def console_mode():
     """
@@ -68,8 +108,7 @@ def console_mode():
     if nb_players == 0:
         print("\nMaybe later !\n")
         return 0
-    ask_nickname(nb_players)
-#    main_loop(ask_nickname)
+    main_loop(ask_nickname(nb_players), nb_players)
     return 0
 
 ######################
