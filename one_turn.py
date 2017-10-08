@@ -21,15 +21,6 @@ class One_Turn():
         """
         pass
 
-    def ask_word(self, nickname):
-        """
-        Ask the player to give a word.
-        @parameters : nickname = the nickname of the player.
-        @return : the palyer's word.
-        """
-        print("{}, please your word".format(nickname), end="")
-        return input(">")
-
     def only_hiragana(self, answer):
         """
         Check if the answer is in Hiragana only.
@@ -44,6 +35,8 @@ class One_Turn():
         @parameters : answer = the player answer.
         @return : True = answer is accepted, everelse False
         """
+        print("Check it ...", answer, "...")
+        print(answer[-1])
         if answer[-1] in ["ん", "ン"]:
             return False
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2017-10-01, 20:56:38 -->
+<!-- Saved: 2017-10-08, 20:18:16 -->
 <!-- Copyright (C) 2017 ,  -->
 <Project version="5.1">
   <Language></Language>
@@ -16,7 +16,6 @@
     <Source>console_mode.py</Source>
     <Source>one_turn.py</Source>
     <Source>player.py</Source>
-    <Source>players.py</Source>
     <Source>shiri-tori.py</Source>
   </Sources>
   <Forms/>

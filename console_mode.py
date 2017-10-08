@@ -11,6 +11,7 @@ import random as rnd
 import player
 #import players
 import one_turn
+import almostAI
 
 ######################
 
@@ -67,16 +68,18 @@ def main_loop(playersI, nb_players):
     The game main loop.
     @parameters : playersI = intance of the players.
                   nb_players = number of players.
-    @return : 0 = normal exit.
-              ... = something occures.
+    @return : name of the player who gets away.
     """
     print("playersI =>", playersI)
+
+    game = one_turn.One_Turn()
 
     if nb_players == 1:
         some_rules = "I'm great lord, I let you begin {}.\n".format(playersI[0].nickname)
         some_rules += "If you are to scarry, enter 0 now or "
         some_rules += "anytime you want!" + 2 * "\n"
         now_player = 0
+        computer = almostAI.Almost_AI()
     else:
         some_rules = "Well, let the random deciding who will begin.\n"
         some_rules += "If one among you is to afraid, enter 0 "
@@ -89,13 +92,33 @@ def main_loop(playersI, nb_players):
     print(some_rules)
 
     p_answer = ""
+
     while p_answer != "0":
-        print("{} your turn >>>".format(playersI[now_player].nickname), end="")
-        p_answer = input(" ")
-        if nb_players == 1:
-            pass
+        if nb_players == 1 and now_player == 1:
+            p_answer = computer.choice()
+            print("My turn >>> {}".format(p_answer))
+            now_player = 0
         else:
-            pass
+            print("{} your turn >>>".format(playersI[now_player].nickname), end='')
+            p_answer = input(" ")
+            if p_answer == "0":
+                return playersI[now_player].nickname
+            now_player += 1
+
+#        print("{} your turn >>>".format(playersI[now_player].nickname), end="")
+#        p_answer = input(" ")
+#        if p_answer == 0:
+#            break
+#        if nb_players == 1:
+#            now_player += 1
+##            if now_player == 1:
+#            print("My turn >>> {}".format(computer.choice()))
+##                print("My turn >>> {}".format(computer.choice()))
+#            now_player = 0
+#        else:
+#            pass
+
+        game.check_answer(p_answer)
 
 def console_mode():
     """
@@ -108,7 +131,13 @@ def console_mode():
     if nb_players == 0:
         print("\nMaybe later !\n")
         return 0
-    main_loop(ask_nickname(nb_players), nb_players)
+    nickname_away = main_loop(ask_nickname(nb_players), nb_players)
+    if nickname_away:
+        if nb_players == 1:
+            print("{}Of course, you have feel i was the strongest !\n".format(5 * "\n"))
+        else:
+            print("{}{} wants to get away !!!\n".format(5 * "\n", nickname_away))
+
     return 0
 
 ######################
