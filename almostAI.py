@@ -32,3 +32,10 @@ class Almost_AI():
         @return : the choosen computer word.
         """
         return "word"
+
+######################
+
+if __name__ == "__main__":
+    print("Don't launch me directely, please !")
+    print("Run python3 shiri-tory.py or directely if eXecution right(s) is/are ON.")
+    sys.exit(1)

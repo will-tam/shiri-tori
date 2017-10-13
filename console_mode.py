@@ -35,7 +35,7 @@ def ask_number_of_players():
             nb_players = int(input(question))
         except:
             print("\n\tSorry, i'm waiting just a number.\n")
-            pass
+
     return nb_players
 
 def ask_nickname(nb_players):
@@ -97,13 +97,13 @@ def main_loop(playersI, nb_players):
         if nb_players == 1 and now_player == 1:
             p_answer = computer.choice()
             print("My turn >>> {}".format(p_answer))
-            now_player = 0
+#            now_player = 0
         else:
             print("{} your turn >>>".format(playersI[now_player].nickname), end='')
             p_answer = input(" ")
             if p_answer == "0":
                 return playersI[now_player].nickname
-            now_player += 1
+#            now_player += 1
 
 #        print("{} your turn >>>".format(playersI[now_player].nickname), end="")
 #        p_answer = input(" ")
@@ -118,7 +118,32 @@ def main_loop(playersI, nb_players):
 #        else:
 #            pass
 
-        game.check_answer(p_answer)
+        if not game.check_answer(p_answer):
+            if nb_players == 1 and now_player == 1:
+                print("Oooh sh... you win {} !\n".format(playersI[0].nickname))
+                print("+1 win point for you, +1 loose point for ... me !\n\n")
+
+            elif nb_players == 1 and now_player == 0:
+                print("I win, you loose {}\n".format(playersI[0].nickname))
+                print("+1 win point for me, +1 loose point for YOU !\n\n")
+
+            else:
+                print("Sorry {}, you loose the turn !\n".format(playersI[now_player].nickname))
+                print("+1 loose point for you, +1 win point for the others\n\n")
+
+            for pI, lostV in enumerate(playersI):
+                if pI == now_player:
+                    playersI[pI].loose_rounds += 1
+                else:
+                    playersI[pI].win_rounds += 1
+
+            print(playersI)
+
+        if nb_players == 1:
+            now_player = XOR now_player # <<<< C'EST QUOI DEJA LE XOR EN PYTHON ????
+        now_player = 0 if now_player == nb_players - 1 else now_player + 1
+        print(nb_players, now_player)
+
 
 def console_mode():
     """
@@ -146,4 +171,3 @@ if __name__ == "__main__":
     print("Don't launch me directely, please !")
     print("Run python3 shiri-tory.py or directely if eXecution right(s) is/are ON.")
     sys.exit(1)
-

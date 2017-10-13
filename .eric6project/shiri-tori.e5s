@@ -2,16 +2,16 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2017-10-08, 20:18:19 -->
+<!-- Saved: 2017-10-13, 18:19:23 -->
 <Session version="5.0">
   <Filenames>
     <Filename cline="10" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="11" cindex="21" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
-    <Filename cline="39" cindex="33" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/one_turn.py</Filename>
-    <Filename cline="103" cindex="31" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
-    <Filename cline="33" cindex="20" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/almostAI.py</Filename>
+    <Filename cline="13" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
+    <Filename cline="87" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/one_turn.py</Filename>
+    <Filename cline="142" cindex="84" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
+    <Filename cline="41" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/almostAI.py</Filename>
   </Filenames>
-  <ActiveWindow cline="39" cindex="33">/home/will/data/programmation/python/shiri-tori/one_turn.py</ActiveWindow>
+  <ActiveWindow cline="142" cindex="84">/home/will/data/programmation/python/shiri-tori/console_mode.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
