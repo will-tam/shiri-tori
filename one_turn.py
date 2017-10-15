@@ -58,7 +58,7 @@ class One_Turn():
         if not self.__only_hiragana(answer):
             return False
 
-        print(answer[-1])
+#        print(answer[-1])
         if answer[-1] in ["ん", "ン"]:
             return False
 

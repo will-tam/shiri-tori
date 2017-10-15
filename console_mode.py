@@ -15,6 +15,15 @@ import almostAI
 
 ######################
 
+def xor(a, b):
+    """
+    Find a XOR b.
+    @parameters : a = first term.
+                  b = second term.
+    @return : a XOR B it self.
+    """
+    return (not a) & b | a & (not b)
+
 def ask_number_of_players():
     """
     Just Ask the number of player(s).
@@ -97,52 +106,37 @@ def main_loop(playersI, nb_players):
         if nb_players == 1 and now_player == 1:
             p_answer = computer.choice()
             print("My turn >>> {}".format(p_answer))
-#            now_player = 0
         else:
             print("{} your turn >>>".format(playersI[now_player].nickname), end='')
             p_answer = input(" ")
             if p_answer == "0":
                 return playersI[now_player].nickname
-#            now_player += 1
-
-#        print("{} your turn >>>".format(playersI[now_player].nickname), end="")
-#        p_answer = input(" ")
-#        if p_answer == 0:
-#            break
-#        if nb_players == 1:
-#            now_player += 1
-##            if now_player == 1:
-#            print("My turn >>> {}".format(computer.choice()))
-##                print("My turn >>> {}".format(computer.choice()))
-#            now_player = 0
-#        else:
-#            pass
 
         if not game.check_answer(p_answer):
             if nb_players == 1 and now_player == 1:
-                print("Oooh sh... you win {} !\n".format(playersI[0].nickname))
-                print("+1 win point for you, +1 loose point for ... me !\n\n")
+                print("\tOooh sh... you win {} !\n".format(playersI[0].nickname))
+                print("\t+1 win point for you, +1 loose point for ... me !\n")
 
             elif nb_players == 1 and now_player == 0:
-                print("I win, you loose {}\n".format(playersI[0].nickname))
-                print("+1 win point for me, +1 loose point for YOU !\n\n")
+                print("\tI win, you loose {}\n".format(playersI[0].nickname))
+                print("\t+1 win point for me, +1 loose point for YOU !\n")
 
             else:
-                print("Sorry {}, you loose the turn !\n".format(playersI[now_player].nickname))
-                print("+1 loose point for you, +1 win point for the others\n\n")
+                print("\tSorry {}, you loose the turn !\n".format(playersI[now_player].nickname))
+                print("\t+1 loose point for you, +1 win point for the others\n")
 
             for pI, lostV in enumerate(playersI):
                 if pI == now_player:
                     playersI[pI].loose_rounds += 1
                 else:
                     playersI[pI].win_rounds += 1
-
-            print(playersI)
+        else:
+            print("\n")
 
         if nb_players == 1:
-            now_player = XOR now_player # <<<< C'EST QUOI DEJA LE XOR EN PYTHON ????
-        now_player = 0 if now_player == nb_players - 1 else now_player + 1
-        print(nb_players, now_player)
+            now_player = xor(now_player, 1)
+        else:
+            now_player = 0 if now_player == nb_players - 1 else now_player + 1
 
 
 def console_mode():

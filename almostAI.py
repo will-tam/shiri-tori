@@ -31,7 +31,8 @@ class Almost_AI():
         @parameters : none.
         @return : the choosen computer word.
         """
-        return "word"
+        return "ことば"
+#        return "word"
 
 ######################
 
