@@ -43,7 +43,7 @@ def ask_number_of_players():
 
     while nb_players > 5:
         try:
-            nb_players = int(input(question))   # Only int expeted.
+            nb_players = int(input(question))   # Only int expected.
         except:
             print("\n\tSorry, i'm waiting just a number.\n")
 
@@ -62,16 +62,16 @@ def ask_nickname(nb_players):
     if nb_players == 1:
         print("\n\nOk, it's just beetween you and me\n")
         nicknames.append(input("Please, give me your nickname >>> "))
-        nicknames.append("The Best IA")
+        nicknames.append("The Best IA")     # For 1 player mode, also computer plays.
     else:
         for i in range(1, nb_players + 1):
             nicknames.append(input("Player {} nickname >>> ".format(i)))
 
+    # Intances of players.
     for nickname in nicknames:
         pi = player.Player(nickname)
         playersI.append(pi)
 
-#    print(nickname)
     return playersI
 
 def main_loop(playersI, nb_players):
@@ -206,14 +206,18 @@ def console_mode():
               ... = some problem occures.
     """
     nb_players = ask_number_of_players()
+
     if nb_players == 0:
         print("\nMaybe later !\n")
         return 0
+
     playersI = ask_nickname(nb_players)
     nickname_away = main_loop(playersI, nb_players)
+
     if nickname_away:
         if nb_players == 1:
             print("{}Of course, you have feel i was the strongest !\n".format(5 * "\n"))
+
         else:
             print("{}{} would to get away !!!\n".format(5 * "\n", nickname_away))
 

@@ -42,19 +42,19 @@ def main(args):
 
     args = "".join([ap.strip("-") for ap in args])
 
-    if "h" in args:
+    if "h" in args:     # Help.
         help()
         return 1
 
-    if "s" in args:
+    if "s" in args:     # Server mode.
         print("\nNot yet implemented ! Sorry.\n")
         return 1
 
-    if "c" in args:
+    if "c" in args:     # Console mode.
         cm.console_mode()
         return 0
 
-    if "g" in args:
+    if "g" in args:     # Graphical mode.
         pass
         return 0
 

@@ -55,10 +55,12 @@ class One_Turn():
         """
         print("Check it ...", answer, "...")
 
+        # Check if the answer if full in hiragana.
         if not self.__only_hiragana(answer):
             return False
 
 #        print(answer[-1])
+        # Check if the answer ending is "ん" or"ン".
         if answer[-1] in ["ん", "ン"]:
             return False
 
