@@ -1,0 +1,21 @@
+import unittest
+
+class TestStringMethods(unittest.TestCase):
+    """Test case deux."""
+
+    def test_upper(self):
+        "test_upper"
+        self.assertEqual('foo'.upper(), 'FOO')
+
+    def test_isupper(self):
+        "test_isupper"
+        self.assertTrue('FOO'.isupper())
+        self.assertFalse('Foo'.isupper())
+
+    def test_split(self):
+        "test_split"
+        s = 'hello world'
+        self.assertEqual(s.split(), ['hello', 'world'])
+        # check that s.split fails when the separator is not a string
+        with self.assertRaises(TypeError):
+            s.split(2)

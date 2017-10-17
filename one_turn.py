@@ -76,10 +76,9 @@ class One_Turn():
         @parameters : answer = the player answer.
         @return : True = ok, False = not only Hiragana.
         """
-        for h in answer:
-            if h not in self.__hirahana:
-                return False
-        return True
+        check_hiragana = [h in self.__hirahana for h in answer]
+        # True if a False is found, so it's inverted to be False.
+        return not False in check_hiragana
 
 ######################
 

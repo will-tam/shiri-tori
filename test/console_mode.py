@@ -1,0 +1,1 @@
+/home/will/data/programmation/python/shiri-tori/console_mode.py

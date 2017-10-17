@@ -1,0 +1,42 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+# Standard library import.
+import unittest
+
+# Third-part library import.
+
+# Project library import.
+
+######################
+
+class TemplateClassTest(unittest.TestCase):
+    """
+    Test case of test
+    """
+    def setUp(self):
+        """
+        Tests init.
+        Run on every begining test in this class.
+        @parameters : none.
+        @return : none.
+        """
+        print("Test ben oui !")
+        self.a='azerty'
+
+    def tearDown(self):
+        """
+        Run on every ending test in this class.
+        @parameters : none.
+        @return : none.
+        """
+        pass
+
+    @unittest.skip("Not yet fully implemented!!")
+    def test_template(self):
+        """
+        Test of ...
+        @parameters : none.
+        @return  : none.
+        """
+        self.assertEqual(self.a, "azerty")
