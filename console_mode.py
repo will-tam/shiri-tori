@@ -148,24 +148,30 @@ def display_points(playersI):
     """
     won_string = "won rounds"
     lost_string = "lost rounds"
+    won_string_len = len(won_string)
+    lost_string_len = len(lost_string)
 
     # Take the length of the longest nicknames.
     max_str_len = max([len(player.nickname) for player in playersI])
 
     # Add the lenth of the 2 strings won_string and lost_string.
-    width = max_str_len + len(won_string) + len(lost_string)
+    width = max_str_len + won_string_len + lost_string_len
 
     # Add the border, beetween the 2 strings, beetween nickname and the table body.
-    width += 5
+    width += 10
 
     print(width * "*")
-    print("*{} *{}*{}*".format(max_str_len * " ", won_string, lost_string))
+    print("* {} * {} * {} *".format(max_str_len * " ", won_string, lost_string))
     for player in playersI:
-        fillspaces = max_str_len - len(player.nickname)
-        print("*{}{} * {} * {} *".format(player.nickname,
-                                         fillspaces * " ",
-                                         player.win_rounds,
-                                         player.loose_rounds))
+        pfs = max_str_len - len(player.nickname)    # Number of white spaces after the nickname.
+        wfs = won_string_len - len(str(player.win_rounds))      # After the won points.
+        plr = lost_string_len - len(str(player.loose_rounds))   # After the lost points.
+        print("* {pn}{pfs} * {pwr}{wfs} * {plr}{lfs} *".format(pn = player.nickname,
+                                                              pfs = pfs * " ",
+                                                              pwr = player.win_rounds,
+                                                              wfs = wfs * " ",
+                                                              plr = player.loose_rounds,
+                                                              lfs = plr * " "))
 
     print(width * "*", "\n")
 

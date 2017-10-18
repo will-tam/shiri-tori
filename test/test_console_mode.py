@@ -12,7 +12,7 @@ import player
 
 ######################
 
-class One_Turn_Test(unittest.TestCase):
+class Console_mode_Test(unittest.TestCase):
     """
     Test case of class One_Turn.
     """
@@ -51,6 +51,7 @@ class One_Turn_Test(unittest.TestCase):
         @parameters : none.
         @return  : none.
         """
+        print("\n")
         pi = [player.Player("Player {}".format(i)) for i in range(0, 3)]
         pi[2].win_rounds = 100
         pi[0].loose_rounds = 500
