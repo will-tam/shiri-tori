@@ -22,6 +22,7 @@ class Player():
         @parameters : nickname = a player nickname.
         @return : none.
         """
+        # Management of the unknown players.
         self.nickname = nickname
         self.win_rounds = 0
         self.loose_rounds = 0
@@ -54,6 +55,17 @@ class Player():
 
     # Private methods.
 
+
+######################
+
+def find_me_a_nickname(player_num):
+    """
+    Add unknown to an empty player's nickname.
+    @parameters : player_num = number of player who find a name.
+    @return : unknown with a digit if several.
+    """
+    finelly_nn = "Unknown You" if player_num == 0 else "Unknown Player {}".format(player_num)
+    return finelly_nn
 
 ######################
 

@@ -46,7 +46,6 @@ class Player_Test(unittest.TestCase):
         self.p.add_one_point_win()
         self.assertNotEqual(self.p.win_rounds, 0)
 
-
     #@unittest.skip("Not yet fully implemented!!")
     def test_add_one_point_lost(self):
         """
@@ -56,3 +55,16 @@ class Player_Test(unittest.TestCase):
         """
         self.p.add_one_point_lost()
         self.assertNotEqual(self.p.loose_rounds, 0)
+
+    def test_find_me_a_nickname(self):
+        """
+        Test of find_me_a_nickname().
+        @parameters : none.
+        @return  : none.
+        """
+        self.assertEqual(player.find_me_a_nickname(0), "Unknown You")
+        self.assertEqual(player.find_me_a_nickname(1), "Unknown Player 1")
+        self.assertEqual(player.find_me_a_nickname(2), "Unknown Player 2")
+        self.assertEqual(player.find_me_a_nickname(3), "Unknown Player 3")
+        self.assertEqual(player.find_me_a_nickname(4), "Unknown Player 4")
+        self.assertEqual(player.find_me_a_nickname(5), "Unknown Player 5")

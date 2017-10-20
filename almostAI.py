@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+# Standard library import.
+import random as rnd
+
 class Almost_AI():
     """
     (Not yet really) AI for this game to the single player's game.
@@ -31,8 +34,8 @@ class Almost_AI():
         @parameters : none.
         @return : the choosen computer word.
         """
-        return "ことば"
-#        return "word"
+        answers = ["ことば", "word"]
+        return rnd.choice(answers)
 
 ######################
 

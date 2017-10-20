@@ -9,7 +9,6 @@ import random as rnd
 
 # Project library import.
 import player
-#import players
 import one_turn
 import almostAI
 
@@ -62,10 +61,17 @@ def ask_nickname(nb_players):
     if nb_players == 1:
         print("\n\nOk, it's just beetween you and me\n")
         nicknames.append(input("Please, give me your nickname >>> "))
+        # Manage the unknown player in single player mode.
+        if nicknames[0] == "":
+            nicknames[0] = player.find_me_a_nickname(0)
         nicknames.append("The Best IA")     # For 1 player mode, also computer plays.
     else:
         for i in range(1, nb_players + 1):
-            nicknames.append(input("Player {} nickname >>> ".format(i)))
+            nn = input("Player {} nickname >>> ".format(i))
+            # Manage the unknown player in several players mode.
+            if nn == "":
+                nn = player.find_me_a_nickname(i)
+            nicknames.append(nn)
 
     # Intances of players.
     for nickname in nicknames:
@@ -108,7 +114,7 @@ def main_loop(playersI, nb_players):
             p_answer = computer.choice()
             print("My turn >>> {}".format(p_answer))
         else:   # everelse it's player turn (it runs for 1 or several human players).
-            print("{} your turn >>>".format(playersI[now_player].nickname), end='')
+            print("{}, your turn >>>".format(playersI[now_player].nickname), end='')
             p_answer = input(" ")
             if p_answer == "0":         # 0 means exit game.
                 return playersI[now_player].nickname
