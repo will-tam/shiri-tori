@@ -37,3 +37,4 @@ class One_Turn_Test(unittest.TestCase):
         self.assertFalse(self.o_t.check_answer("ひらganaだkeだ"))
         self.assertFalse(self.o_t.check_answer("ちゃわん"))
         self.assertFalse(self.o_t.check_answer("パン"))
+        self.assertFalse(self.o_t.check_answer(""))
