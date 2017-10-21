@@ -9,7 +9,7 @@ import random as rnd
 
 # Project library import.
 import player
-import one_turn
+import one_game
 import almostAI
 
 ######################
@@ -87,7 +87,7 @@ def main_loop(playersI, nb_players):
                   nb_players = number of players.
     @return : name of the player who gets away.
     """
-    game = one_turn.One_Turn()
+    game = one_game.One_Game()
 
     # Prepare game's rule according number of player.
     if nb_players == 1:
@@ -109,6 +109,7 @@ def main_loop(playersI, nb_players):
 
     p_answer = ""   # No player's answer to enter in loop.
 
+    # THE main loop it-self.
     while p_answer != "0":
         if nb_players == 1 and now_player == 1:     # Only 1 player, and it's computer's turn.
             p_answer = computer.choice()
@@ -137,7 +138,9 @@ def main_loop(playersI, nb_players):
                     playersI[pI].loose_rounds += 1
                 else:
                     playersI[pI].win_rounds += 1
+            game.playing = False    # The next turn will be a new game.
         else:
+            game.playing = True     # The players are playing.
             print("\n")
 
         # Go to the next palyer.

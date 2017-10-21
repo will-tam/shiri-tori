@@ -7,13 +7,13 @@ import unittest
 # Third-part library import.
 
 # Project library import.
-import one_turn
+import one_game
 
 ######################
 
-class One_Turn_Test(unittest.TestCase):
+class One_Game_Test(unittest.TestCase):
     """
-    Test case of class One_Turn.
+    Test case of class One_Game.
     """
 
     def setUp(self):
@@ -23,7 +23,7 @@ class One_Turn_Test(unittest.TestCase):
         @parameters : none.
         @return : none.
         """
-        self.o_t = one_turn.One_Turn()
+        self.o_g = one_game.One_Game()
 
     #@unittest.skip("Not yet fully implemented!!")
     def test_check_answer(self):
@@ -32,9 +32,9 @@ class One_Turn_Test(unittest.TestCase):
         @parameters : none.
         @return  : none.
         """
-        self.assertFalse(self.o_t.check_answer("only alphabet"))
-        self.assertTrue(self.o_t.check_answer("ひらがなだけだ"))
-        self.assertFalse(self.o_t.check_answer("ひらganaだkeだ"))
-        self.assertFalse(self.o_t.check_answer("ちゃわん"))
-        self.assertFalse(self.o_t.check_answer("パン"))
-        self.assertFalse(self.o_t.check_answer(""))
+        self.assertFalse(self.o_g.check_answer("only alphabet"))
+        self.assertTrue(self.o_g.check_answer("ひらがなだけだ"))
+        self.assertFalse(self.o_g.check_answer("ひらganaだkeだ"))
+        self.assertFalse(self.o_g.check_answer("ちゃわん"))
+        self.assertFalse(self.o_g.check_answer("パン"))
+        self.assertFalse(self.o_g.check_answer(""))

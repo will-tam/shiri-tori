@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2017-10-17, 23:01:33 -->
+<!-- Saved: 2017-10-21, 10:10:34 -->
 <!-- Copyright (C) 2017 ,  -->
 <Project version="5.1">
   <Language></Language>
@@ -15,12 +15,13 @@
   <Sources>
     <Source>almostAI.py</Source>
     <Source>console_mode.py</Source>
-    <Source>one_turn.py</Source>
+    <Source>one_game.py</Source>
     <Source>player.py</Source>
+    <Source>rules.py</Source>
     <Source>shiri-tori.py</Source>
-    <Source>test/0test_almostAI.py</Source>
+    <Source>test/test_almostAI.py</Source>
     <Source>test/test_console_mode.py</Source>
-    <Source>test/test_one_turn.py</Source>
+    <Source>test/test_one_game.py</Source>
     <Source>test/test_player.py</Source>
   </Sources>
   <Forms/>

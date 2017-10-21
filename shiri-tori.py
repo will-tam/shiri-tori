@@ -7,6 +7,7 @@ import sys
 # Third-part library import.
 
 # Project library import.
+import rules
 import console_mode as cm
 
 ######################
@@ -18,10 +19,7 @@ def help():
     @return : none.
     """
     print("\n")
-    print("""In this game, a 1st player write a japanese word.
-A second player, write a word beggining with the end of the previous one.
-And so on.
-If a player write a word with a ん or ン ending, he/she looses.""")
+    print(rules.rules)
     print("\nOptions")
     print("\t-h : this help.")
     print("\t-c : console mode. Default")

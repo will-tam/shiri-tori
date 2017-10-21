@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-class One_Turn():
+class One_Game():
     """
-    Representing one turn class.
-    """
-
+    Representing one game class.
 
     # Public attributes.
-
+        playing = the turn is playing.
+    """
 
     # Private attributes.
     __hirahana = [
@@ -37,6 +36,8 @@ class One_Turn():
         'にゃ', 'にゅ', 'にょ',
         'みゃ', 'みゅ', 'みょ',
         'りゃ', 'りゅ', 'りょ',]
+    #__previous = just the end of one of the players previous answer.
+
 
     # Public methods.
     def __init__(self):
@@ -45,7 +46,8 @@ class One_Turn():
         @parameters : ...
         @return : none.
         """
-        pass
+        self.playing = False
+        self.__previous = ""
 
     def check_answer(self, answer):
         """
@@ -59,17 +61,20 @@ class One_Turn():
         if answer == "":
             return False
 
-
         # Check if the answer if full in hiragana.
         if not self.__only_hiragana(answer):
             return False
 
-#        print(answer[-1])
         # Check if the answer ending is "ん" or"ン".
         if answer[-1] in ["ん", "ン"]:
             return False
 
+        if self.playing and answer[0] != self.__previous:
+            return False
+
         # TODO : La partie qui vérifie un mot dans un dico.
+
+        self.__previous = answer[-1]    # Don't need a "" answer.
 
         return True
 
