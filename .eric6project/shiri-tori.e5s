@@ -2,17 +2,18 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2017-10-20, 18:13:54 -->
+<!-- Saved: 2017-10-21, 22:41:21 -->
 <Session version="5.0">
   <Filenames>
-    <Filename cline="56" cindex="41" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
+    <Filename cline="21" cindex="21" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
     <Filename cline="66" cindex="27" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
-    <Filename cline="142" cindex="62" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
-    <Filename cline="73" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/one_turn.py</Filename>
+    <Filename cline="89" cindex="28" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
+    <Filename cline="11" cindex="18" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/one_game.py</Filename>
     <Filename cline="36" cindex="33" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/almostAI.py</Filename>
     <Filename cline="18" cindex="20" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/test/test_almostAI.py</Filename>
+    <Filename cline="15" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/rules.py</Filename>
   </Filenames>
-  <ActiveWindow cline="73" cindex="0">/home/will/data/programmation/python/shiri-tori/one_turn.py</ActiveWindow>
+  <ActiveWindow cline="11" cindex="18">/home/will/data/programmation/python/shiri-tori/one_game.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -33,13 +34,13 @@
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_almostAI.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_almostAI.py@@14</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_one_turn.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_one_turn.py@@14</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_one_game.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_one_game.py@@14</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/almostAI.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/almostAI.py@@6</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/console_mode.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_turn.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_turn.py@@3</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_game.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_game.py@@3</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py@@3</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ExpandedItemName>
