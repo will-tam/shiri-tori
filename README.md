@@ -7,11 +7,12 @@ And, to training my Python.
 And of why.
 
 * ** Rules **
-In this game, any player at their turn write a Japanese word.
+    * In this game, any player at their turn write a Japanese word.
 _But_, only the fisrt player have an hudge choice. The only restriction is _*the word must
 not be a japanese ん or ン terminated word*_.
-The following player and so the first player at her/his next turn are now limted by second rule :
+    * The following player and so the first player at her/his next turn are now limted by second rule :
 _*the choosen word has to begun by the end of the previous word*_.
+    * Of course, each word _*has to be inside the dictionnary*_.
 
 _Ex_:  with 2 players
 1st player : こと**ば**

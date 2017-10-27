@@ -1,15 +1,21 @@
++ || ++ A FAIRE
+- || -- FAIT
+
 + Version console seule >
 + Version graphique
 + Version serveur
 
 + Rêgles pour one_game.py:
-++À partir du 2ème mot, COMMENCE TOUJOURS par la FIN du mot du joueur précédent
--Pas de mot finissant par ん ou ン ==> perdu
-++Les mots d'une seule more sont INTERDITS
-++Les acronymes sont INTERDITS
-++Les mots commençant par ん sont INTERDITS
--Utilisation des HIRAGANA seulement
+++Être dans le dico.
+--À partir du 2ème mot, COMMENCE TOUJOURS par la FIN du mot du joueur précédent (PROG)
+--Pas de mot finissant par ん ou ン ==> perdu (PROG + nettoyage)
+--Les mots d'une seule more sont INTERDITS (PROG + nettoyage)
+--Les mots commençant par ん sont INTERDITS (PROG + nettoyage)
+--Utilisation des HIRAGANA seulement (PROG + nettoyage)
+++Les acronymes sont INTERDITS (nettoyage)
 
 +Nettoyage BdD:
 ++Mots finissant par ん or ン
+++Mots commençant par ん or ン
+++Mots mono mores
 ++Acronymes

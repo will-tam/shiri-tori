@@ -58,6 +58,7 @@ class One_Game():
     def check_answer(self, answer):
         """
         Check the player answer following rules in README.
+        Some rules are writed by program, because it should be in database yet.
         @parameters : answer = the player answer.
         @return : True = answer is accepted, everelse False
         """
@@ -71,14 +72,25 @@ class One_Game():
         if not self.__only_hiragana(answer):
             return False
 
-        # Check if the answer ending is "ん" or"ン".
+        # Check if the end of the answer is "ん" or"ン".
         if answer[-1] in ["ん", "ン"]:
             return False
 
+        # Check if the begining of the answer is "ん" or"ン".
+        if answer[0] in ["ん", "ン"]:
+            return False
+
+        # Check if the lenght of the answer is not only one mora.
+        if len(answer) == 1:
+            return False
+
+        # Check if the begining of the answer is the then same as the end of the previous one.
         if self.playing and answer[0] != self.__previous:
             return False
 
-        # TODO : La partie qui vérifie un mot dans un dico.
+        # Check if the word is inside the sqlite DB dictionnary.
+        if not sqlmgt.ask_if_exist(answer):
+            return False
 
         self.__previous = answer[-1]    # Don't need a "" answer.
 

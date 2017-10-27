@@ -41,6 +41,6 @@ class SQLManage_Test(unittest.TestCase):
         @parameters : none.
         @return  : none.
         """
-        # SELECT dict.kana FROM dict WHERE dict.kana = "ooo"
+        # SELECT dict.kana FROM dict WHERE dict.kana = "..."
         self.assertFalse(self.sqlm.ask_if_exist("word"))
         self.assertTrue(self.sqlm.ask_if_exist("ことば"))
