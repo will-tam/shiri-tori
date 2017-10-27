@@ -4,8 +4,12 @@
 
 + Rêgles pour one_game.py:
 ++À partir du 2ème mot, COMMENCE TOUJOURS par la FIN du mot du joueur précédent
--Pas de mot finissant par ん or ン ==> perdu
+-Pas de mot finissant par ん ou ン ==> perdu
 ++Les mots d'une seule more sont INTERDITS
 ++Les acronymes sont INTERDITS
 ++Les mots commençant par ん sont INTERDITS
 -Utilisation des HIRAGANA seulement
+
++Nettoyage BdD:
+++Mots finissant par ん or ン
+++Acronymes

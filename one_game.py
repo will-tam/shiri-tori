@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 
+# Project library import.
+import sqlmanage
+
+
 class One_Game():
     """
     Representing one game class.
 
     # Public attributes.
         playing = the turn is playing.
+        sqlmgt = instance of SQLManage.
     """
 
     # Private attributes.
@@ -46,12 +51,13 @@ class One_Game():
         @parameters : ...
         @return : none.
         """
-        self.playing = False
         self.__previous = ""
+        self.playing = False
+        self.sqlmgt = sqlmanage.SQLManage()
 
     def check_answer(self, answer):
         """
-        Check the player answer.
+        Check the player answer following rules in README.
         @parameters : answer = the player answer.
         @return : True = answer is accepted, everelse False
         """

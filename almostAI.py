@@ -3,9 +3,16 @@
 # Standard library import.
 import random as rnd
 
+# Project library import.
+import sqlmanage
+
+
 class Almost_AI():
     """
     (Not yet really) AI for this game to the single player's game.
+
+    # Public attributes.
+        sqlmgt = instance of SQLManage.
     """
 
     # Private attributes.
@@ -25,7 +32,7 @@ class Almost_AI():
         @parameters : ...
         @return : none.
         """
-        pass
+        self.sqlmgt = sqlmanage.SQLManage()
 
     def choice(self):
         """
