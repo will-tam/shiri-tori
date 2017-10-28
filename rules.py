@@ -13,6 +13,7 @@ The forbidden words are :
     - only one mora words is forbidden (eg: い(胃) - stomach / か　蚊 - mosquito) ;
     - acronym (eg : ヴィップ - VIP) ;
     - a ん beggining word (eg : んです) ;
+    - written in katakana words (eg : アルバイト - part time job /　イノシシ - wild boar);
+    - contain "ー" (eg : ルール - rule) or "・" (eg : ちきん・なげっと or チキン・ナゲット - chicken nugget) words.
 
-At last, but not least, at this moment, only use hiragana, even for usually words usually writed in katakana.
 """

@@ -12,6 +12,8 @@ _But_, only the fisrt player have an hudge choice. The only restriction is _*the
 not be a japanese ん or ン terminated word*_.
     * The following player and so the first player at her/his next turn are now limted by second rule :
 _*the choosen word has to begun by the end of the previous word*_.
+    * Don't use _*ー*_ or _*・*_.
+    * Sorry, *no* words usually writen with _*katakana*_. You should be sure the word is writen with kanji (e.g : animal's name) or with hiragana (e.g : no words coming from foreign countries).
     * Of course, each word _*has to be inside the dictionnary*_.
 
 _Ex_:  with 2 players

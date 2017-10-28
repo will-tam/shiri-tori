@@ -58,7 +58,8 @@ class One_Game():
     def check_answer(self, answer):
         """
         Check the player answer following rules in README.
-        Some rules are writed by program, because it should be in database yet.
+        Some rules are checked by program, because it should be in database yet.
+        Thanks to Python 3.2 str class to understand UTF-8.
         @parameters : answer = the player answer.
         @return : True = answer is accepted, everelse False
         """
@@ -72,12 +73,20 @@ class One_Game():
         if not self.__only_hiragana(answer):
             return False
 
-        # Check if the end of the answer is "ん" or"ン".
+        # Check if the end of the answer is "ん" or"ン". Yes, normally hiragana. But ...
         if answer[-1] in ["ん", "ン"]:
             return False
 
         # Check if the begining of the answer is "ん" or"ン".
         if answer[0] in ["ん", "ン"]:
+            return False
+
+        #Check if "ー" is in the word.
+        if not False in [c == "ー" for c in answer]:
+            return False
+
+        # Check if "・" is in the word.
+        if not False in [c == "・" for c in answer]:
             return False
 
         # Check if the lenght of the answer is not only one mora.
@@ -89,7 +98,7 @@ class One_Game():
             return False
 
         # Check if the word is inside the sqlite DB dictionnary.
-        if not sqlmgt.ask_if_exist(answer):
+        if not self.sqlmgt.ask_if_exist(answer):
             return False
 
         self.__previous = answer[-1]    # Don't need a "" answer.

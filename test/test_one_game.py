@@ -32,9 +32,13 @@ class One_Game_Test(unittest.TestCase):
         @parameters : none.
         @return  : none.
         """
-        self.assertFalse(self.o_g.check_answer("only alphabet"))
-        self.assertTrue(self.o_g.check_answer("ひらがなだけだ"))
-        self.assertFalse(self.o_g.check_answer("ひらganaだkeだ"))
-        self.assertFalse(self.o_g.check_answer("ちゃわん"))
-        self.assertFalse(self.o_g.check_answer("パン"))
-        self.assertFalse(self.o_g.check_answer(""))
+        self.assertFalse(self.o_g.check_answer("only alphabet"))   # No alphabet letters.
+        self.assertTrue(self.o_g.check_answer("ひらがな"))          # Only hiragana.
+        self.assertFalse(self.o_g.check_answer("ひらganaだkeだ"))   # Same.
+        self.assertFalse(self.o_g.check_answer("パン"))            # Same.
+        self.assertFalse(self.o_g.check_answer("ちゃわん"))         # No "ん" at last.
+        self.assertFalse(self.o_g.check_answer("んです"))           # No "ん" at first.
+        self.assertFalse(self.o_g.check_answer(""))                # Nothing written.
+        self.assertFalse(self.o_g.check_answer("るーる"))           # No "ー".
+        self.assertFalse(self.o_g.check_answer("ヴィデオ・カセット")) # No "・".
+        self.assertTrue(self.o_g.check_answer("りけんや"))           # In dictionnary (yes it same as "Only hiragana".
