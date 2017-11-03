@@ -2,25 +2,32 @@
 - || -- FAIT
 
 + Version console seule >
+ ++ Vérification éxistance fichier BdD dictionnaire
+ ++ Changer nom du fichier BdD dictionnaire
+ ++ Écrire remerciement pour ce dico dans le README
+ ++ Ajout liscence
 + Version graphique
 + Version serveur
 
+
 + Rêgles pour one_game.py:
-++Être dans le dico.
---À partir du 2ème mot, COMMENCE TOUJOURS par la FIN du mot du joueur précédent (PROG)
---Pas de mot finissant par ん ou ン ==> perdu (PROG + nettoyage)
---Les mots d'une seule more sont INTERDITS (PROG + nettoyage)
---Les mots commençant par ん sont INTERDITS (PROG + nettoyage)
---Utilisation des HIRAGANA seulement (PROG + nettoyage)
---Pas de mots contenant ー (PROG + nettoyage)
---Pas de mots contenant ・(PROG + nettoyage)
-++Les acronymes sont INTERDITS (nettoyage)
+ ++Être dans le dico.
+ --À partir du 2ème mot, COMMENCE TOUJOURS par la FIN du mot du joueur précédent (PROG)
+ --Pas de mot finissant par ん ou ン ==> perdu (PROG + nettoyage)
+ --Les mots d'une seule more sont INTERDITS (PROG + nettoyage)
+ --Les mots commençant par ん sont INTERDITS (PROG + nettoyage)
+ --Utilisation des HIRAGANA seulement (PROG + nettoyage)
+ --Pas de mots contenant ー (PROG + nettoyage)
+ --Pas de mots contenant ・(PROG + nettoyage)
+ ++Les acronymes sont INTERDITS (nettoyage)
+
 
 +Nettoyage BdD:
---Mots finissant par ん or ン
---Mots commençant par ん or ン
---Mots mono mores
-++Acronymes
---Doublons
---Mots contenant ー
---Mots contenant ・
+ --Mots finissant par ん or ン
+ --Mots commençant par ん or ン
+ --Mots mono mores
+ ++Acronymes
+ --Doublons
+ --Mots contenant ー
+ --Mots contenant ・
+ ++Les tables non utilisées quand sûr
