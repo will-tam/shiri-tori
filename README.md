@@ -4,7 +4,6 @@
 Why not ?
 No, there is a reason : to kill time in the train beetween my job and my home.
 And, to training my Python.
-And of why.
 
 * ** Rules **
     * In this game, any player at their turn write a Japanese word.
