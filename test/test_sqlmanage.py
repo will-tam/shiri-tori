@@ -44,3 +44,12 @@ class SQLManage_Test(unittest.TestCase):
         # SELECT dict.kana FROM dict WHERE dict.kana = "..."
         self.assertFalse(self.sqlm.ask_if_exist("word"))
         self.assertTrue(self.sqlm.ask_if_exist("ことば"))
+
+    #@unittest.skip("Not yet fully implemented!!")
+    def test_check_slqlite_file(self):
+        """
+        Test of check_slqlite_file()
+        @parameters : none.
+        @return  : none.
+        """
+        self.assertTrue(sqlmanage.check_slqlite_file())

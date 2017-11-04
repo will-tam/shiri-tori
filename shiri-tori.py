@@ -9,6 +9,7 @@ import sys
 # Project library import.
 import rules
 import console_mode as cm
+import sqlmanage
 
 ######################
 
@@ -24,7 +25,7 @@ def help():
     print("\t-h : this help.")
     print("\t-c : console mode. Default")
     print("\t-g : graphical mode.")
-    print("\t-s : server mode. Add this args with one of the 2 before (Not yet implemented.")
+    print("\t-s : server mode. Add this args with one of the 2 before (Not yet implemented).")
     print("\n")
 
 def main(args):
@@ -34,6 +35,11 @@ def main(args):
     @return : 0 = all was good.
               ... = some problem occures.
     """
+
+    if not sqlmanage.check_slqlite_file():
+        print("goi.sqlite database file doesn't exist or corrupted ! I have to stop here !")
+        return 1
+
     if len(args) == 0 or args[0][0] != '-':
         help()
         return 1

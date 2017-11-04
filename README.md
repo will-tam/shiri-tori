@@ -16,7 +16,7 @@ not be a japanese ん or ン terminated word_**.
     * Don't use **_ー_** or **_・_**.
     * Sorry, *no* words usually writen with **_katakana_**. You should be sure the word is writen with kanji (e.g : animal's name) or with hiragana (e.g : no words coming from foreign countries).
     * Of course, each word **_has to be inside the dictionnary_**.
-    
+
     _Ex_:  with 2 players:
  1. 1st player : こと**ば**
  2. 2nd player : **ば** **しょ**
@@ -31,4 +31,7 @@ It's ok, their is (at that moment), no IA or difficult choose.
 Just a random choose word in a dictionnary.
 
 
-**Please Enjoy**
+**Please Enjoy** (or not).
+
+Special regards to _dict.sqlite creator_, **_James William Breen_** (See _dict-copyright.txt_ file.)
+It has been transformed to "create" _goi.sqlite_ file.

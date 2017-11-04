@@ -2,19 +2,18 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2017-10-28, 20:55:16 -->
+<!-- Saved: 2017-11-05, 00:20:16 -->
 <Session version="5.0">
   <Filenames>
-    <Filename cline="21" cindex="21" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="66" cindex="27" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
-    <Filename cline="11" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
-    <Filename cline="101" cindex="12" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/one_game.py</Filename>
+    <Filename cline="27" cindex="91" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
+    <Filename cline="57" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
+    <Filename cline="5" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
+    <Filename cline="100" cindex="47" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/one_game.py</Filename>
     <Filename cline="8" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/almostAI.py</Filename>
-    <Filename cline="35" cindex="20" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/sqlmanage.py</Filename>
-    <Filename cline="15" cindex="2" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/TODO</Filename>
-    <Filename cline="43" cindex="51" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/test/test_one_game.py</Filename>
+    <Filename cline="19" cindex="27" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/sqlmanage.py</Filename>
+    <Filename cline="6" cindex="3" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/TODO</Filename>
   </Filenames>
-  <ActiveWindow cline="43" cindex="51">/home/will/data/programmation/python/shiri-tori/test/test_one_game.py</ActiveWindow>
+  <ActiveWindow cline="6" cindex="3">/home/will/data/programmation/python/shiri-tori/TODO</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -33,14 +32,14 @@
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_one_game.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_one_game.py@@14</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/README</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_game.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_game.py@@7</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py@@3</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/sqlmanage.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/sqlmanage.py@@7</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/sqlmanage.py@@10</ExpandedItemName>
     </ProjectBrowserState>
     <ProjectBrowserState name="forms"/>
     <ProjectBrowserState name="resources"/>
