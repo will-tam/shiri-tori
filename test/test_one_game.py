@@ -36,6 +36,7 @@ class One_Game_Test(unittest.TestCase):
         self.assertTrue(self.o_g.check_answer("ひらがな"))          # Only hiragana.
         self.assertFalse(self.o_g.check_answer("ひらganaだkeだ"))   # Same.
         self.assertFalse(self.o_g.check_answer("パン"))            # Same.
+        self.assertTrue(self.o_g.check_answer("じしょ"))           # Same but しょ-like problem
         self.assertFalse(self.o_g.check_answer("ちゃわん"))         # No "ん" at last.
         self.assertFalse(self.o_g.check_answer("んです"))           # No "ん" at first.
         self.assertFalse(self.o_g.check_answer(""))                # Nothing written.

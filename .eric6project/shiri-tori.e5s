@@ -2,18 +2,19 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2017-11-05, 00:20:16 -->
+<!-- Saved: 2017-11-13, 18:43:58 -->
 <Session version="5.0">
   <Filenames>
-    <Filename cline="27" cindex="91" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="57" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
-    <Filename cline="5" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
-    <Filename cline="100" cindex="47" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/one_game.py</Filename>
-    <Filename cline="8" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/almostAI.py</Filename>
-    <Filename cline="19" cindex="27" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/sqlmanage.py</Filename>
-    <Filename cline="6" cindex="3" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/TODO</Filename>
+    <Filename cline="38" cindex="7" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
+    <Filename cline="0" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
+    <Filename cline="114" cindex="50" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
+    <Filename cline="122" cindex="89" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/one_game.py</Filename>
+    <Filename cline="54" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/almostAI.py</Filename>
+    <Filename cline="44" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/sqlmanage.py</Filename>
+    <Filename cline="4" cindex="1" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/TODO</Filename>
+    <Filename cline="54" cindex="50" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/test/test_sqlmanage.py</Filename>
   </Filenames>
-  <ActiveWindow cline="6" cindex="3">/home/will/data/programmation/python/shiri-tori/TODO</ActiveWindow>
+  <ActiveWindow cline="122" cindex="89">/home/will/data/programmation/python/shiri-tori/one_game.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -32,9 +33,16 @@
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_one_game.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_one_game.py@@14</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_sqlmanage.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/test/test_sqlmanage.py@@14</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/README</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/almostAI.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/almostAI.py@@11</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/console_mode.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_game.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_game.py@@7</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_game.py@@10</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py@@3</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ExpandedItemName>

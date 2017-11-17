@@ -112,7 +112,7 @@ def main_loop(playersI, nb_players):
     # THE main loop it-self.
     while p_answer != "0":
         if nb_players == 1 and now_player == 1:     # Only 1 player, and it's computer's turn.
-            p_answer = computer.choice()
+            p_answer = computer.choice(p_answer[-1])
             print("My turn >>> {}".format(p_answer))
         else:   # everelse it's player turn (it runs for 1 or several human players).
             print("{}, your turn >>>".format(playersI[now_player].nickname), end='')

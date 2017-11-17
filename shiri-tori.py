@@ -35,7 +35,6 @@ def main(args):
     @return : 0 = all was good.
               ... = some problem occures.
     """
-
     if not sqlmanage.check_slqlite_file():
         print("goi.sqlite database file doesn't exist or corrupted ! I have to stop here !")
         return 1
