@@ -47,7 +47,9 @@ class One_Game():
         'みゃ', 'みゅ', 'みょ',
         'りゃ', 'りゅ', 'りょ',
         'っ']
+    __dejavu = []   # Already played words.
     #__previous = just the end of one of the players previous answer.
+
 
 
     # Public methods.
@@ -123,6 +125,13 @@ class One_Game():
             print("\tThe end of previous answer and the beginning of these are different.")
             return False
 
+        # Check if the playing word wasn't already played before.
+        print("\t{} already played ? ".format("".join(answer)), end="")
+        if True in [a == answer for a in self.__dejavu]:
+            print("Yes")
+            return False
+        print("Not yet. Try to rememeber this word.")
+
         # Check if the word is inside the sqlite DB dictionnary.
         print("\t{} found in goi.sqlite ? ".format("".join(answer)), end="")
         if not self.sqlmgt.ask_if_exist_kana("".join(answer)):
@@ -133,6 +142,7 @@ class One_Game():
         self.__previous = answer[-1]    # Don't need a "" answer.
 
         print("OK.")
+        self.__dejavu.append(answer)
         return True
 
 

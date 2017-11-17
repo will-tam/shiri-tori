@@ -42,4 +42,6 @@ class One_Game_Test(unittest.TestCase):
         self.assertFalse(self.o_g.check_answer(""))                # Nothing written.
         self.assertFalse(self.o_g.check_answer("るーる"))           # No "ー".
         self.assertFalse(self.o_g.check_answer("ヴィデオ・カセット")) # No "・".
+        self.assertTrue(self.o_g.check_answer("まだ"))  # Play a correct word.
+        self.assertFalse(self.o_g.check_answer("まだ"))  # Play a correct word but already played.
         self.assertTrue(self.o_g.check_answer("りけんや"))           # In dictionnary (yes it same as "Only hiragana".
