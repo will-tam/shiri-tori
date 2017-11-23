@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2017-10-22, 22:01:27 -->
-<!-- Copyright (C) 2017 ,  -->
+<!-- Saved: 2017-11-17, 19:56:23 -->
+<!-- Copyright (C) 2017 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
   <Hash>837987ac282ceefbee3182d011e11551767981ae</Hash>
   <ProgLanguage mixed="0">Python3</ProgLanguage>
   <ProjectType>Console</ProjectType>
-  <Version>0.1</Version>
-  <Author></Author>
+  <Version>20171112</Version>
+  <Author>Will_tam</Author>
   <Email></Email>
   <Eol index="0"/>
   <Sources>
     <Source>README</Source>
     <Source>README.md</Source>
     <Source>TODO</Source>
+    <Source>VERSION</Source>
     <Source>almostAI.py</Source>
     <Source>console_mode.py</Source>
     <Source>one_game.py</Source>
