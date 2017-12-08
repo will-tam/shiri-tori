@@ -6,7 +6,7 @@
  -- Changer nom du fichier BdD dictionnaire : dict.sqlite -> goi.sqlite
  -- Écrire remerciement pour ce dico dans le README
  -- Ajout liscence
- ++ Liste des mots déjà utilisés
+ -- Liste des mots déjà utilisés
 + Version graphique
 + Version serveur
 

@@ -215,10 +215,9 @@ def display_points(playersI):
 
 def console_mode():
     """
-    Main function.
-    @parameters : some arguments, in case of use.
+    Main for console mode
+    @parameters : none
     @return : 0 = normal exit.
-              ... = some problem occures.
     """
     nb_players = ask_number_of_players()
 
@@ -244,5 +243,5 @@ def console_mode():
 
 if __name__ == "__main__":
     print("Don't launch me directely, please !")
-    print("Run python3 shiri-tory.py or directely if eXecution right(s) is/are ON.")
+    print("Run python3 shiri-tory.py or directely shiri-tory.py if eXecution right(s) is/are ON.")
     sys.exit(1)

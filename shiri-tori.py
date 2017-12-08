@@ -11,6 +11,8 @@ import rules
 import console_mode as cm
 import sqlmanage
 
+import interface.interface_mode as im
+
 ######################
 
 def help():
@@ -24,7 +26,7 @@ def help():
     print("\nOptions")
     print("\t-h : this help.")
     print("\t-c : console mode. Default")
-    print("\t-g : graphical mode.")
+    print("\t-i : graphical interface mode.")
     print("\t-s : server mode. Add this args with one of the 2 before (Not yet implemented).")
     print("\n")
 
@@ -57,8 +59,8 @@ def main(args):
         cm.console_mode()
         return 0
 
-    if "g" in args:     # Graphical mode.
-        pass
+    if "i" in args:     # Graphical mode.
+        im.interface_mode()
         return 0
 
     return 0
