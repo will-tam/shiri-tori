@@ -9,6 +9,7 @@ import wx
 
 # Project library import.
 import HMI.Nb_players as HMI_Nb_players
+import HMI.Ask_nickname as HMI_Ask_nickname
 
 ######################
 
@@ -19,9 +20,20 @@ def graphical_mode():
     @return : 0 = all was good.
     """
 
-    nb_players = HMI_Nb_players.ask_number_of_players()
+    wx_app = wx.App()
 
-    print("nb_players =", nb_players)
+    nb_players = HMI_Nb_players.ask_number_of_players(wx_app)
+    if nb_players == 0:
+        print("\nMaybe later !\n")
+        bye_dlg = wx.MessageDialog(parent=None,
+                                   message="Maybe later !",
+                                   caption="Well !",
+                                   style=wx.OK | wx.ICON_INFORMATION)
+        bye_dlg.ShowModal()
+        bye_dlg.Destroy()
+        return 0
+
+    playersI = HMI_Ask_nickname.ask_nickname(wx_app, nb_players)
 
     return 0
 
