@@ -8,17 +8,20 @@ import wx
 # Third-part library import.
 
 # Project library import.
+import HMI.Nb_players as HMI_Nb_players
 
 ######################
 
-def interface_mode():
+def graphical_mode():
     """
     Main for interface mode.
     @parameters : none.
     @return : 0 = all was good.
     """
 
+    nb_players = HMI_Nb_players.ask_number_of_players()
 
+    print("nb_players =", nb_players)
 
     return 0
 

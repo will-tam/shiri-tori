@@ -11,9 +11,11 @@ import wx
 
 ######################
 
-class Nb_players():
+class Nb_players(wx.Frame):
     """
-    Just Ask the number of player(s).
+    wx.Frame class derivated class.
+
+    Just ask the number of player(s).
     Check no more than 5 included.
     0 means end of game.
 
@@ -27,22 +29,34 @@ class Nb_players():
 
     # Public methods.
 
-    def __init__(self):
+    def __init__(self, parent):
         """
         __init__ : initiate class
-        @parameters : ...
+        @parameters : parents = the parent widget.
         @return : none.
         """
         self.nb_players = 0
-        self.quit = false
+        self.quit = False
 
+        wx.Frame.__init__(self, parent)
 
     # Private methods.
 
 
 def ask_number_of_players():
     """
+    Entry point of the HMI.
+    @parameters :
+    @return : number of player choosen.
     """
+
+    wx_app = wx.App()
+
+    nb_players_hmi = Nb_players(None)
+    nb_players_hmi.Show()
+
+    wx_app.MainLoop()
+
 
     return 0
 

@@ -2,16 +2,16 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2017-12-08, 19:20:10 -->
+<!-- Saved: 2017-12-09, 11:59:38 -->
 <Session version="5.0">
   <Filenames>
-    <Filename cline="47" cindex="50" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="47" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/interface/ex_boa/NbPlayers.py</Filename>
-    <Filename cline="221" cindex="40" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
-    <Filename cline="20" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/interface/interface_mode.py</Filename>
-    <Filename cline="20" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/interface/Nb_players.py</Filename>
+    <Filename cline="13" cindex="10" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
+    <Filename cline="217" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
+    <Filename cline="21" cindex="55" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/graphical_mode.py</Filename>
+    <Filename cline="56" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</Filename>
+    <Filename cline="62" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/ex_boa/NbPlayers.py</Filename>
   </Filenames>
-  <ActiveWindow cline="20" cindex="0">/home/will/data/programmation/python/shiri-tori/interface/Nb_players.py</ActiveWindow>
+  <ActiveWindow cline="56" cindex="0">/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -29,10 +29,10 @@
   <Bookmarks/>
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/interface</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/interface/Nb_players.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/interface/Nb_players.py@@14</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/interface/interface_mode.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py@@14</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/graphical_mode.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/README</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/console_mode.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ExpandedItemName>
