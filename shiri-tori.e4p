@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2017-12-09, 22:45:33 -->
+<!-- Saved: 2017-12-14, 07:05:18 -->
 <!-- Copyright (C) 2017 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
@@ -14,14 +14,15 @@
   <Eol index="0"/>
   <Sources>
     <Source>HMI/Ask_nickname.py</Source>
+    <Source>HMI/Game.py</Source>
     <Source>HMI/Nb_players.py</Source>
-    <Source>HMI/graphical_mode.py</Source>
     <Source>README</Source>
     <Source>README.md</Source>
     <Source>TODO</Source>
     <Source>VERSION</Source>
     <Source>almostAI.py</Source>
     <Source>console_mode.py</Source>
+    <Source>graphical_mode.py</Source>
     <Source>one_game.py</Source>
     <Source>player.py</Source>
     <Source>rules.py</Source>

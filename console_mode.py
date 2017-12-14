@@ -59,7 +59,7 @@ def ask_nickname(nb_players):
     playersI = []
 
     if nb_players == 1:
-        print("\n\nOk, it's just beetween you and me\n")
+        print("\n\nOk, it's just beetween you and me !\n")
         nicknames.append(input("Please, give me your nickname >>> "))
         # Manage the unknown player in single player mode.
         if nicknames[0] == "":
@@ -226,6 +226,7 @@ def console_mode():
         return 0
 
     playersI = ask_nickname(nb_players)
+
     nickname_away = main_loop(playersI, nb_players)
 
     if nickname_away:

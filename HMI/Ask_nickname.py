@@ -7,6 +7,7 @@ import sys
 import wx
 
 # Projet modules import.
+import player
 
 ######################
 
@@ -17,20 +18,21 @@ class Ask_nickname(wx.Frame):
     Ask the nickname of each players, according their number.
 
     Public attributes.
-
+        players_nn = list of players' nick name.
     """
 
     # Private attributes.
 
 
     # Public methods.
-    def __init__(self, parent):
+    def __init__(self, parent, nb_players):
         """
         __init__ : initiate class
         @parameters : parents = the parent widget.
+                      nb_players = number of players.
         @return : none.
         """
-        self.nb_players = 0     # No player by default. 0 means "quit game".
+        self.__players_nn_entry = []
 
         # HMI 1st build with boa-constructor and clean-up "by hand".
 
@@ -43,70 +45,74 @@ class Ask_nickname(wx.Frame):
                           style=wx.ALWAYS_SHOW_SB)
         self.Center(wx.BOTH)
 
-#        #Create a StaticText widget aka label.
-#        label = """Enter the number of player(s) (no more than 5 included)
-#        \n1 means 2 players, you and ... me !"""
-#        self.st_label = wx.StaticText(parent=self,
-#                                      id=-1,
-#                                      label=label,
-#                                      pos=wx.Point(40, 16),
-#                                      size=wx.Size(368, 45),
-#                                      style=0)
-#
-#        # Create a SpinCtrl widget to enter the number of players.
-#        self.sc_nb_players = wx.SpinCtrl(parent=self,
-#                                         id=-1,
-#                                         pos=wx.Point(213, 94),
-#                                         size=wx.Size(31, 24),
-#                                         style=wx.SP_ARROW_KEYS,
-#                                         min=1,
-#                                         max=5,
-#                                         initial=1
-#                                         )
-#
-#        # The ok and quit buttons creation.
-#        self.btn_ok = wx.Button(parent=self,
-#                                id=wx.ID_OK,
-#                                label="",
-#                                pos=wx.Point(46, 136),
-#                                size=wx.Size(85, 32),
-#                                style=0)
-#
-#        self.btn_quit = wx.Button(parent=self,
-#                                  id=wx.ID_EXIT,
-#                                  label="",
-#                                  pos=wx.Point(317, 137),
-#                                  size=wx.Size(85, 32),
-#                                  style=0)
-#
-#        # Bind buttons to their events.
-#        self.btn_ok.Bind(event=wx.EVT_BUTTON,
-#                         handler=self.__on_btn_ok,
-#                         id=wx.ID_OK)
-#
-#        self.btn_quit.Bind(event=wx.EVT_BUTTON,
-#                           handler=self.__on_btn_exit,
-#                           id=wx.ID_EXIT)
+        #Create a StaticText widget aka label.
+        if nb_players == 1:     # Setting is not same for 1 or several players.
+            label = """Ok, it's just beetween you and me !
+            \nPlease, give me your nickname"""
+            lbl_tl = 40     # Label will be put at this top left position.
+            default_nn = [player.find_me_a_nickname(0), "The Best IA"]
+        else:
+            label = "Please enter your nickname :"
+            lbl_tl = 35
+            default_nn = []
+            for i in range(1, nb_players + 1):
+                default_nn.append(player.find_me_a_nickname(i))   # By default, fill with this.
+
+        self.st_label = wx.StaticText(parent=self,
+                                      id=-1,
+                                      label=label,
+                                      pos=wx.Point(24, 17),
+                                      style=0)
+
+        # A StaticText an TextCtrl for each player.
+        for i, nn in enumerate(default_nn):
+
+            txt_ctrl_style = 0  # Enable to change text by default.
+            if nb_players == 1 and i == 1:
+                txt_ctrl_style = wx.TE_READONLY     # The computer's name won't be change.
+
+            i += 1  # Don't start with 0.
+            label = "Player {}".format(i)
+
+            player_lbl = wx.StaticText(parent=self,
+                                       id=i,
+                                       label=label,
+                                       pos=wx.Point(48, lbl_tl + i * 40),
+                                       size=wx.Size(56, 15),
+                                       style=0)
+
+            player_nn_entry = wx.TextCtrl(parent=self,
+                                          id=i,
+                                          value=nn,
+                                          pos=wx.Point(128, lbl_tl + i * 40),
+                                          size=wx.Size(264, 25),
+                                          style=txt_ctrl_style)
+
+            self.__players_nn_entry.append(player_nn_entry) # Save instance of TextCtrl for 1 player.
+
+        # The ok buttons creation.
+        self.btn_ok = wx.Button(parent=self,
+                                id=wx.ID_OK,
+                                pos=wx.Point(340, 305),
+                                size=wx.Size(85, 32),
+                                style=0)
+
+        # Bind buttons to its event.
+        self.btn_ok.Bind(event=wx.EVT_BUTTON,
+                         handler=self.__on_btn_ok,
+                         id=wx.ID_OK)
+
 
     # Private methods.
     def __on_btn_ok(self, event):
         """
         On btn_ok click event :
-            fill the self.nb_players with the numberof players,
+            fill the self.palyers_nn with the nickname of each players,
             and destroy this widget.
         @parameters : event = the event which called this function.
         @return : none
         """
-        self.nb_players = self.sc_nb_players.GetValue();
-        self.Destroy()
-
-    def __on_btn_exit(self, event):
-        """
-        On btn_exit click event :
-            nothing is changed, simply destroy this widget.
-        @parameters : event = the event which called this function.
-        @return : none
-        """
+        self.palyers_nn = [nn.GetLineText(0) for nn in self.__players_nn_entry]
         self.Destroy()
 
 ######################
@@ -116,14 +122,21 @@ def ask_nickname(wx_app, nb_players):
     Entry point of the HMI.
     @parameters : wx_app = the wx application instance.
                   nb_players = number of players who asking the nickname.
-    @return : number of player choosen.
+    @return : an player(s) instance(s) list.
     """
-    ask_nickname_hmi = Ask_nickname(None)
+    playersI = []
+
+    ask_nickname_hmi = Ask_nickname(None, nb_players)
     ask_nickname_hmi.Show()
 
     wx_app.MainLoop()
 
-    return []
+    # Intances of players.
+    for nickname in ask_nickname_hmi.palyers_nn:
+        pi = player.Player(nickname)
+        playersI.append(pi)
+
+    return playersI
 
 ######################
 

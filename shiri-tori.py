@@ -11,7 +11,7 @@ import rules
 import console_mode as cm
 import sqlmanage
 
-import HMI.graphical_mode as gm
+import graphical_mode as gm
 
 ######################
 

@@ -70,14 +70,12 @@ class Nb_players(wx.Frame):
         # The ok and quit buttons creation.
         self.btn_ok = wx.Button(parent=self,
                                 id=wx.ID_OK,
-                                label="",
                                 pos=wx.Point(46, 136),
                                 size=wx.Size(85, 32),
                                 style=0)
 
         self.btn_quit = wx.Button(parent=self,
                                   id=wx.ID_EXIT,
-                                  label="",
                                   pos=wx.Point(317, 137),
                                   size=wx.Size(85, 32),
                                   style=0)

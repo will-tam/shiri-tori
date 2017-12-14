@@ -2,17 +2,16 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2017-12-09, 22:57:11 -->
+<!-- Saved: 2017-12-10, 20:16:58 -->
 <Session version="5.0">
   <Filenames>
     <Filename cline="13" cindex="10" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="227" cindex="4" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
-    <Filename cline="35" cindex="53" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/graphical_mode.py</Filename>
-    <Filename cline="128" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</Filename>
-    <Filename cline="120" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py</Filename>
-    <Filename cline="13" cindex="38" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/ex_boa/PlayersNickname.py</Filename>
+    <Filename cline="75" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
+    <Filename cline="35" cindex="16" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/graphical_mode.py</Filename>
+    <Filename cline="57" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</Filename>
+    <Filename cline="118" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py</Filename>
   </Filenames>
-  <ActiveWindow cline="13" cindex="38">/home/will/data/programmation/python/shiri-tori/HMI/ex_boa/PlayersNickname.py</ActiveWindow>
+  <ActiveWindow cline="118" cindex="0">/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>

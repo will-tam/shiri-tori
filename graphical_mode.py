@@ -10,6 +10,7 @@ import wx
 # Project library import.
 import HMI.Nb_players as HMI_Nb_players
 import HMI.Ask_nickname as HMI_Ask_nickname
+import HMI.Game as HMI_Game
 
 ######################
 
@@ -34,6 +35,10 @@ def graphical_mode():
         return 0
 
     playersI = HMI_Ask_nickname.ask_nickname(wx_app, nb_players)
+
+    print(playersI)
+
+    nickname_away = HMI_Game.ze_GAME()
 
     return 0
 
