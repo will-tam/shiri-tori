@@ -2,16 +2,17 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2017-12-10, 20:16:58 -->
+<!-- Saved: 2017-12-15, 18:53:36 -->
 <Session version="5.0">
   <Filenames>
-    <Filename cline="13" cindex="10" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="75" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
-    <Filename cline="35" cindex="16" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/graphical_mode.py</Filename>
-    <Filename cline="57" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</Filename>
-    <Filename cline="118" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py</Filename>
+    <Filename cline="13" cindex="7" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
+    <Filename cline="229" cindex="50" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
+    <Filename cline="40" cindex="17" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/graphical_mode.py</Filename>
+    <Filename cline="84" cindex="28" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Game.py</Filename>
+    <Filename cline="21" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/ex_boa/Game.py</Filename>
+    <Filename cline="88" cindex="34" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</Filename>
   </Filenames>
-  <ActiveWindow cline="118" cindex="0">/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py</ActiveWindow>
+  <ActiveWindow cline="84" cindex="28">/home/will/data/programmation/python/shiri-tori/HMI/Game.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -31,13 +32,14 @@
     <ProjectBrowserState name="sources">
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py@@13</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py@@14</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Game.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Game.py@@16</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py@@13</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/graphical_mode.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/README</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/console_mode.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/graphical_mode.py</ExpandedItemName>
     </ProjectBrowserState>
     <ProjectBrowserState name="forms"/>
     <ProjectBrowserState name="resources"/>

@@ -38,7 +38,7 @@ def graphical_mode():
 
     print(playersI)
 
-    nickname_away = HMI_Game.ze_GAME()
+    nickname_away = HMI_Game.ze_GAME(wx_app, playersI, nb_players)
 
     return 0
 
