@@ -98,7 +98,7 @@ def main_loop(playersI, nb_players):
         now_player = rnd.randrange(nb_players)  # 1st player is a random choice.
 
     print(80*"\n")
-    print(rules.how_to(nb_players, now_player, playersI))
+    print(rules.before_to_play(nb_players, now_player, playersI))
 
     p_answer = ""   # No player's answer to enter in loop.
 

@@ -18,7 +18,7 @@ The forbidden words are :
 
 """
 
-def how_to(nb_players, now_player, playersI):
+def before_to_play(nb_players, now_player, playersI):
     """
     Return the how to depending the number of players
     @parameters : nb_players = number of players.
@@ -27,14 +27,15 @@ def how_to(nb_players, now_player, playersI):
     @return : the how to.
     """
     if nb_players == 1:
-        howto = "I'm great lord, I let you begin {}.\n".format(playersI[0].nickname)
-        howto += "If you are to scarry, enter 0 now or "
-        howto += "anytime you want!" + 2 * "\n"
+        btp = "I'm great lord, I let you begin {}.\n".format(playersI[0].nickname)
+        btp += "If you are to scarry, enter 0 or\n"
+        btp += "'I want to leave you !!!' (in graphical mode)\n"
+        btp += "now or anytime you want!" + 2 * "\n"
     else:
-        howto = "Well, let the random deciding who will begin.\n"
-        howto += "If one among you is to afraid, enter 0 "
-        howto += "at your turn.\n"
-        howto += "So, the first of you will be {}".format(playersI[now_player].nickname)
-        howto += 2 * "\n"
+        btp = "Well, let the random deciding who will begin.\n"
+        btp += "If one among you is to afraid, enter 0 or\n"
+        btp += "'I want to leave you !!!' (in graphical mode) at your turn.\n\n"
+        btp += "So, the first of you will be {}".format(playersI[now_player].nickname)
+        btp += 2 * "\n"
 
-    return howto
+    return btp

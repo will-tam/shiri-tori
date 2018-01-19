@@ -2,11 +2,13 @@
 
 # Standard libraries import.
 import sys
+import random as rnd
 
 # Third libraries import.
 import wx
 
 # Projet modules import.
+import rules
 import player
 import one_game
 import almostAI
@@ -123,13 +125,19 @@ class Game(wx.Frame):
         """
         if first_time:
 #            self.__lbl_previous_player_answer = "... said"
-            self.__lbl_previous_player_answer = "How to"
             self.previous_player_answer = wx.StaticBox(parent=self,
-                                                   id=wx.ID_ANY,
-                                                   label=self.__lbl_previous_player_answer,
-                                                   pos=wx.Point(5, 5),
-                                                   size=wx.Size(547, 280),
-                                                   style=0)
+                                                       id=wx.ID_ANY,
+                                                       label="Before to play",
+                                                       pos=wx.Point(5, 5),
+                                                       size=wx.Size(547, 280),
+                                                       style=0)
+            wx.StaticText(parent=self.previous_player_answer,
+                          label=rules.before_to_play(self.nb_players, self.now_player, self.playersI),
+                          pos=wx.Point(70, 55),
+                          style=0).Center(wx.BOTH)
+#            self.checkit_lbl = wx.StaticText(label=u'Check it ...', name=u'checit_lbl', parent=self,
+#              pos=wx.Point(70, 55), size=wx.Size(69, 15), style=0)
+
 
 
     def __update_previous_player_answer(self):
