@@ -8,6 +8,7 @@ import random as rnd
 # Third-part library import.
 
 # Project library import.
+import rules
 import player
 import one_game
 import almostAI
@@ -89,23 +90,15 @@ def main_loop(playersI, nb_players):
     """
     game = one_game.One_Game()
 
-    # Prepare game's rule according number of player.
+    # Prepare game's how to according number of player.
     if nb_players == 1:
-        some_rules = "I'm great lord, I let you begin {}.\n".format(playersI[0].nickname)
-        some_rules += "If you are to scarry, enter 0 now or "
-        some_rules += "anytime you want!" + 2 * "\n"
         now_player = 0
         computer = almostAI.Almost_AI() # If only 1 human, add the computer player.
     else:
-        some_rules = "Well, let the random deciding who will begin.\n"
-        some_rules += "If one among you is to afraid, enter 0 "
-        some_rules += "at your turn.\n"
         now_player = rnd.randrange(nb_players)  # 1st player is a random choice.
-        some_rules += "So, the first of you will be {}".format(playersI[now_player].nickname)
-        some_rules += 2 * "\n"
 
     print(80*"\n")
-    print(some_rules)
+    print(rules.how_to(nb_players, now_player, playersI))
 
     p_answer = ""   # No player's answer to enter in loop.
 

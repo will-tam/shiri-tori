@@ -35,7 +35,17 @@ class Game(wx.Frame):
                       nb_players = number of players.
         @return : none.
         """
+        self.nb_players = nb_players
+        self.playersI = playersI
+
         self.nickname_away = ""
+
+        # Prepare game's how to according number of player.
+        if self.nb_players == 1:
+            self.now_player = 0
+            self.computer = almostAI.Almost_AI() # If only 1 human, add the computer player.
+        else:
+            self.now_player = rnd.randrange(nb_players)  # 1st player is a random choice.
 
         # Main frame.
         wx.Frame.__init__(self,
@@ -46,15 +56,12 @@ class Game(wx.Frame):
                           style=wx.ALWAYS_SHOW_SB)
         self.Center(wx.BOTH)
 
-        #Create a StaticBox widget aka label.
-        self.__lbl_previous_player_answer = "... said"
-        self.previous_player_answer = wx.StaticBox(parent=self,
-                                                   id=wx.ID_ANY,
-                                                   label=self.__lbl_previous_player_answer,
-                                                   pos=wx.Point(5, 5),
-                                                   size=wx.Size(547, 280),
-                                                   style=0)
+        # Create the checking part.
+        # Create a StaticBox widget aka label.
+        self.__update_checking_part(first_time=True)
 
+        # Create the answer part.
+        # Create a StaticBox widget aka label.
         self.__lbl_player_your_turn = "..., your turn"
         self.player_your_turn = wx.StaticBox(parent=self,
                                              id=wx.ID_ANY,
@@ -106,6 +113,24 @@ class Game(wx.Frame):
         """
         print("bye")
         self.Destroy()
+
+    def __update_checking_part(self, first_time=False):
+        """
+        Update the checking part of the answer.
+        First time, it shows the HowTo play message.
+        @parameters : first_time = show or not the HowTo play message (default = False).
+        @result : none.
+        """
+        if first_time:
+#            self.__lbl_previous_player_answer = "... said"
+            self.__lbl_previous_player_answer = "How to"
+            self.previous_player_answer = wx.StaticBox(parent=self,
+                                                   id=wx.ID_ANY,
+                                                   label=self.__lbl_previous_player_answer,
+                                                   pos=wx.Point(5, 5),
+                                                   size=wx.Size(547, 280),
+                                                   style=0)
+
 
     def __update_previous_player_answer(self):
         """
