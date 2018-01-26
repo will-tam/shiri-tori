@@ -17,7 +17,7 @@ class Almost_AI():
     """
 
     # Private attributes.
-
+    # __nb_rows = number of rows in the table.
 
     # Public attributes.
 
@@ -46,13 +46,15 @@ class Almost_AI():
         """
         answer = "a"
         while answer[0] != first_hiragana:
-            # Maybe one day, randint() should be removed.
+            # Maybe one day, randrange() should be removed.
             rowid = rnd.randrange(1, self.__nb_rows + 1)
             #TODO : TypeError: 'NoneType' object is not subscriptable <--- WHY ?
             try:
                 answer = self.sqlmgt.what_at_rowid(rowid)
             except:
                 answer = "a"
+            if not first_hiragana:
+                break
 
         return answer
 

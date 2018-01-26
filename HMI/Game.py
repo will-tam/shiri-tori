@@ -37,17 +37,19 @@ class Game(wx.Frame):
                       nb_players = number of players.
         @return : none.
         """
-        self.nb_players = nb_players
-        self.playersI = playersI
+        self.__game = one_game.One_Game()     # The one_game instance.
+
+        self.__nb_players = nb_players
+        self.__playersI = playersI
 
         self.nickname_away = ""
 
         # Prepare game's how to according number of player.
-        if self.nb_players == 1:
-            self.now_player = 0
+        if self.__nb_players == 1:
+            self.__now_player = 0
             self.computer = almostAI.Almost_AI() # If only 1 human, add the computer player.
         else:
-            self.now_player = rnd.randrange(nb_players)  # 1st player is a random choice.
+            self.__now_player = rnd.randrange(nb_players)  # 1st player is a random choice.
 
         # Main frame.
         wx.Frame.__init__(self,
@@ -72,12 +74,21 @@ class Game(wx.Frame):
                                              size=wx.Size(547, 120),
                                              style=0)
 
+        self.player_answer = wx.TextCtrl(parent=self,
+                                         id=wx.ID_ANY,
+                                         pos=wx.Point(0, 320),
+                                         size=wx.Size(376, 25),
+                                         style=0)
+        self.player_answer.Center(wx.HORIZONTAL)
+        print(dir(self.player_your_turn))
+
         # The validation and leaving buttons creation.
         self.btn_validate = wx.Button(parent=self,
                                       id=wx.ID_OK,
                                       pos=wx.Point(219, 360),
                                       size=wx.Size(85, 32),
                                       style=0)
+        self.btn_validate.Center(wx.HORIZONTAL)
 
         self.btn_leave = wx.Button(parent=self,
                                    id=wx.ID_EXIT,
@@ -105,6 +116,9 @@ class Game(wx.Frame):
         @return : none
         """
         print("Validation !!!")
+        self.__game.p_answer = self.player_answer.GetLineText(0)
+        print("self.__game.p_answer = ", self.__game.p_answer)
+        self.__update_checking_part()
 
     def __on_btn_leave(self, event):
         """
@@ -124,6 +138,7 @@ class Game(wx.Frame):
         @result : none.
         """
         if first_time:
+            print("First time i come")
 #            self.__lbl_previous_player_answer = "... said"
             self.previous_player_answer = wx.StaticBox(parent=self,
                                                        id=wx.ID_ANY,
@@ -131,14 +146,19 @@ class Game(wx.Frame):
                                                        pos=wx.Point(5, 5),
                                                        size=wx.Size(547, 280),
                                                        style=0)
-            wx.StaticText(parent=self.previous_player_answer,
-                          label=rules.before_to_play(self.nb_players, self.now_player, self.playersI),
-                          pos=wx.Point(70, 55),
-                          style=0).Center(wx.BOTH)
-#            self.checkit_lbl = wx.StaticText(label=u'Check it ...', name=u'checit_lbl', parent=self,
-#              pos=wx.Point(70, 55), size=wx.Size(69, 15), style=0)
+            self.inside = wx.StaticText(parent=self.previous_player_answer,
+                                        label=rules.before_to_play(self.__nb_players, self.__now_player, self.__playersI),
+                                        pos=wx.Point(70, 55),
+                                        style=0)
+            self.inside.Center(wx.BOTH)
 
+        else:
+            print("Not first time i come")
 
+            self.previous_player_answer.Label = "Check it ..."
+
+            ca = self.__game.check_answer()
+            self.inside.Label = ca[1]
 
     def __update_previous_player_answer(self):
         """

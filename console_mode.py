@@ -100,20 +100,25 @@ def main_loop(playersI, nb_players):
     print(80*"\n")
     print(rules.before_to_play(nb_players, now_player, playersI))
 
-    p_answer = ""   # No player's answer to enter in loop.
+    game.p_answer = ""   # No player's answer to enter in loop.
 
-    # THE main loop it-self.
-    while p_answer != "0":
+    # THE main loop itconsole_mode.py-self.
+    while game.p_answer != "0":
         if nb_players == 1 and now_player == 1:     # Only 1 player, and it's computer's turn.
-            p_answer = computer.choice(p_answer[-1])
-            print("My turn >>> {}".format(p_answer))
+            game.p_answer = computer.choice(game.p_answer[-1]) if game.p_answer else computer.choice()
+            print("My turn >>> {}".format(game.p_answer))
         else:   # everelse it's player turn (it runs for 1 or several human players).
             print("{}, your turn >>>".format(playersI[now_player].nickname), end='')
-            p_answer = input(" ")
-            if p_answer == "0":         # 0 means exit game.
+            game.p_answer = input(" ")
+            if game.p_answer == "0":         # 0 means exit game.
                 return playersI[now_player].nickname
 
-        if not game.check_answer(p_answer):     # bad answer !
+        print("Check it ...", game.p_answer, "...", end="")
+
+        ca = game.check_answer()
+        print(ca[1])
+
+        if not ca[0]:     # bad answer !
             if nb_players == 1 and now_player == 1:         # Only 1 player and it's the computer's turn.
                 print("\tOooh sh... you win {} !\n".format(playersI[0].nickname))
                 print("\t+1 win point for you, +1 loose point for ... me !\n")
@@ -132,6 +137,8 @@ def main_loop(playersI, nb_players):
                 else:
                     playersI[pI].win_rounds += 1
             game.playing = False    # The next turn will be a new game.
+            game.p_answer = ""
+
         else:
             game.playing = True     # The players are playing.
             print("\n")

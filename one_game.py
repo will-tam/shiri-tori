@@ -14,6 +14,7 @@ class One_Game():
     # Public attributes.
         playing = the turn is playing.
         sqlmgt = instance of SQLManage.
+        p_answer = answer of a player.
     """
 
     # Private attributes.
@@ -60,90 +61,95 @@ class One_Game():
         @return : none.
         """
         self.__previous = ""
+
+        self.p_answer = ""
         self.playing = False
         self.sqlmgt = sqlmanage.SQLManage()
 
-    def check_answer(self, answer):
+    def check_answer(self):
         """
-        Check the player answer following rules in README.
+        Check the player answer (self.p_answer) following rules in README.
         Some rules are checked by program, because it should be in database yet.
         Thanks to Python 3.2 str class to understand UTF-8.
-        @parameters : answer = the player answer.
-        @return : True = answer is accepted, everelse False
+        @parameters : none.
+        @return : tuple (True, explain) if answer is accepted, everelse (False, explain).
+            explain => just to explain this result.
+            It will be used in Game.py.
+            I also should raise an exception if not good, but i should deep refund my console_mode.py
+            code. Remember, it just to be kill time in train ! Maybe, in another life.
         """
-        print("Check it ...", answer, "...", end="")
+        answer = self.p_answer      # YES, i'm a big useless man !!!
 
         # Check if no answer.
         if answer == "":
-            return False
+            return (False, " Your answer is empty !")
+
+        explain = ""        # Explain what wrong or not.
 
         # Check if the answer if full in hiragana.
-        print("\n\tOnly Hiragana ? ", end="")
+        explain += "\n\tOnly Hiragana ? "
         if not self.__only_hiragana(answer):
-            print("No")
-            return False
-        print("Yes")
+            explain += "No\n"
+            return (False, explain)
+        explain += "Yes\n"
 
         # Resolve the little hirigana entry problem.
         answer = self.__explode_and_correct_hiragana(answer)
 
         # Check if the end of the answer is "ん" or"ン". Yes, normally hiragana. But ...
-#        print ("\tLast character : {}{}{}".format(answer, len(answer), answer[len(answer) - 1]))
         if answer[len(answer) - 1] in ["ん", "ン"]:
-            print("\tYour answer finishes with ん")
-            return False
+            explain += "\tThe answer finishes with ん\n"
+            return (False, explain)
 
         # Check if the begining of the answer is "ん" or"ン".
-#        print ("\tFirst character : {}".format(answer[0]))
         if answer[0] in ["ん", "ン"]:
-            print("\tYour answer begins with ん")
-            return False
+            explain += "\tThe answer begins with ん\n"
+            return (False, explain)
 
         #Check if "ー" is in the word.
-        print("\tPresence of ー ? ", end="")
+        explain += "\tPresence of ー ? "
         if not False in [c == "ー" for c in answer]:
-            print("Yes")
-            return False
-        print("No")
+            explain = "Yes\n"
+            return (False, explain)
+        explain += "No\n"
 
         # Check if "・" is in the word.
-        print("\tPresence of ・ ? ", end="")
+        explain += "\tPresence of ・ ? "
         if not False in [c == "・" for c in answer]:
-            print("Yes")
-            return False
-        print("No")
+            explain += "Yes\n"
+            return (False, explain)
+        explain += "No\n"
 
         # Check if the lenght of the answer is not only one mora.
-#        print("\tLenght of the answer : {}".format(len(answer)))
         if len(answer) == 1:
-            return False
+            explain += "Only one mora !! Sorry, to easy to be accepted !!"
+            return (False, explain)
 
         # Check if the begining of the answer is the then same as the end of the previous one.
         # Should be check after the 1st turn.
-#        print("\tPrevious answer ending : {} ; This answer beggining : {}".format(self.__previous, answer[0]))
         if self.playing and answer[0] != self.__previous:
-            print("\tThe end of previous answer and the beginning of these are different.")
-            return False
+            explain += "\tThe end of previous answer and the beginning of these are different.\n"
+            return (False, explain)
 
         # Check if the playing word wasn't already played before.
-        print("\t{} already played ? ".format("".join(answer)), end="")
+        explain += "\t{} already played ? ".format("".join(answer))
         if True in [a == answer for a in self.__dejavu]:
-            print("Yes")
-            return False
-        print("Not yet. Try to rememeber this word.")
+            explain += "Yes\n"
+            return (False, explain)
+        explain += "Not yet. Try to rememeber this word.\n"
 
         # Check if the word is inside the sqlite DB dictionnary.
-        print("\t{} found in goi.sqlite ? ".format("".join(answer)), end="")
+        explain += "\t{} found in goi.sqlite ? ".format("".join(answer))
         if not self.sqlmgt.ask_if_exist_kana("".join(answer)):
-            print("No")
-            return False
-        print("Yes")
+            explain += "No\n"
+            return (False, explain)
+        explain += "Yes\n"
 
         self.__previous = answer[-1]    # Don't need a "" answer.
 
-        print("OK.")
+        explain += "OK."
         self.__dejavu.append(answer)
-        return True
+        return (True, explain)
 
 
     # Private methods.
