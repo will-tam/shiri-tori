@@ -80,7 +80,6 @@ class Game(wx.Frame):
                                          size=wx.Size(376, 25),
                                          style=0)
         self.player_answer.Center(wx.HORIZONTAL)
-        print(dir(self.player_your_turn))
 
         # The validation and leaving buttons creation.
         self.btn_validate = wx.Button(parent=self,
@@ -115,10 +114,8 @@ class Game(wx.Frame):
         @parameters : event = the event which called this function.
         @return : none
         """
-        print("Validation !!!")
-        self.__game.p_answer = self.player_answer.GetLineText(0)
-        print("self.__game.p_answer = ", self.__game.p_answer)
         self.__update_checking_part()
+        event.Skip()
 
     def __on_btn_leave(self, event):
         """
@@ -127,8 +124,8 @@ class Game(wx.Frame):
         @parameters : event = the event which called this function.
         @return : none
         """
-        print("bye")
         self.Destroy()
+        event.Skip()
 
     def __update_checking_part(self, first_time=False):
         """
@@ -138,7 +135,6 @@ class Game(wx.Frame):
         @result : none.
         """
         if first_time:
-            print("First time i come")
 #            self.__lbl_previous_player_answer = "... said"
             self.previous_player_answer = wx.StaticBox(parent=self,
                                                        id=wx.ID_ANY,
@@ -153,44 +149,47 @@ class Game(wx.Frame):
             self.inside.Center(wx.BOTH)
 
         else:
-            print("Not first time i come")
+
+            self.__game.p_answer = self.player_answer.GetLineText(0)
+
+            self.player_answer.SetValue("")
 
             self.previous_player_answer.Label = "Check it ..."
 
             ca = self.__game.check_answer()
             self.inside.Label = ca[1]
 
-    def __update_previous_player_answer(self):
-        """
-        Update the static box of the result of checking.
-        @parameters : none.
-        @return : none.
-        """
-
-        self.__lbl_answer_player = "..."
-        self.answer_player_lbl= wx.StaticText(parent=self,
-                                              id=-1,
-                                              label=self.__lbl_answer_player,
-                                              pos=wx.Point(70,27),
-                                              size=wx.Size(13, 15),
-                                              style=0)
-
-        self.checkit_lbl = wx.StaticText(parent=self,
-                                         id=-1,
-                                         label='Check it ...',
-                                         pos=wx.Point(70, 55),
-                                         size=wx.Size(69, 15),
-                                         style=0)
-
-        self.__lbl_only_hira_lbl="Only Hiragana ?"
-        self.only_hira_lbl = wx.StaticText(parent=self,
-                                           id=-1,
-                                           label=self.__lbl_only_hira_lbl,
-                                           pos=wx.Point(119, 79),
-                                           size=wx.Size(102, 15),
-                                           style=0)
-
-
+#    def __update_previous_player_answer(self):
+#        """
+#        Update the static box of the result of checking.
+#        @parameters : none.
+#        @return : none.
+#        """
+#
+#        self.__lbl_answer_player = "..."
+#        self.answer_player_lbl= wx.StaticText(parent=self,
+#                                              id=-1,
+#                                              label=self.__lbl_answer_player,
+#                                              pos=wx.Point(70,27),
+#                                              size=wx.Size(13, 15),
+#                                              style=0)
+#
+#        self.checkit_lbl = wx.StaticText(parent=self,
+#                                         id=-1,
+#                                         label='Check it ...',
+#                                         pos=wx.Point(70, 55),
+#                                         size=wx.Size(69, 15),
+#                                         style=0)
+#
+#        self.__lbl_only_hira_lbl="Only Hiragana ?"
+#        self.only_hira_lbl = wx.StaticText(parent=self,
+#                                           id=-1,
+#                                           label=self.__lbl_only_hira_lbl,
+#                                           pos=wx.Point(119, 79),
+#                                           size=wx.Size(102, 15),
+#                                           style=0)
+#
+#
 
 
 #        self.presence_of_u30_lbl = wx.StaticText(id=wxID_GAMEPRESENCE_OF_U30_LBL,

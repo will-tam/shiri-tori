@@ -100,6 +100,7 @@ class Nb_players(wx.Frame):
         """
         self.nb_players = self.sc_nb_players.GetValue();
         self.Destroy()
+        event.Skip()
 
     def __on_btn_exit(self, event):
         """
@@ -109,6 +110,7 @@ class Nb_players(wx.Frame):
         @return : none
         """
         self.Destroy()
+        event.Skip()
 
 ######################
 

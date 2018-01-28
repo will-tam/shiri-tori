@@ -114,6 +114,7 @@ class Ask_nickname(wx.Frame):
         """
         self.palyers_nn = [nn.GetLineText(0) for nn in self.__players_nn_entry]
         self.Destroy()
+        event.Skip()
 
 ######################
 

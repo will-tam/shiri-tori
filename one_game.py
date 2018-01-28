@@ -131,13 +131,6 @@ class One_Game():
             explain += "\tThe end of previous answer and the beginning of these are different.\n"
             return (False, explain)
 
-        # Check if the playing word wasn't already played before.
-        explain += "\t{} already played ? ".format("".join(answer))
-        if True in [a == answer for a in self.__dejavu]:
-            explain += "Yes\n"
-            return (False, explain)
-        explain += "Not yet. Try to rememeber this word.\n"
-
         # Check if the word is inside the sqlite DB dictionnary.
         explain += "\t{} found in goi.sqlite ? ".format("".join(answer))
         if not self.sqlmgt.ask_if_exist_kana("".join(answer)):
@@ -145,10 +138,19 @@ class One_Game():
             return (False, explain)
         explain += "Yes\n"
 
+        # Check if the playing word wasn't already played before.
+        explain += "\t{} already played ? ".format("".join(answer))
+        if True in [a == answer for a in self.__dejavu]:
+            explain += "Yes\n"
+            return (False, explain)
+        explain += "Not yet.\n\t\tTry to rememeber this word.\n"
+
         self.__previous = answer[-1]    # Don't need a "" answer.
 
         explain += "OK."
-        self.__dejavu.append(answer)
+
+        self.__dejavu.append(answer)        # Remember this answer, don't be used again.
+
         return (True, explain)
 
 
