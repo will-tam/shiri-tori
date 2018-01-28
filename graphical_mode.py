@@ -20,7 +20,6 @@ def graphical_mode():
     @parameters : none.
     @return : 0 = all was good.
     """
-
     wx_app = wx.App()
 
     nb_players = HMI_Nb_players.ask_number_of_players(wx_app)

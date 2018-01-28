@@ -8,21 +8,13 @@ import random as rnd
 # Third-part library import.
 
 # Project library import.
+from utils import *
 import rules
 import player
 import one_game
 import almostAI
 
 ######################
-
-def xor(a, b):
-    """
-    Find a XOR b.
-    @parameters : a = first term.
-                  b = second term.
-    @return : a XOR B it self.
-    """
-    return (not a) & b | a & (not b)
 
 def ask_number_of_players():
     """

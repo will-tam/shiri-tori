@@ -8,6 +8,7 @@ import random as rnd
 import wx
 
 # Projet modules import.
+from utils import *
 import rules
 import player
 import one_game
@@ -26,6 +27,10 @@ class Game(wx.Frame):
     """
 
     # Private attributes.
+    #__game = the one_game instance.
+    #__nb_players = number of players.
+    #__playersI = instance of players.
+    #__now_player = the player who plays now.
 
 
     # Public methods.
@@ -66,7 +71,7 @@ class Game(wx.Frame):
 
         # Create the answer part.
         # Create a StaticBox widget aka label.
-        self.__lbl_player_your_turn = "..., your turn"
+        self.__lbl_player_your_turn = "{}, your turn".format(self.__playersI[self.__now_player].nickname)
         self.player_your_turn = wx.StaticBox(parent=self,
                                              id=wx.ID_ANY,
                                              label=self.__lbl_player_your_turn,
@@ -96,6 +101,7 @@ class Game(wx.Frame):
                                    size=wx.Size(557, 35),
                                    style=0)
 
+        # Some binding events :
         # Bind buttons to their events.
         self.btn_validate.Bind(event=wx.EVT_BUTTON,
                                handler=self.__on_btn_validate,
@@ -109,17 +115,21 @@ class Game(wx.Frame):
     # Private methods.
     def __on_btn_validate(self, event):
         """
-        On btn_validate click event :
-            TODO : COMPLET WHAT HAPPED ON CLICK !!!
+        On btn_validate click event.
         @parameters : event = the event which called this function.
         @return : none
         """
+        print("To validate", end=" ")
+
+        self.__game.p_answer = self.player_answer.GetLineText(0)
+        print(self.__game.p_answer)
+
         self.__update_checking_part()
         event.Skip()
 
     def __on_btn_leave(self, event):
         """
-        On btn_leave click event :
+        On btn_leave click event.
             TODO : COMPLET WHAT HAPPED ON CLICK !!!
         @parameters : event = the event which called this function.
         @return : none
@@ -149,15 +159,33 @@ class Game(wx.Frame):
             self.inside.Center(wx.BOTH)
 
         else:
+            self.player_answer.Value = ""
 
-            self.__game.p_answer = self.player_answer.GetLineText(0)
+#            print("self.__now_palyer =", self.__now_player)
 
-            self.player_answer.SetValue("")
-
-            self.previous_player_answer.Label = "Check it ..."
+            self.previous_player_answer.Label = "{} said. Check it ...".format(self.__playersI[self.__now_player].nickname)
 
             ca = self.__game.check_answer()
             self.inside.Label = ca[1]
+
+            self.__update_player()
+            self.player_answer.SetFocus()
+
+    def __update_player(self):
+        """
+        Update the player number who it's the turn.
+        @parameters : none.
+        @result : none.
+        """
+        # Go to the next palyer.
+        if self.__nb_players == 1:     # 1 player case.
+            self.__now_player = xor(self.__now_player, 1) # Or player[0] or  player[1] ONLY !!!
+        else:
+            # Several players case.
+            self.__now_player = 0 if self.__now_player == self.__nb_players - 1 else self.__now_player + 1
+
+        self.__lbl_player_your_turn = "{}, your turn".format(self.__playersI[self.__now_player].nickname)
+        self.player_your_turn.Label = self.__lbl_player_your_turn
 
 #    def __update_previous_player_answer(self):
 #        """
