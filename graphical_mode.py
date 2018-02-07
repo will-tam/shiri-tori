@@ -22,6 +22,7 @@ def graphical_mode():
     """
     wx_app = wx.App()
 
+    # Prepare game's how to according number of player.
     nb_players = HMI_Nb_players.ask_number_of_players(wx_app)
     if nb_players == 0:
         print("\nMaybe later !\n")
@@ -33,10 +34,12 @@ def graphical_mode():
         bye_dlg.Destroy()
         return 0
 
+    # Who are players ?
     playersI = HMI_Ask_nickname.ask_nickname(wx_app, nb_players)
 
-    print(playersI)
+    print("playersI =", playersI)
 
+    # Playing !
     nickname_away = HMI_Game.ze_GAME(wx_app, playersI, nb_players)
 
     return 0

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2018-01-28, 14:39:37 -->
+<!-- Saved: 2018-02-07, 20:35:36 -->
 <!-- Copyright (C) 2018 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
@@ -33,6 +33,7 @@
     <Source>test/test_one_game.py</Source>
     <Source>test/test_player.py</Source>
     <Source>test/test_sqlmanage.py</Source>
+    <Source>utils.py</Source>
   </Sources>
   <Forms/>
   <Translations/>

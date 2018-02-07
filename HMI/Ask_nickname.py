@@ -22,7 +22,7 @@ class Ask_nickname(wx.Frame):
     """
 
     # Private attributes.
-
+    # __players_nn_entry = TextCtrl player name entry list.
 
     # Public methods.
     def __init__(self, parent, nb_players):

@@ -3,6 +3,7 @@
 # Standard libraries import.
 import sys
 import random as rnd
+import threading as thread
 
 # Third libraries import.
 import wx
@@ -16,9 +17,9 @@ import almostAI
 
 ######################
 
-class Game(wx.Frame):
+class Game(wx.Frame, thread.Thread):
     """
-    wx.Frame class derivated class.
+    wx.Frame and Thread classes derivated class.
 
     Ask the nickname of each players, according their number.
 
@@ -27,10 +28,11 @@ class Game(wx.Frame):
     """
 
     # Private attributes.
-    #__game = the one_game instance.
-    #__nb_players = number of players.
-    #__playersI = instance of players.
-    #__now_player = the player who plays now.
+    # __game = the one_game instance.
+    # __nb_players = number of players.
+    # __playersI = instance of players.
+    # __now_player = the player who plays now.
+    # __computer = the computer player.
 
 
     # Public methods.
@@ -42,6 +44,8 @@ class Game(wx.Frame):
                       nb_players = number of players.
         @return : none.
         """
+        thread.Thread.__init__(self)    # The computer's game will be in its own thread.
+
         self.__game = one_game.One_Game()     # The one_game instance.
 
         self.__nb_players = nb_players
@@ -52,7 +56,8 @@ class Game(wx.Frame):
         # Prepare game's how to according number of player.
         if self.__nb_players == 1:
             self.__now_player = 0
-            self.computer = almostAI.Almost_AI() # If only 1 human, add the computer player.
+            self.__computer = almostAI.Almost_AI() # If only 1 human, add the computer player.
+
         else:
             self.__now_player = rnd.randrange(nb_players)  # 1st player is a random choice.
 
@@ -71,10 +76,10 @@ class Game(wx.Frame):
 
         # Create the answer part.
         # Create a StaticBox widget aka label.
-        self.__lbl_player_your_turn = "{}, your turn".format(self.__playersI[self.__now_player].nickname)
+        lbl_player_your_turn = "So, first round {}".format(self.__playersI[self.__now_player].nickname)
         self.player_your_turn = wx.StaticBox(parent=self,
                                              id=wx.ID_ANY,
-                                             label=self.__lbl_player_your_turn,
+                                             label=lbl_player_your_turn,
                                              pos=wx.Point(5, 288),
                                              size=wx.Size(547, 120),
                                              style=0)
@@ -111,6 +116,22 @@ class Game(wx.Frame):
                             handler=self.__on_btn_leave,
                             id=wx.ID_EXIT)
 
+    def run(self):
+        """
+        The thread it-self.
+        @parameters : none.
+        @return : none
+        """
+        pass
+
+    def stop(self):
+        """
+        Stop the thread.
+        @parameters : none.
+        @return : none
+        """
+        pass
+
 
     # Private methods.
     def __on_btn_validate(self, event):
@@ -119,12 +140,15 @@ class Game(wx.Frame):
         @parameters : event = the event which called this function.
         @return : none
         """
-        print("To validate", end=" ")
+        print("From {} To validate".format(self.__playersI[self.__now_player].nickname), end=" ")
 
         self.__game.p_answer = self.player_answer.GetLineText(0)
         print(self.__game.p_answer)
 
         self.__update_checking_part()
+
+        self.player_your_turn.Label = self.__update_player()
+
         event.Skip()
 
     def __on_btn_leave(self, event):
@@ -134,7 +158,9 @@ class Game(wx.Frame):
         @parameters : event = the event which called this function.
         @return : none
         """
-        self.Destroy()
+        self.stop()     # the thread.
+
+        self.Destroy()  # the window.
         event.Skip()
 
     def __update_checking_part(self, first_time=False):
@@ -145,7 +171,6 @@ class Game(wx.Frame):
         @result : none.
         """
         if first_time:
-#            self.__lbl_previous_player_answer = "... said"
             self.previous_player_answer = wx.StaticBox(parent=self,
                                                        id=wx.ID_ANY,
                                                        label="Before to play",
@@ -161,100 +186,34 @@ class Game(wx.Frame):
         else:
             self.player_answer.Value = ""
 
-#            print("self.__now_palyer =", self.__now_player)
-
             self.previous_player_answer.Label = "{} said. Check it ...".format(self.__playersI[self.__now_player].nickname)
 
             ca = self.__game.check_answer()
             self.inside.Label = ca[1]
 
-            self.__update_player()
             self.player_answer.SetFocus()
 
     def __update_player(self):
         """
         Update the player number who it's the turn.
         @parameters : none.
-        @result : none.
+        @result : the nick name of player.
         """
         # Go to the next palyer.
         if self.__nb_players == 1:     # 1 player case.
             self.__now_player = xor(self.__now_player, 1) # Or player[0] or  player[1] ONLY !!!
+            if self.__now_player == 1:
+                player_turn_nn= "My turn"
+            else:
+                player_turn_nn = "Your turn {}".format(self.__playersI[self.__now_player].nickname)
+
         else:
             # Several players case.
             self.__now_player = 0 if self.__now_player == self.__nb_players - 1 else self.__now_player + 1
+            player_turn_nn = "{}, your turn".format(self.__playersI[self.__now_player].nickname)
 
-        self.__lbl_player_your_turn = "{}, your turn".format(self.__playersI[self.__now_player].nickname)
-        self.player_your_turn.Label = self.__lbl_player_your_turn
-
-#    def __update_previous_player_answer(self):
-#        """
-#        Update the static box of the result of checking.
-#        @parameters : none.
-#        @return : none.
-#        """
-#
-#        self.__lbl_answer_player = "..."
-#        self.answer_player_lbl= wx.StaticText(parent=self,
-#                                              id=-1,
-#                                              label=self.__lbl_answer_player,
-#                                              pos=wx.Point(70,27),
-#                                              size=wx.Size(13, 15),
-#                                              style=0)
-#
-#        self.checkit_lbl = wx.StaticText(parent=self,
-#                                         id=-1,
-#                                         label='Check it ...',
-#                                         pos=wx.Point(70, 55),
-#                                         size=wx.Size(69, 15),
-#                                         style=0)
-#
-#        self.__lbl_only_hira_lbl="Only Hiragana ?"
-#        self.only_hira_lbl = wx.StaticText(parent=self,
-#                                           id=-1,
-#                                           label=self.__lbl_only_hira_lbl,
-#                                           pos=wx.Point(119, 79),
-#                                           size=wx.Size(102, 15),
-#                                           style=0)
-#
-#
-
-
-#        self.presence_of_u30_lbl = wx.StaticText(id=wxID_GAMEPRESENCE_OF_U30_LBL,
-#              label=u'Presence of \u30fc', name=u'presence_of_u30_lbl',
-#              parent=self, pos=wx.Point(119, 103), size=wx.Size(93, 17),
-#              style=0)
-#
-#        self.staticText3 = wx.StaticText(id=wxID_GAMESTATICTEXT3,
-#              label='staticText3', name='staticText3', parent=self,
-#              pos=wx.Point(119, 128), size=wx.Size(69, 15), style=0)
-#
-#        self.staticText4 = wx.StaticText(id=wxID_GAMESTATICTEXT4,
-#              label='staticText4', name='staticText4', parent=self,
-#              pos=wx.Point(119, 150), size=wx.Size(69, 15), style=0)
-#
-#        self.staticText5 = wx.StaticText(id=wxID_GAMESTATICTEXT5,
-#              label='staticText5', name='staticText5', parent=self,
-#              pos=wx.Point(119, 175), size=wx.Size(69, 15), style=0)
-
-#        self.staticText1 = wx.StaticText(id=wxID_GAMESTATICTEXT1,
-#              label=u'Ok. / Sorry ..., you loose the turn !',
-#              name='staticText1', parent=self, pos=wx.Point(70, 201),
-#              size=wx.Size(217, 15), style=0)
-
-#        self.staticText2 = wx.StaticText(id=wxID_GAMESTATICTEXT2,
-#              label=u'+1 loose point for you, +1 win point for the others',
-#              name='staticText2', parent=self, pos=wx.Point(70, 228),
-#              size=wx.Size(320, 15), style=0)
-
-    """
-
-        self.answer_entry = wx.TextCtrl(id=wxID_GAMEANSWER_ENTRY,
-              name=u'answer_entry', parent=self, pos=wx.Point(80, 320),
-              size=wx.Size(376, 25), style=0, value=u'')
-
-
-    """
+        print(player_turn_nn)
+        return player_turn_nn
 
 ######################
 
