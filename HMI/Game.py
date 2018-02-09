@@ -2,6 +2,7 @@
 
 # Standard libraries import.
 import sys
+import time
 import random as rnd
 import threading as thread
 
@@ -149,7 +150,12 @@ class Game(wx.Frame, thread.Thread):
 
         self.player_your_turn.Label = self.__update_player()
 
-        event.Skip()
+        # --- Si prochain joueur c'est lui, il rentre dans cette fonction de jeu
+        if self.__nb_players == 1 and self.__now_player == 1:
+            self.__computer_turn()
+
+        if event:
+            event.Skip()
 
     def __on_btn_leave(self, event):
         """
@@ -186,7 +192,7 @@ class Game(wx.Frame, thread.Thread):
         else:
             self.player_answer.Value = ""
 
-            self.previous_player_answer.Label = "{} said. Check it ...".format(self.__playersI[self.__now_player].nickname)
+            self.previous_player_answer.Label = "{} said {}. Check it ...".format(self.__playersI[self.__now_player].nickname, self.__game.p_answer)
 
             ca = self.__game.check_answer()
             self.inside.Label = ca[1]
@@ -214,6 +220,24 @@ class Game(wx.Frame, thread.Thread):
 
         print(player_turn_nn)
         return player_turn_nn
+
+    def __computer_turn(self):
+        """
+        Update the player number who it's the turn.
+        @parameters : none.
+        @result : the nick name of player.
+        """
+        p_answer = self.__computer.choice(self.__game.p_answer[-1]) if self.__game.p_answer else self.__computer.choice()
+
+        # As humain about type simulation !
+        for c in p_answer:
+            self.player_answer.AppendText(c)
+            # Would type the answer char by char, BUT, doesn't update beetween it.
+#            time.sleep(0.5)
+#            self.player_answer.Update()
+
+        self.__on_btn_validate(None)
+
 
 ######################
 
