@@ -3,6 +3,7 @@
 # Standard library import.
 import sys
 import random as rnd
+import time
 
 # Project library import.
 import sqlmanage
@@ -19,8 +20,6 @@ class Almost_AI():
     # Private attributes.
     # __nb_rows = number of rows in the table.
 
-    # Public attributes.
-
 
     # Private methods.
 
@@ -29,7 +28,7 @@ class Almost_AI():
 
     def __init__(self):
         """
-        __init__ : initiate class
+        __init__ : initiate class.
         @parameters : none.
         @return : none.
         """
@@ -57,6 +56,24 @@ class Almost_AI():
                 break
 
         return answer
+
+    def HMI_turn(self, game_hmi, p_answer):
+        """
+        Update the player number who it's the turn.
+        @parameters : game_hmi = the hmi game instance.
+                      p_answer = previous player's answer.
+        @result : none.
+        """
+        p_answer = self.choice(p_answer[-1]) if p_answer else self.choice()
+
+        game_hmi.player_answer.SetValue(p_answer)
+        # Need both of them to appear in game_hmi.player_answer !!!
+        game_hmi.player_answer.Refresh()
+        game_hmi.player_answer.Update()
+
+        time.sleep(5)
+
+        game_hmi.press_btn_validate()
 
 ######################
 

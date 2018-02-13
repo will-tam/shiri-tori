@@ -4,7 +4,6 @@
 import sys
 import time
 import random as rnd
-import threading as thread
 
 # Third libraries import.
 import wx
@@ -18,26 +17,26 @@ import almostAI
 
 ######################
 
-class Game(wx.Frame, thread.Thread):
+class Game(wx.Frame):
     """
-    wx.Frame and Thread classes derivated class.
+    wx.Frame classes derivated class.
 
     Ask the nickname of each players, according their number.
 
     Public attributes.
         nickname_away = the nick name of the player who leaves the game.
+        now_player = the player who plays now.
+        simu_player = the simulate player instance.
     """
 
     # Private attributes.
     # __game = the one_game instance.
     # __nb_players = number of players.
     # __playersI = instance of players.
-    # __now_player = the player who plays now.
     # __computer = the computer player.
 
 
     # Public methods.
-
     def __init__(self, parent, playersI, nb_players):
         """
         __init__ : initiate class
@@ -45,8 +44,6 @@ class Game(wx.Frame, thread.Thread):
                       nb_players = number of players.
         @return : none.
         """
-        thread.Thread.__init__(self)    # The computer's game will be in its own thread.
-
         self.__game = one_game.One_Game()     # The one_game instance.
 
         self.__nb_players = nb_players
@@ -56,11 +53,12 @@ class Game(wx.Frame, thread.Thread):
 
         # Prepare game's how to according number of player.
         if self.__nb_players == 1:
-            self.__now_player = 0
-            self.__computer = almostAI.Almost_AI() # If only 1 human, add the computer player.
+            self.now_player = 0
+            self.__computer = almostAI.Almost_AI() # If only 1 human, add the computer "brain".
+            self.simu_player = None # The simulate player it-self.
 
         else:
-            self.__now_player = rnd.randrange(nb_players)  # 1st player is a random choice.
+            self.now_player = rnd.randrange(nb_players)  # 1st player is a random choice.
 
         # Main frame.
         wx.Frame.__init__(self,
@@ -77,7 +75,7 @@ class Game(wx.Frame, thread.Thread):
 
         # Create the answer part.
         # Create a StaticBox widget aka label.
-        lbl_player_your_turn = "So, first round {}".format(self.__playersI[self.__now_player].nickname)
+        lbl_player_your_turn = "So, first round {}".format(self.__playersI[self.now_player].nickname)
         self.player_your_turn = wx.StaticBox(parent=self,
                                              id=wx.ID_ANY,
                                              label=lbl_player_your_turn,
@@ -117,22 +115,13 @@ class Game(wx.Frame, thread.Thread):
                             handler=self.__on_btn_leave,
                             id=wx.ID_EXIT)
 
-    def run(self):
+    def press_btn_validate(self):
         """
-        The thread it-self.
-        @parameters : none.
+        Validation button simulation.
+        @parameters : event = the event which called this function.
         @return : none
         """
-        pass
-
-    def stop(self):
-        """
-        Stop the thread.
-        @parameters : none.
-        @return : none
-        """
-        pass
-
+        self.__on_btn_validate(None)
 
     # Private methods.
     def __on_btn_validate(self, event):
@@ -141,18 +130,15 @@ class Game(wx.Frame, thread.Thread):
         @parameters : event = the event which called this function.
         @return : none
         """
-        print("From {} To validate".format(self.__playersI[self.__now_player].nickname), end=" ")
-
         self.__game.p_answer = self.player_answer.GetLineText(0)
-        print(self.__game.p_answer)
 
         self.__update_checking_part()
 
-        self.player_your_turn.Label = self.__update_player()
+        # Next player is the computer. Will play after this event.
+        if self.__nb_players == 1 and self.now_player == 0:
+            wx.CallAfter(self.__computer.HMI_turn, self, self.__game.p_answer)
 
-        # --- Si prochain joueur c'est lui, il rentre dans cette fonction de jeu
-        if self.__nb_players == 1 and self.__now_player == 1:
-            self.__computer_turn()
+        self.player_your_turn.Label = self.__update_player()
 
         if event:
             event.Skip()
@@ -164,8 +150,6 @@ class Game(wx.Frame, thread.Thread):
         @parameters : event = the event which called this function.
         @return : none
         """
-        self.stop()     # the thread.
-
         self.Destroy()  # the window.
         event.Skip()
 
@@ -184,7 +168,7 @@ class Game(wx.Frame, thread.Thread):
                                                        size=wx.Size(547, 280),
                                                        style=0)
             self.inside = wx.StaticText(parent=self.previous_player_answer,
-                                        label=rules.before_to_play(self.__nb_players, self.__now_player, self.__playersI),
+                                        label=rules.before_to_play(self.__nb_players, self.now_player, self.__playersI),
                                         pos=wx.Point(70, 55),
                                         style=0)
             self.inside.Center(wx.BOTH)
@@ -192,9 +176,13 @@ class Game(wx.Frame, thread.Thread):
         else:
             self.player_answer.Value = ""
 
-            self.previous_player_answer.Label = "{} said {}. Check it ...".format(self.__playersI[self.__now_player].nickname, self.__game.p_answer)
+            self.previous_player_answer.Label = "{} said {}. Check it ...".format(self.__playersI[self.now_player].nickname, self.__game.p_answer)
 
             ca = self.__game.check_answer()
+
+            if not ca[0]:     # bad answer !
+                self.__game.p_answer = ""   # As it was a bad answer, avoid to enter in infinite loop in Almost_AI.choice()
+
             self.inside.Label = ca[1]
 
             self.player_answer.SetFocus()
@@ -207,37 +195,18 @@ class Game(wx.Frame, thread.Thread):
         """
         # Go to the next palyer.
         if self.__nb_players == 1:     # 1 player case.
-            self.__now_player = xor(self.__now_player, 1) # Or player[0] or  player[1] ONLY !!!
-            if self.__now_player == 1:
+            self.now_player = xor(self.now_player, 1) # Or player[0] or  player[1] ONLY !!!
+            if self.now_player == 1:
                 player_turn_nn= "My turn"
             else:
-                player_turn_nn = "Your turn {}".format(self.__playersI[self.__now_player].nickname)
+                player_turn_nn = "Your turn {}".format(self.__playersI[self.now_player].nickname)
 
         else:
             # Several players case.
-            self.__now_player = 0 if self.__now_player == self.__nb_players - 1 else self.__now_player + 1
-            player_turn_nn = "{}, your turn".format(self.__playersI[self.__now_player].nickname)
+            self.now_player = 0 if self.now_player == self.__nb_players - 1 else self.now_player + 1
+            player_turn_nn = "{}, your turn".format(self.__playersI[self.now_player].nickname)
 
-        print(player_turn_nn)
         return player_turn_nn
-
-    def __computer_turn(self):
-        """
-        Update the player number who it's the turn.
-        @parameters : none.
-        @result : the nick name of player.
-        """
-        p_answer = self.__computer.choice(self.__game.p_answer[-1]) if self.__game.p_answer else self.__computer.choice()
-
-        # As humain about type simulation !
-        for c in p_answer:
-            self.player_answer.AppendText(c)
-            # Would type the answer char by char, BUT, doesn't update beetween it.
-#            time.sleep(0.5)
-#            self.player_answer.Update()
-
-        self.__on_btn_validate(None)
-
 
 ######################
 
@@ -250,6 +219,7 @@ def ze_GAME(wx_app, playersI, nb_players):
     @return : who stop the game.
     """
     game_hmi = Game(None, playersI, nb_players)
+
     game_hmi.Show()
 
     wx_app.MainLoop()

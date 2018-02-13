@@ -92,7 +92,7 @@ def main_loop(playersI, nb_players):
     print(80*"\n")
     print(rules.before_to_play(nb_players, now_player, playersI))
 
-    game.p_answer = ""   # No player's answer to enter in loop.
+    game.p_answer = ""   # No player's answer to enter in main game loop.
 
     # THE main loop itconsole_mode.py-self.
     while game.p_answer != "0":
@@ -129,7 +129,7 @@ def main_loop(playersI, nb_players):
                 else:
                     playersI[pI].win_rounds += 1
             game.playing = False    # The next turn will be a new game.
-            game.p_answer = ""
+            game.p_answer = ""      # As it was a bad answer, avoid to enter in infinite loop in Almost_AI.choice()
 
         else:
             game.playing = True     # The players are playing.
