@@ -14,6 +14,7 @@ import rules
 import player
 import one_game
 import almostAI
+import HMI.Score as HMI_Score
 
 ######################
 
@@ -21,7 +22,7 @@ class Game(wx.Frame):
     """
     wx.Frame classes derivated class.
 
-    Ask the nickname of each players, according their number.
+    The main game's window.
 
     Public attributes.
         nickname_away = the nick name of the player who leaves the game.
@@ -40,7 +41,8 @@ class Game(wx.Frame):
     def __init__(self, parent, playersI, nb_players):
         """
         __init__ : initiate class
-        @parameters : playersI = instance of players.
+        @parameters : parent = parent of this widget.
+                      playersI = instance of players.
                       nb_players = number of players.
         @return : none.
         """
@@ -65,7 +67,7 @@ class Game(wx.Frame):
                           parent=parent,
                           id=-1,
                           title="Shiri Tori - \u5c3b\u53d6\u308a",
-                          size=wx.Size(559, 477),
+                          size=wx.Size(828, 477),
                           style=wx.ALWAYS_SHOW_SB)
         self.Center(wx.BOTH)
 
@@ -90,7 +92,11 @@ class Game(wx.Frame):
                                          style=0)
         self.player_answer.Center(wx.HORIZONTAL)
 
-        # The validation and leaving buttons creation.
+        # Create the score part. Calling the as-for class.
+        self.score = HMI_Score.Score(self, self.__playersI)
+        self.score.Show()
+
+        # Create the validation and leaving buttons.
         self.btn_validate = wx.Button(parent=self,
                                       id=wx.ID_OK,
                                       pos=wx.Point(219, 360),

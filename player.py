@@ -29,12 +29,20 @@ class Player():
 
     def __repr__(self):
         """
-        Call when we want to print the class.
+        Called when we want to print the class.
         @parameters : none.
         @return : the representation class string.
         """
         to_show = [self.nickname, self.win_rounds, self.loose_rounds];
         return str(to_show)
+
+    def tuple_it(self):
+        """
+        Format Player class attributes within tuple.
+        @parameters : none.
+        @return : the tuple it-self.
+        """
+        return (self.nickname, self.win_rounds, self.loose_rounds)
 
     def add_one_point_win(self):
         """

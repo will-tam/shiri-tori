@@ -2,20 +2,22 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2018-02-13, 22:02:27 -->
+<!-- Saved: 2018-02-14, 19:05:53 -->
 <Session version="5.0">
   <Filenames>
     <Filename cline="58" cindex="25" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
     <Filename cline="110" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
-    <Filename cline="12" cindex="12" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Game.py</Filename>
+    <Filename cline="96" cindex="25" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Game.py</Filename>
     <Filename cline="133" cindex="9" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</Filename>
-    <Filename cline="0" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
+    <Filename cline="38" cindex="16" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
     <Filename cline="27" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/graphical_mode.py</Filename>
     <Filename cline="75" cindex="37" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/almostAI.py</Filename>
     <Filename cline="0" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py</Filename>
     <Filename cline="6" cindex="7" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/utils.py</Filename>
+    <Filename cline="155" cindex="55" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/ex_boa/Game.py</Filename>
+    <Filename cline="61" cindex="11" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Score.py</Filename>
   </Filenames>
-  <ActiveWindow cline="75" cindex="37">/home/will/data/programmation/python/shiri-tori/almostAI.py</ActiveWindow>
+  <ActiveWindow cline="61" cindex="11">/home/will/data/programmation/python/shiri-tori/HMI/Score.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -33,12 +35,18 @@
   <Bookmarks/>
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Game.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Game.py@@21</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Score.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Score.py@@13</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/almostAI.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/almostAI.py@@12</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/console_mode.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/graphical_mode.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_game.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/one_game.py@@10</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py@@3</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/utils.py</ExpandedItemName>
     </ProjectBrowserState>

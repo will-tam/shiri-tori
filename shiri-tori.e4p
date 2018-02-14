@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2018-02-12, 23:34:21 -->
+<!-- Saved: 2018-02-14, 19:05:47 -->
 <!-- Copyright (C) 2018 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
@@ -16,6 +16,7 @@
     <Source>HMI/Ask_nickname.py</Source>
     <Source>HMI/Game.py</Source>
     <Source>HMI/Nb_players.py</Source>
+    <Source>HMI/Score.py</Source>
     <Source>README</Source>
     <Source>README.md</Source>
     <Source>TODO</Source>
