@@ -10,6 +10,13 @@
 + Version graphique
 + Version serveur
 
++ NETTOYAGE :
+ ++print de debug.
+ ++Commentaires de code non utilisés.
+ ++Commentaire non utiles.
+
++ Ajout de commentaires pertinants.
++ Vérifier les docstring des classes et fonctions
 
 - Rêgles pour one_game.py:
  --Être dans le dico.
