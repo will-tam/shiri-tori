@@ -78,28 +78,34 @@ class Game(wx.Frame):
         # Create the answer part.
         # Create a StaticBox widget aka label.
         lbl_player_your_turn = "So, first round {}".format(self.__playersI[self.now_player].nickname)
-        self.player_your_turn = wx.StaticBox(parent=self,
+        self.panel_answer = wx.Panel(parent=self,
+                                     id=wx.ID_ANY,
+                                     pos=wx.Point(5, 288),
+                                     size=wx.Size(547, 120),
+                                     style=0)
+
+        self.player_your_turn = wx.StaticBox(parent=self.panel_answer,
                                              id=wx.ID_ANY,
                                              label=lbl_player_your_turn,
-                                             pos=wx.Point(5, 288),
+                                             pos=wx.Point(0, 0),
                                              size=wx.Size(547, 120),
                                              style=0)
 
-        self.player_answer = wx.TextCtrl(parent=self,
+        self.player_answer = wx.TextCtrl(parent=self.panel_answer,
                                          id=wx.ID_ANY,
-                                         pos=wx.Point(0, 320),
+                                         pos=wx.Point(0, 10),
                                          size=wx.Size(376, 25),
                                          style=0)
-        self.player_answer.Center(wx.HORIZONTAL)
+        self.player_answer.Center(wx.BOTH)
 
         # Create the score part. Calling the as-for class.
         self.score = HMI_Score.Score(self, self.__playersI)
         self.score.Show()
 
         # Create the validation and leaving buttons.
-        self.btn_validate = wx.Button(parent=self,
+        self.btn_validate = wx.Button(parent=self.panel_answer,
                                       id=wx.ID_OK,
-                                      pos=wx.Point(219, 360),
+                                      pos=wx.Point(0, 80),
                                       size=wx.Size(85, 32),
                                       style=0)
         self.btn_validate.Center(wx.HORIZONTAL)
@@ -120,6 +126,9 @@ class Game(wx.Frame):
         self.btn_leave.Bind(event=wx.EVT_BUTTON,
                             handler=self.__on_btn_leave,
                             id=wx.ID_EXIT)
+
+        # Force focus on ...
+        self.player_answer.SetFocus()
 
     def press_btn_validate(self):
         """
@@ -145,6 +154,8 @@ class Game(wx.Frame):
             wx.CallAfter(self.__computer.HMI_turn, self, self.__game.p_answer)
 
         self.player_your_turn.Label = self.__update_player()
+
+        self.score.update()
 
         if event:
             event.Skip()

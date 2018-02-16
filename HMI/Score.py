@@ -20,6 +20,7 @@ class Score(wx.Panel):
     """
 
     # Private attributes.
+    # __playersI = instance of players.
 
 
     # Public methods.
@@ -46,20 +47,24 @@ class Score(wx.Panel):
                                       pos=wx.Point(0, 0),
                                       size=wx.Size(248, 552),
                                       style=wx.LC_REPORT)
+
         for c, t in enumerate(titles):
             self.__listCtrl.InsertColumn(col=c,
                                          format=wx.LIST_FORMAT_LEFT,
                                          heading=t,
                                          width=-1)
 
-        self.update_scores()
+        self.update()
 
-    def update_scores(self):
+    def update(self):
         """
         Update the scores in the score widget.
         @parameters : none.
         @return : none.
         """
+        print(self.__playersI)
+        self.__listCtrl.DeleteAllItems()
+
         for p in self.__playersI:
             self.__listCtrl.Append(p.tuple_it())
 
