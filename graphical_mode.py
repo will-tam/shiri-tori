@@ -11,6 +11,7 @@ import wx
 import HMI.Nb_players as HMI_Nb_players
 import HMI.Ask_nickname as HMI_Ask_nickname
 import HMI.Game as HMI_Game
+import HMI.Score as HoF
 
 ######################
 
@@ -25,12 +26,7 @@ def graphical_mode():
     # Prepare game's how to according number of player.
     nb_players = HMI_Nb_players.ask_number_of_players(wx_app)
     if nb_players == 0:
-        bye_dlg = wx.MessageDialog(parent=None,
-                                   message="Maybe later !",
-                                   caption="Well !",
-                                   style=wx.OK | wx.ICON_INFORMATION)
-        bye_dlg.ShowModal()
-        bye_dlg.Destroy()
+        say_bye()
         return 0
 
     # Who are players ?
@@ -39,7 +35,24 @@ def graphical_mode():
     # Playing !
     nickname_away = HMI_Game.ze_GAME(wx_app, playersI, nb_players)
 
+    HoF.hall_of_fame(wx_app, playersI, nb_players, nickname_away)
+
+#    say_bye()      # TODO : Enlever le #
+
     return 0
+
+def say_bye():
+    """
+    Bye bye dialog box.
+    @parameters : none.
+    @return : none.
+    """
+    bye_dlg = wx.MessageDialog(parent=None,
+                               message="Maybe later !",
+                               caption="Well !",
+                               style=wx.OK | wx.ICON_INFORMATION)
+    bye_dlg.ShowModal()
+    bye_dlg.Destroy()
 
 ######################
 

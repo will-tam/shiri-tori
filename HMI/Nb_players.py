@@ -89,6 +89,11 @@ class Nb_players(wx.Frame):
                            handler=self.__on_btn_exit,
                            id=wx.ID_EXIT)
 
+        # Bind to close window event.
+        # By the the way, it should appear it doesn't need to bind this. But, it's sure of react.
+        self.Bind(wx.EVT_CLOSE, self.__on_btn_exit)  # Same as user press quit button.
+
+
     # Private methods.
     def __on_btn_ok(self, event):
         """

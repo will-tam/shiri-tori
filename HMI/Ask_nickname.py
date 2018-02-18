@@ -102,8 +102,19 @@ class Ask_nickname(wx.Frame):
                          handler=self.__on_btn_ok,
                          id=wx.ID_OK)
 
+        # Bind to close window event.
+        # Here, it's forbidden to close with an ALT+F4 or "Close" in tray bar.
+        self.Bind(wx.EVT_CLOSE, self.__on_widget_close)
 
     # Private methods.
+    def __on_widget_close(self, event):
+        """
+        No, you can't go out now.
+        @parameters : event = the event which called this function.
+        @return : none
+        """
+        pass
+
     def __on_btn_ok(self, event):
         """
         On btn_ok click event :

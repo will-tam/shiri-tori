@@ -123,7 +123,8 @@ def main_loop(playersI, nb_players):
                 print("\tSorry {}, you loose the turn !\n".format(playersI[now_player].nickname))
                 print("\t+1 loose point for you, +1 win point for the others\n")
 
-            for pI, lostV in enumerate(playersI):   # Update win and loose points for each players.
+            # Update win and loose points for each players.
+            for pI, lostV in enumerate(playersI):
                 if pI == now_player:
                     playersI[pI].loose_rounds += 1
                 else:

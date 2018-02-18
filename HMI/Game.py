@@ -127,6 +127,9 @@ class Game(wx.Frame):
                             handler=self.__on_btn_leave,
                             id=wx.ID_EXIT)
 
+        # Bind to close window event.
+        self.Bind(wx.EVT_CLOSE, self.__on_btn_leave)  # Same as user press quit button.
+
         # Force focus on ...
         self.player_answer.SetFocus()
 
@@ -198,6 +201,14 @@ class Game(wx.Frame):
             ca = self.__game.check_answer()
 
             if not ca[0]:     # bad answer !
+
+                # Update win and loose points for each players.
+                for pI, lostV in enumerate(self.__playersI):
+                    if pI == self.now_player:
+                        self.__playersI[pI].loose_rounds += 1
+                    else:
+                        self.__playersI[pI].win_rounds += 1
+
                 self.__game.p_answer = ""   # As it was a bad answer, avoid to enter in infinite loop in Almost_AI.choice()
 
             self.inside.Label = ca[1]
