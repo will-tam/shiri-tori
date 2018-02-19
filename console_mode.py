@@ -177,30 +177,15 @@ def display_points(playersI):
 
     print(width * "*", "\n")
 
-    # Search the max of each points.
-    max_win_points = max([player.win_rounds for player in playersI])
-    max_loose_points = max([player.loose_rounds for player in playersI])
+    # Annoucement,with grammatical correction, according find winners and loosers players.
+    winners, loosers = win_loose(playersI)
+    winners_str, loosers_str = win_loose_annouce(len(winners), len(loosers))
 
-    # Pick up the name of each group according the max points of each group.
-    winners = [p.nickname for p in playersI if p.win_rounds == max_win_points]
-    loosers = [p.nickname for p in playersI if p.loose_rounds == max_loose_points]
-
-    # Annoucement, with grammatical correction !!!!
-    if len(winners) > 1:
-        annoucement = "winners are"
-    else:
-        annoucement = "winner is"
-
-    print("And the {} :".format(annoucement))
+    print("And the {} :".format(winners_str))
     for winner in winners:
         print("\t{}".format(winner))
 
-    if len(loosers) > 1:
-        annoucement = "loosers are"
-    else:
-        annoucement = "looser is"
-
-    print("So, the {} :".format(annoucement))
+    print("So, the {} :".format(loosers_str))
     for looser in loosers:
         print("\t{}".format(looser))
 

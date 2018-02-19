@@ -4,6 +4,7 @@
 
 # Third libraries import.
 import wx
+import wx.adv as wxa
 
 # Projet modules import.
 import player
@@ -118,7 +119,7 @@ class Hall_of_fames(wx.Frame):
 
         self.__info_panel = wx.Panel(self,
                                      id=-1,
-                                     pos=wx.Point(Score.w + 2, 0),
+                                     pos=wx.Point(Score.w + 2, 8),
                                      size=wx.Size(568 - Score.w, 515),
                                      style=0)
 
@@ -129,6 +130,64 @@ class Hall_of_fames(wx.Frame):
                       id=-1,
                       label=label,
                       style=0).Center(wx.HORIZONTAL)
+
+        winners_sw = wx.adv.SashWindow(parent=self.__info_panel,
+                                       id=-1,
+                                       pos=wx.Point(0, 20),
+                                       size=wx.Size(330 - 8, 140),
+                                       style=wx.DOUBLE_BORDER | wxa.SW_3DSASH | wxa.SW_3DBORDER | wx.RAISED_BORDER | wxa.SW_3D | wx.CLIP_CHILDREN)
+
+        loosers_sw = wx.adv.SashWindow(parent=self.__info_panel,
+                                       id=-1,
+                                       pos=wx.Point(0, 200),
+                                       size=wx.Size(330 - 8, 140),
+                                       style=wx.SIMPLE_BORDER | wx.CLIP_CHILDREN)
+
+
+        # Search the max of each points.
+        max_win_points = max([player.win_rounds for player in self.__playersI])
+        max_loose_points = max([player.loose_rounds for player in self.__playersI])
+
+        # Pick up the name of each group according the max points of each group.
+        winners = [p.nickname for p in self.__playersI if p.win_rounds == max_win_points]
+        loosers = [p.nickname for p in self.__playersI if p.loose_rounds == max_loose_points]
+
+        """
+    # Annoucement, with grammatical correction !!!!
+    if len(winners) > 1:
+        annoucement = "winners are"
+    else:
+        annoucement = "winner is"
+
+    print("And the {} :".format(annoucement))
+    for winner in winners:
+        print("\t{}".format(winner))
+
+    if len(loosers) > 1:
+        annoucement = "loosers are"
+    else:
+        annoucement = "looser is"
+
+    print("So, the {} :".format(annoucement))
+    for looser in loosers:
+        print("\t{}".format(looser))
+        """
+
+        win_lbl="\n\tAnd the winners are\n\n"
+        for p in self.__playersI:
+            win_lbl += "\t\t" + p.nickname + "\n"
+
+        wx.StaticText(parent=winners_sw,
+                      id=-1,
+                      label=win_lbl)
+
+        lost_lbl="\n\tSo, the loosers are\n\n"
+        for p in self.__playersI:
+            lost_lbl += "\t\t" + p.nickname + "\n"
+
+        wx.StaticText(parent=loosers_sw,
+                      id=-1,
+                      label=lost_lbl)
 
         # The close buttons creation.
         self.__btn_close = wx.Button(parent=self,
