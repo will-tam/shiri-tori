@@ -170,6 +170,7 @@ class Game(wx.Frame):
         @parameters : event = the event which called this function.
         @return : none
         """
+        self.nickname_away = self.__playersI[self.now_player].nickname
         self.Destroy()  # the window.
         event.Skip()
 
@@ -252,7 +253,7 @@ def ze_GAME(wx_app, playersI, nb_players):
 
     wx_app.MainLoop()
 
-    return "Him/her"
+    return game_hmi.nickname_away
 
 ######################
 

@@ -7,6 +7,7 @@ import wx
 import wx.adv as wxa
 
 # Projet modules import.
+from utils import win_loose, win_loose_annouce
 import player
 
 ######################
@@ -66,7 +67,6 @@ class Score(wx.Panel):
         @parameters : none.
         @return : none.
         """
-        print(self.__playersI)
         self.__listCtrl.DeleteAllItems()
 
         for p in self.__playersI:
@@ -102,9 +102,6 @@ class Hall_of_fames(wx.Frame):
         self.__nickname_away = nickname_away
         self.__nb_players = nb_players
 
-        print("self.__playersI =", self.__playersI)
-        print("self.__nickname_away =", self.__nickname_away)
-
         # Main frame.
         wx.Frame.__init__(self,
                           parent=parent,
@@ -113,14 +110,16 @@ class Hall_of_fames(wx.Frame):
                           pos=wx.Point(548, 155),
                           size=wx.Size(568, 515),
                           style=wx.ALWAYS_SHOW_SB)
+        self.Center(wx.BOTH)
 
         # Create the score part. Calling the as-for class.
-        Score(self, self.__playersI, panel_pos=wx.Point(0, 0)).Show()
+        Score(self, self.__playersI, panel_pos=wx.Point(0, 0))
 
+        # Create Hall of fames it-self.
         self.__info_panel = wx.Panel(self,
                                      id=-1,
                                      pos=wx.Point(Score.w + 2, 8),
-                                     size=wx.Size(568 - Score.w, 515),
+                                     size=wx.Size(568 - Score.w, 400),
                                      style=0)
 
         label = "Of course, you have feel i was the strongest !" if self.__nb_players == 1\
@@ -133,7 +132,7 @@ class Hall_of_fames(wx.Frame):
 
         winners_sw = wx.adv.SashWindow(parent=self.__info_panel,
                                        id=-1,
-                                       pos=wx.Point(0, 20),
+                                       pos=wx.Point(0, 40),
                                        size=wx.Size(330 - 8, 140),
                                        style=wx.DOUBLE_BORDER | wxa.SW_3DSASH | wxa.SW_3DBORDER | wx.RAISED_BORDER | wxa.SW_3D | wx.CLIP_CHILDREN)
 
@@ -143,47 +142,21 @@ class Hall_of_fames(wx.Frame):
                                        size=wx.Size(330 - 8, 140),
                                        style=wx.SIMPLE_BORDER | wx.CLIP_CHILDREN)
 
+        # Annoucement,with grammatical correction, according find winners and loosers players.
+        winners, loosers = win_loose(playersI)
+        winners_str, loosers_str = win_loose_annouce(len(winners), len(loosers))
 
-        # Search the max of each points.
-        max_win_points = max([player.win_rounds for player in self.__playersI])
-        max_loose_points = max([player.loose_rounds for player in self.__playersI])
-
-        # Pick up the name of each group according the max points of each group.
-        winners = [p.nickname for p in self.__playersI if p.win_rounds == max_win_points]
-        loosers = [p.nickname for p in self.__playersI if p.loose_rounds == max_loose_points]
-
-        """
-    # Annoucement, with grammatical correction !!!!
-    if len(winners) > 1:
-        annoucement = "winners are"
-    else:
-        annoucement = "winner is"
-
-    print("And the {} :".format(annoucement))
-    for winner in winners:
-        print("\t{}".format(winner))
-
-    if len(loosers) > 1:
-        annoucement = "loosers are"
-    else:
-        annoucement = "looser is"
-
-    print("So, the {} :".format(annoucement))
-    for looser in loosers:
-        print("\t{}".format(looser))
-        """
-
-        win_lbl="\n\tAnd the winners are\n\n"
-        for p in self.__playersI:
-            win_lbl += "\t\t" + p.nickname + "\n"
+        win_lbl="\n\tAnd the {}\n\n".format(winners_str)
+        for winner in winners:
+            win_lbl += "\t\t" + winner + "\n"
 
         wx.StaticText(parent=winners_sw,
                       id=-1,
                       label=win_lbl)
 
-        lost_lbl="\n\tSo, the loosers are\n\n"
-        for p in self.__playersI:
-            lost_lbl += "\t\t" + p.nickname + "\n"
+        lost_lbl="\n\tSo, the {}\n\n".format(loosers_str)
+        for looser in loosers:
+            lost_lbl += "\t\t" + looser + "\n"
 
         wx.StaticText(parent=loosers_sw,
                       id=-1,
@@ -192,8 +165,7 @@ class Hall_of_fames(wx.Frame):
         # The close buttons creation.
         self.__btn_close = wx.Button(parent=self,
                                      id=wx.ID_EXIT,
-                                     pos=wx.Point(340, 450),
-                                     size=wx.Size(85, 32),
+                                     pos=wx.Point(10, 440),
                                      style=0)
         self.__btn_close.Center(wx.HORIZONTAL)
         self.__btn_close.SetFocus()

@@ -37,7 +37,7 @@ def graphical_mode():
 
     HoF.hall_of_fame(wx_app, playersI, nb_players, nickname_away)
 
-#    say_bye()      # TODO : Enlever le #
+    say_bye()
 
     return 0
 
