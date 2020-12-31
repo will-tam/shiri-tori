@@ -1,1 +1,0 @@
-/home/will/data/programmation/python/shiri-tori/one_game.py
