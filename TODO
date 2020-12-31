@@ -1,6 +1,8 @@
 + || ++ A FAIRE
 - || -- FAIT
 
++ REFONTE DU TODO /!\
+
 + Version console seule >
  -- Vérification éxistance fichier BdD dictionnaire
  -- Changer nom du fichier BdD dictionnaire : dict.sqlite -> goi.sqlite
