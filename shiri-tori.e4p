@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2018-02-19, 22:45:39 -->
-<!-- Copyright (C) 2018 Will_tam,  -->
+<!-- Saved: 2021-01-03, 00:17:35 -->
+<!-- Copyright (C) 2021 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
   <Hash>837987ac282ceefbee3182d011e11551767981ae</Hash>
   <ProgLanguage mixed="0">Python3</ProgLanguage>
   <ProjectType>Console</ProjectType>
-  <Version>20171112</Version>
+  <Version>20201231</Version>
   <Author>Will_tam</Author>
   <Email></Email>
   <Eol index="0"/>
@@ -20,29 +20,121 @@
     <Source>README</Source>
     <Source>README.md</Source>
     <Source>TODO</Source>
-    <Source>VERSION</Source>
-    <Source>almostAI.py</Source>
-    <Source>console_mode.py</Source>
-    <Source>graphical_mode.py</Source>
-    <Source>one_game.py</Source>
-    <Source>player.py</Source>
-    <Source>rules.py</Source>
+    <Source>VERSION.sh</Source>
+    <Source>__init__.py</Source>
+    <Source>engine/IA-like.py</Source>
+    <Source>engine/Players.py</Source>
+    <Source>engine/Rules.py</Source>
+    <Source>engine/SQL.py</Source>
     <Source>shiri-tori.py</Source>
-    <Source>sqlmanage.py</Source>
     <Source>test/test_almostAI.py</Source>
     <Source>test/test_console_mode.py</Source>
     <Source>test/test_one_game.py</Source>
     <Source>test/test_player.py</Source>
     <Source>test/test_sqlmanage.py</Source>
-    <Source>utils.py</Source>
   </Sources>
-  <Forms/>
-  <Translations/>
-  <Resources/>
-  <Interfaces/>
-  <Others/>
   <Vcs>
-    <VcsType>None</VcsType>
+    <VcsType>Git</VcsType>
+    <VcsOptions>
+      <dict>
+        <key>
+          <string>add</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>checkout</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>commit</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>diff</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>export</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>global</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>history</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>log</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>remove</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>status</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>tag</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>update</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+      </dict>
+    </VcsOptions>
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.e4p" type="OTHERS"/>

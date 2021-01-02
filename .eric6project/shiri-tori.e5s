@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Session SYSTEM "Session-5.0.dtd">
+<!DOCTYPE Session SYSTEM "Session-6.2.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2018-02-19, 21:35:21 -->
-<Session version="5.0">
+<!-- Saved: 2021-01-03, 00:17:36 -->
+<Session version="6.2">
+  <ViewManagerSplits count="1" orientation="2"/>
   <Filenames>
-    <Filename cline="47" cindex="50" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="180" cindex="41" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/console_mode.py</Filename>
-    <Filename cline="110" cindex="33" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Game.py</Filename>
-    <Filename cline="89" cindex="40" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</Filename>
-    <Filename cline="38" cindex="16" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/player.py</Filename>
-    <Filename cline="78" cindex="51" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py</Filename>
-    <Filename cline="17" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/utils.py</Filename>
-    <Filename cline="174" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/Score.py</Filename>
-    <Filename cline="37" cindex="61" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/graphical_mode.py</Filename>
-    <Filename cline="46" cindex="59" folds="" zoom="0">/home/will/data/programmation/python/shiri-tori/HMI/ex_boa/HallOfFames.py</Filename>
+    <Filename cline="3" cindex="1" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
   </Filenames>
-  <ActiveWindow cline="180" cindex="41">/home/will/data/programmation/python/shiri-tori/console_mode.py</ActiveWindow>
+  <ActiveWindow cline="3" cindex="1">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
+    <VirtualEnv></VirtualEnv>
     <CommandLine></CommandLine>
     <WorkingDirectory></WorkingDirectory>
     <Environment></Environment>
@@ -34,29 +27,14 @@
   <Bookmarks/>
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Ask_nickname.py@@14</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Game.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Game.py@@21</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Nb_players.py@@13</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Score.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Score.py@@77</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/Score.py@@14</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/almostAI.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/almostAI.py@@12</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/console_mode.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/graphical_mode.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/player.py@@3</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/TODO</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/utils.py</ExpandedItemName>
     </ProjectBrowserState>
     <ProjectBrowserState name="forms"/>
     <ProjectBrowserState name="resources"/>
     <ProjectBrowserState name="translations"/>
     <ProjectBrowserState name="interfaces"/>
+    <ProjectBrowserState name="protocols"/>
     <ProjectBrowserState name="others"/>
   </ProjectBrowserStates>
 </Session>
