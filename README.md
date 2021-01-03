@@ -1,5 +1,7 @@
 # shiri-tori しりとり
 
+# Will_tam (C) GPL3
+# Version : VERSION.sh
 
 * **Why**
 Why not ?
