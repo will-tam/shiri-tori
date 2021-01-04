@@ -22,6 +22,6 @@ def main(arg):
 ######################
 
 if __name__ == "__main__":
-    rc = main(sys.argv[1:])      # Keep only the argus after the script name.
-    sys.exit(rc)
-
+    print("Don't launch me directely, please !")
+    print("Run python3 shiri-tory.py or directely shiri-tory.py if eXecution right(s) is/are ON.")
+    sys.exit(1)

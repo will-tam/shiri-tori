@@ -1,5 +1,4 @@
-__version__ = "20201231"
-
+__all__ = ['terminal.terminal',]
 
 # NOTE: uncomment to debug
 print("{}.{}".format(__package__,"__init__"))

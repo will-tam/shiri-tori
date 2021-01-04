@@ -2,13 +2,20 @@
 <!DOCTYPE Session SYSTEM "Session-6.2.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2021-01-03, 00:17:36 -->
+<!-- Saved: 2021-01-04, 15:34:02 -->
 <Session version="6.2">
   <ViewManagerSplits count="1" orientation="2"/>
   <Filenames>
-    <Filename cline="3" cindex="1" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
+    <Filename cline="74" cindex="23" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
+    <Filename cline="48" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="1">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</Filename>
+    <Filename cline="14" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/will/data/programmation/python/shiri-tori/engine/Players.py</Filename>
+    <Filename cline="59" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/will/data/programmation/python/shiri-tori/engine/Rules.py</Filename>
+    <Filename cline="48" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/will/data/programmation/python/shiri-tori/engine/SQL.py</Filename>
+    <Filename cline="26" cindex="11" folds="" zoom="0" cloned="0" splitindex="0" editorindex="5">/home/will/data/programmation/python/shiri-tori/engine/AI_like.py</Filename>
+    <Filename cline="2" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="6">/home/will/data/programmation/python/shiri-tori/HMI/__init__.py</Filename>
+    <Filename cline="0" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="7">/home/will/data/programmation/python/shiri-tori/engine/__init__.py</Filename>
   </Filenames>
-  <ActiveWindow cline="3" cindex="1">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ActiveWindow>
+  <ActiveWindow cline="48" cindex="0">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -27,6 +34,24 @@
   <Bookmarks/>
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/gfx</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/gfx/gfx-TODO.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/net</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/net/net-TODO.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/terminal</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/terminal/terminal.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/AI_like.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/AI_like.py@@18</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Engine.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Engine.py@@18</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Players.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Players.py@@18</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Rules.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Rules.py@@18</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/SQL.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/SQL.py@@18</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/TODO</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ExpandedItemName>
     </ProjectBrowserState>

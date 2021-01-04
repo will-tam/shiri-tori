@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Entry point.
@@ -10,19 +10,20 @@ import argparse
 # Third-part library import.
 
 # Project library import.
-import engine.engine
-import HMI.terminal.terminal
+import __init__
+import engine.Engine as gengine
+import HMI.terminal.terminal as hmiterm
+
 
 ######################
 
-def opt_arg(helpme=False):
+def opt_args(helpme=False):
     """
     Option and arguments parse.
     @parameters : none.
     @return : parsed arguments.
     """
-    parser = argparse.ArgumentParser(description="Run shiri-tori game.",
-                                     argument_default="help")
+    parser = argparse.ArgumentParser(description="Run shiri-tori game.")
 
     parser.add_argument('-t','--terminal',
                         action="store_true",
@@ -40,13 +41,18 @@ def opt_arg(helpme=False):
                         default=False,
                         help="Run server game. /!\ Not implemented yet /!\ ")
 
+    parser.add_argument('--version',
+                        action='version',
+                        help="Display version.",
+                        version="{} ver. {}".format(parser.prog, __init__.__version__))
+
     if helpme:
         parser.print_help()
-        return False
+        return 2
 
     return parser.parse_args()
 
-def main(arg):
+def main(args):
     """
     Main function.
     @parameters : some arguments, in case of use.
@@ -55,17 +61,35 @@ def main(arg):
     """
 
     print("")
-    args = opt_arg()
-    print(args)
+
+    if args and args[0] != '-h' and args[0] != '--help':
+        args = opt_args()
+    else:
+        return opt_args(helpme=True)
+
+#    NOTE: uncomment to debug
+#    print(args)
+
+    game_engine = gengine.Engine()
+#    NOTE: uncomment to debug
+#    print(game_engine)
 
     if args.terminal:
-        pass
-    elif args.gfx:
-        pass
-    elif args.server:
-        pass
-    else:
-        opt_arg(helpme=True)
+        print("Go terminal")
+
+        return 0
+
+    if args.gfx:
+        print("Go wxPython")
+
+        return 0
+
+    if args.server:
+        print("Go serveur en ", end='')
+        port = args.server
+        print("port", port)
+
+        return 0
 
     return 0
 
