@@ -6,7 +6,6 @@ print("{}.{}".format(__package__,__name__))
 # Standard libraries import.
 import sys
 
-
 # Third libraries import.
 
 

@@ -49,7 +49,6 @@ class Players():
         @parameters : none.
         @return : none.
         """
-        print("Players init")
         self.p_id = []
         self.players = {}
 

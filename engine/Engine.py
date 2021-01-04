@@ -10,7 +10,7 @@ import sys
 
 
 # Projet modules import.
-from . import Players, Rules, SQL, AI_like
+from . import Players, Rules, SQLManage, AI_like
 
 
 ######################
@@ -43,7 +43,7 @@ class Engine():
         @parameters : none.
         @return : none.
         """
-        sql = SQL.SQL()
+        sqlmanage = SQLManage.SQLManage()
         rules = Rules.Rules()
         players = Players.Players()
         ai_like = AI_like.AI_like()

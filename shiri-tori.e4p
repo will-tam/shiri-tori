@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2021-01-04, 15:33:59 -->
+<!-- Saved: 2021-01-04, 19:20:35 -->
 <!-- Copyright (C) 2021 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
@@ -34,17 +34,18 @@
     <Source>__init__.py</Source>
     <Source>engine/AI_like.py</Source>
     <Source>engine/Engine.py</Source>
-    <Source>engine/IA_like.py</Source>
     <Source>engine/Players.py</Source>
     <Source>engine/Rules.py</Source>
-    <Source>engine/SQL.py</Source>
+    <Source>engine/SQLManage.py</Source>
     <Source>engine/__init__.py</Source>
+    <Source>engine/goi.sqlite</Source>
     <Source>shiri-tori.py</Source>
     <Source>test/test_almostAI.py</Source>
     <Source>test/test_console_mode.py</Source>
     <Source>test/test_one_game.py</Source>
     <Source>test/test_player.py</Source>
     <Source>test/test_sqlmanage.py</Source>
+    <Source>utils.py</Source>
   </Sources>
   <Vcs>
     <VcsType>Git</VcsType>
