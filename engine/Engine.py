@@ -43,10 +43,10 @@ class Engine():
         @parameters : none.
         @return : none.
         """
-        sqlmanage = SQLManage.SQLManage()
-        rules = Rules.Rules()
-        players = Players.Players()
-        ai_like = AI_like.AI_like()
+        self.sqlmanage = SQLManage.SQLManage()
+        self.rules = Rules.Rules(self.sqlmanage)
+        self.players = Players.Players()
+        self.ai_like = AI_like.AI_like()
 
     # Private methods.
 
