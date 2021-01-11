@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2021-01-04, 19:20:35 -->
+<!-- Saved: 2021-01-11, 21:27:56 -->
 <!-- Copyright (C) 2021 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
@@ -24,6 +24,7 @@
     <Source>HMI/gfx/gfx-TODO.py</Source>
     <Source>HMI/net/__init__.py</Source>
     <Source>HMI/net/net-TODO.py</Source>
+    <Source>HMI/terminal/Terminal.py</Source>
     <Source>HMI/terminal/__init__.py</Source>
     <Source>HMI/terminal/terminal.py</Source>
     <Source>LICENSE</Source>

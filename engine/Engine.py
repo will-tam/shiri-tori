@@ -48,6 +48,14 @@ class Engine():
         self.players = Players.Players()
         self.ai_like = AI_like.AI_like()
 
+    # Properties
+#    @property  # Getter
+#    pass
+#
+#    @.setter #Setter
+#    pass
+
+
     # Private methods.
 
 

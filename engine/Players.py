@@ -34,7 +34,7 @@ class Players():
                'nb_players_question_1' : "0 pour vous enfuire loin de moi. ",
                'nb_players_question_2' : "1 signifiant 2 joueurs, vous et ... moi. ",
                'nb_players_question_3' : "Pas plus de 5 joueurs.",
-               'nb_players_question_4' : "Alors ?",
+               'nb_players_question_4' : "Alors ? >>>  ",
                'ask_nickname' : "Donnez-moi votre pseudo s'il vous plait.",
                'player_name_turn' : "Joueur {}, à vous.", }
 

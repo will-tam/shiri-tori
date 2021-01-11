@@ -12,7 +12,7 @@ import argparse
 # Project library import.
 import __init__
 import engine.Engine as gengine
-import HMI.terminal.terminal as hmiterm
+import HMI.terminal.Terminal as hmiterm
 
 
 ######################
@@ -68,30 +68,35 @@ def main(args):
         return opt_args(helpme=True)
 
 #    NOTE: uncomment to debug
-#    print(args)
+    print(args)
+
+    print(args.__dict__)
 
     game_engine = gengine.Engine()
 #    NOTE: uncomment to debug
 #    print(game_engine)
 
     if args.terminal:
+#       NOTE: uncomment to debug
         print("Go terminal")
-
-        return 0
+        return hmiterm.Terminal(game_engine).main()
 
     if args.gfx:
+#       NOTE: uncomment to debug
         print("Go wxPython")
 
         return 0
 
     if args.server:
+#       NOTE: uncomment to debug
         print("Go serveur en ", end='')
         port = args.server
         print("port", port)
 
         return 0
 
-    return 0
+    print("option looked like good, but something went wrong !")
+    return 1
 
 ######################
 
