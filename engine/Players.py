@@ -34,9 +34,12 @@ class Players():
                'nb_players_question_1' : "0 pour vous enfuire loin de moi. ",
                'nb_players_question_2' : "1 signifiant 2 joueurs, vous et ... moi. ",
                'nb_players_question_3' : "Pas plus de 5 joueurs.",
-               'nb_players_question_4' : "Alors ? >>>  ",
+               'nb_players_question_4' : "Alors ?",
                'ask_nickname' : "Donnez-moi votre pseudo s'il vous plait.",
-               'player_name_turn' : "Joueur {}, à vous.", }
+               'ask_nickname_multi' : "Joueur {}, votre pseudo s'il vous plait.",
+               'player_name_turn' : "Joueur {}, à vous.",
+               'noname_1_player' : "Vous, l'inconnu(e)",
+               'noname_X_players' : "L'inconnu(e) {}", }
 
     # Private attributes.
 
@@ -74,6 +77,15 @@ class Players():
             rnd.shuffle(self.p_id)
         print(self.p_id)
 
+    def find_me_a_nickname(self, player_num):
+        """
+        Add unknown to an empty player's nickname.
+        @parameters : player_num = number of player who find a name.
+        @return : unknown with a digit if several.
+        """
+        ze_best_nn = self.DIALOGS['noname_1_player'] if player_num == 0 else self.DIALOGS['noname_X_players'].format(player_num)
+        return ze_best_nn
+
     # Private methods.
 
     def __find_unique_id(self):
@@ -92,6 +104,7 @@ class Players():
                 unique = True
 
         return id
+
 
 ######################
 

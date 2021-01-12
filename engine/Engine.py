@@ -23,7 +23,7 @@ class Engine():
         - provides components.
 
     Public attributes.
-        players, rules, sql, ia_like = instances of the corresponding components.
+        players, rules, sql, ai_like = instances of the corresponding components.
     """
 
     DIALOGS = {'no_want_play_bye' : "Peut-etre plus tard ?",

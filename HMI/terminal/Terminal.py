@@ -19,6 +19,7 @@ class Terminal():
     """
 
     EOL = "\n"
+    WAIT_ASK = " >>> "
 
     def __init__(self, game_engine):
         """
@@ -46,6 +47,7 @@ class Terminal():
 
         question = self.EOL
         question += self.EOL.join(dialog_question)
+        question += self.WAIT_ASK
 
         nb_players = 6  # We directely enter inside next loop.
 
@@ -56,6 +58,32 @@ class Terminal():
                 print("\n\tDésolé, mais j'aimerais un nombre seulement.\n")
 
         return nb_players
+
+    def ask_nickname(self, nb_players):
+        """
+        Just ask the nickname of each player.
+        If there is only one, a second one is adding, the computer it-self.
+        @parameters : nb_players = number of player(s).
+        @return : the nicknames.
+        """
+        nicknames = []
+
+        if nb_players == 1:
+            print("{0}{1}{0}".format(self.EOL, self.game_engine.ai_like.DIALOGS['just_us']))
+            nicknames.append(input(self.game_engine.players.DIALOGS['ask_nickname'] + self.WAIT_ASK))
+            # Manage the unknown player in single player mode.
+            if nicknames[0] == "":
+                nicknames[0] = self.game_engine.players.find_me_a_nickname(0)
+            nicknames.append("The Best IA")     # For 1 player mode, also computer plays.
+        else:
+            for i in range(1, nb_players + 1):
+                nn = input(self.game_engine.players.DIALOGS['ask_nickname_multi'].format(i)  + self.WAIT_ASK)
+                # Manage the unknown player in several players mode.
+                if nn == "":
+                    nn = self.game_engine.players.find_me_a_nickname(i)
+                nicknames.append(nn)
+
+        return nicknames
 
     def main(self):
         """
@@ -72,10 +100,10 @@ class Terminal():
             print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['no_want_play_bye']))
             return 0
 
+        for nickname in self.ask_nickname(nb_players):
+            print(nickname)  # Ajouter dans self.game_engine.players.players via un setter (?)
+
         """
-
-        playersI = ask_nickname(nb_players)
-
         nickname_away = main_loop(playersI, nb_players)
 
         if nickname_away:
@@ -87,6 +115,7 @@ class Terminal():
 
         display_points(playersI)
         """
+
         return 0
 
 ######################
