@@ -22,12 +22,12 @@ class Players():
     Public attributes.
         p_id : list of interger of unique players' id
         players : dictionnary dictionnaries of players
-            {p_id :
-                'name' : string.
-                'score' : interger .
-                'turn' : boolean.
-                'answer' : string.
-            }
+            {p_id : {
+                'nickname' : string,
+                'score' : interger,
+                'turn' : boolean,
+                'answer' : string,
+            }}
     """
 
     DIALOGS = {'nb_players_question_0' : "Nombre de joueurs entre 0 et 5 inclus",
@@ -56,16 +56,20 @@ class Players():
         self.p_id = []
         self.players = {}
 
-    def add(self, name):
+    def register_players(self, nicknames):
         """
-        Add a player.
-        @parameters : name = name of the player.
+        Add a players in players dictionnary.
+        @parameters : nicknames = list of players nicknames.
         @return : none.
         """
-        # Trouver player_id unique
-        # Ajout de player_id dans liste des p_id
-        # Ajout dans players d'un dico {p_id : {'name' : name, 'score' : 0, 'turn' : False, 'answer' : ""}}
-        pass
+        for nickname in nicknames:
+            p_id = self.__find_unique_id(nickname)
+            self.p_id.append(p_id)
+            self.players.update({p_id :
+                                    {'nickname' : nickname,
+                                     'score' : 0,
+                                     'turn' : False,
+                                     'answer': ""}})
 
     def shuffle(self):
         """
@@ -73,34 +77,33 @@ class Players():
         @parameters : none.
         @return : none.
         """
-        print(self.p_id)
         for i in range(0, 10):
             rnd.shuffle(self.p_id)
-        print(self.p_id)
 
     def find_me_a_nickname(self, player_num):
         """
-        Add unknown to an empty player's nickname.
+        Return something as "unknown" to an empty player's nickname.
         @parameters : player_num = number of player who find a name.
-        @return : unknown with a digit if several.
+        @return : see self.DIALOGS, with a digit if several.
         """
         ze_best_nn = self.DIALOGS['noname_1_player'] if player_num == 0 else self.DIALOGS['noname_X_players'].format(player_num)
         return ze_best_nn
 
     # Private methods.
 
-    def __find_unique_id(self):
+    def __find_unique_id(self, nickname):
         """
         Find an unique id for a player.
-        @parameters : none.
-        @return : id found.
+        @parameters : nickname = create player id from this nickname.
+        @return : unique player id found.
         """
         unique = False
-        id = 0
 
         while not unique:
-            # Trouver l'id qui va bien
-
+            # Using of Python hash function to find a hash. A random is add in the hash function
+            # to hoe to be sure the player id will be unique at first time.
+            # while loop is to add one more (useless ?) security.
+            id = hash((nickname, rnd.random()))
             if id not in self.p_id:
                 unique = True
 

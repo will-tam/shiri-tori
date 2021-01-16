@@ -106,8 +106,10 @@ class Terminal():
             print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['no_want_play_bye']))
             return 0
 
-        for nickname in self.ask_nickname(nb_players):
-            print(nickname)  # Ajouter dans self.game_engine.players.players via un setter (?)
+        self.game_engine.players.register_players(self.ask_nickname(nb_players))
+
+        print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['shuffle']))
+        self.game_engine.players.shuffle()
 
         """
         nickname_away = main_loop(playersI, nb_players)

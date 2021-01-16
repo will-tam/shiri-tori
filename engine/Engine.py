@@ -27,6 +27,7 @@ class Engine():
     """
 
     DIALOGS = {'no_want_play_bye' : "Peut-etre plus tard ?",
+               'shuffle' : "Mélange des joueurs",
                'check_word' : "Vérification ... {} ...",
                'loose_turn' : "Désolé {}, vous perdez ce tour !",
                'losse_turn_1_pt' : "+1 point perdu pour vour, +1 point gagné pour les autres",
