@@ -77,10 +77,16 @@ class Terminal():
             nicknames.append("The Best IA")     # For 1 player mode, also computer plays.
         else:
             for i in range(1, nb_players + 1):
-                nn = input(self.game_engine.players.DIALOGS['ask_nickname_multi'].format(i)  + self.WAIT_ASK)
-                # Manage the unknown player in several players mode.
-                if nn == "":
-                    nn = self.game_engine.players.find_me_a_nickname(i)
+                unique_name = False
+                while not unique_name:
+                    nn = input(self.game_engine.players.DIALOGS['ask_nickname_multi'].format(i)  + self.WAIT_ASK)
+                    # Manage the unknown player in several players mode.
+                    if nn == "":
+                        nn = self.game_engine.players.find_me_a_nickname(i)
+                    if nn in nicknames:
+                        print(self.game_engine.players.DIALOGS['already_choosen'].format(nn) + " ", end='')
+                    else:
+                        unique_name = True
                 nicknames.append(nn)
 
         return nicknames

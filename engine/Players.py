@@ -39,7 +39,8 @@ class Players():
                'ask_nickname_multi' : "Joueur {}, votre pseudo s'il vous plait.",
                'player_name_turn' : "Joueur {}, à vous.",
                'noname_1_player' : "Vous, l'inconnu(e)",
-               'noname_X_players' : "L'inconnu(e) {}", }
+               'noname_X_players' : "L'inconnu(e) {}",
+               'already_choosen' : "{} est déjà pris !", }
 
     # Private attributes.
 
