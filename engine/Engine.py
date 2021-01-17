@@ -33,7 +33,7 @@ class Engine():
                'check_word' : "Vérification ... {} ...",
                'turn_lost' : "Désolé {}, vous perdez ce tour !",
                'turn_lost_1_pt' : "+1 point perdu pour vour, +1 point gagné pour les autres",
-               'a player leave' : "{} voulais s'enfuire !!!",
+               'a_player_leave' : "{} voulais s'enfuire !!!",
                'ending_winner' : "Et {} :",
                'ending_looser' : "Donc, {} :",
                '1winner' : "le gagnant est",

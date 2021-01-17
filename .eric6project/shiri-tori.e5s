@@ -2,19 +2,19 @@
 <!DOCTYPE Session SYSTEM "Session-6.2.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2021-01-17, 16:00:33 -->
+<!-- Saved: 2021-01-17, 18:31:30 -->
 <Session version="6.2">
   <ViewManagerSplits count="1" orientation="2"/>
   <Filenames>
     <Filename cline="81" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="143" cindex="53" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</Filename>
-    <Filename cline="37" cindex="39" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</Filename>
+    <Filename cline="175" cindex="76" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</Filename>
+    <Filename cline="35" cindex="30" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</Filename>
     <Filename cline="110" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/will/data/programmation/python/shiri-tori/engine/Players.py</Filename>
     <Filename cline="22" cindex="22" folds="" zoom="0" cloned="0" splitindex="0" editorindex="5">/home/will/data/programmation/python/shiri-tori/engine/Rules.py</Filename>
     <Filename cline="21" cindex="22" folds="" zoom="0" cloned="0" splitindex="0" editorindex="6">/home/will/data/programmation/python/shiri-tori/engine/SQLManage.py</Filename>
-    <Filename cline="25" cindex="15" folds="" zoom="0" cloned="0" splitindex="0" editorindex="7">/home/will/data/programmation/python/shiri-tori/engine/AI_like.py</Filename>
+    <Filename cline="31" cindex="23" folds="" zoom="0" cloned="0" splitindex="0" editorindex="7">/home/will/data/programmation/python/shiri-tori/engine/AI_like.py</Filename>
   </Filenames>
-  <ActiveWindow cline="37" cindex="39">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</ActiveWindow>
+  <ActiveWindow cline="175" cindex="76">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>

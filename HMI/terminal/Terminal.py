@@ -156,30 +156,35 @@ class Terminal():
         # NOTE : retirer le # suivant, après mise au point.
     #    print("\x1b[2J\x1b[;H")
 
+        # How many players want to play.
         nb_players = self.ask_number_of_players()
 
+        # Actually, nobody wants to play T_T !
         if nb_players == 0:
             print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['no_want_play_bye']))
             return 0
 
+        # Register all players.
         self.game_engine.players.register_players(self.ask_nickname(nb_players))
 
+        # The 1st player should be not the 1st to play.
         print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['shuffle']))
         self.game_engine.players.shuffle()
 
-        """
-        nickname_away = main_loop(playersI, nb_players)
+        nickname_away = self.game_engine.players.players[self.game_engine.players.p_id[0]]['nickname']
+#        nickname_away = main_loop(playersI, nb_players)
 
         if nickname_away:
             if nb_players == 1:
-                print("{}Of course, you have feel i was the strongest !\n".format(5 * "\n"))
+                print("{}{}{}".format(5 * self.EOL, self.game_engine.ai_like.DIALOGS['sly_bye'], self.EOL))
 
             else:
-                print("{}{} would to get away !!!\n".format(5 * "\n", nickname_away))
-        """
+                to_diag = 5 * self.EOL
+                to_diag += self.game_engine.DIALOGS['a_player_leave'].format(nickname_away)
+                to_diag += self.EOL
+                print(to_diag)
 
         self.display_points()
-
 
         return 0
 
