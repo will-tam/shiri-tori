@@ -24,7 +24,8 @@ class Players():
         players : dictionnary dictionnaries of players
             {p_id : {
                 'nickname' : string,
-                'score' : interger,
+                'won_rounds' : interger,
+                'lost_rounds': interger,
                 'turn' : boolean,
                 'answer' : string,
             }}
@@ -67,7 +68,8 @@ class Players():
             self.p_id.append(p_id)
             self.players.update({p_id :
                                     {'nickname' : nickname,
-                                     'score' : 0,
+                                     'won_rounds' : 0,
+                                     'lost_rounds' : 0,
                                      'turn' : False,
                                      'answer': ""}})
 
@@ -89,6 +91,27 @@ class Players():
         ze_best_nn = self.DIALOGS['noname_1_player'] if player_num == 0 else self.DIALOGS['noname_X_players'].format(player_num)
         return ze_best_nn
 
+    def win_loose(self):
+        """
+        Winners and loosers players annoucement.
+        @parameters : none.
+        @return : a tuple of list (winners, loosers).
+        """
+        """
+        all_nicknames_len = [len(self.game_engine.players.players[p_id]['nickname']) for p_id in self.game_engine.players.p_id]
+        max_str_len = max(all_nicknames_len)
+        """
+
+        # Search the max of each points.
+        max_win_points = max([self.players[p_id]['won_rounds'] for p_id in self.p_id])
+        max_loose_points = max([self.players[p_id]['lost_rounds'] for p_id in self.p_id])
+
+        # Pick up the name of each group according the max points of each group.
+        winners = [self.players[p_id]['nickname'] for p_id in self.p_id if self.players[p_id]['won_rounds'] == max_win_points]
+        loosers = [self.players[p_id]['nickname'] for p_id in self.p_id if self.players[p_id]['lost_rounds'] == max_loose_points]
+
+        return (winners, loosers)
+
     # Private methods.
 
     def __find_unique_id(self, nickname):
@@ -103,7 +126,7 @@ class Players():
             # Using of Python hash function to find a hash. A random is add in the hash function
             # to hoe to be sure the player id will be unique at first time.
             # while loop is to add one more (useless ?) security.
-            id = hash((nickname, rnd.random()))
+            id = abs(hash((nickname, rnd.random())))
             if id not in self.p_id:
                 unique = True
 

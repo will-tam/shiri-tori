@@ -2,19 +2,19 @@
 <!DOCTYPE Session SYSTEM "Session-6.2.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2021-01-13, 20:46:13 -->
+<!-- Saved: 2021-01-17, 16:00:33 -->
 <Session version="6.2">
   <ViewManagerSplits count="1" orientation="2"/>
   <Filenames>
     <Filename cline="81" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="61" cindex="20" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</Filename>
-    <Filename cline="25" cindex="36" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</Filename>
-    <Filename cline="22" cindex="22" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/will/data/programmation/python/shiri-tori/engine/Rules.py</Filename>
-    <Filename cline="21" cindex="22" folds="" zoom="0" cloned="0" splitindex="0" editorindex="5">/home/will/data/programmation/python/shiri-tori/engine/SQLManage.py</Filename>
-    <Filename cline="23" cindex="15" folds="" zoom="0" cloned="0" splitindex="0" editorindex="6">/home/will/data/programmation/python/shiri-tori/engine/Players.py</Filename>
+    <Filename cline="143" cindex="53" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</Filename>
+    <Filename cline="37" cindex="39" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</Filename>
+    <Filename cline="110" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/will/data/programmation/python/shiri-tori/engine/Players.py</Filename>
+    <Filename cline="22" cindex="22" folds="" zoom="0" cloned="0" splitindex="0" editorindex="5">/home/will/data/programmation/python/shiri-tori/engine/Rules.py</Filename>
+    <Filename cline="21" cindex="22" folds="" zoom="0" cloned="0" splitindex="0" editorindex="6">/home/will/data/programmation/python/shiri-tori/engine/SQLManage.py</Filename>
     <Filename cline="25" cindex="15" folds="" zoom="0" cloned="0" splitindex="0" editorindex="7">/home/will/data/programmation/python/shiri-tori/engine/AI_like.py</Filename>
   </Filenames>
-  <ActiveWindow cline="61" cindex="20">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</ActiveWindow>
+  <ActiveWindow cline="37" cindex="39">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -38,7 +38,7 @@
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/net</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/terminal</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py@@13</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py@@14</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/HMI/__init__.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/__init__.py</ExpandedItemName>
@@ -54,6 +54,7 @@
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/__init__.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/TODO</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/shiri-tori.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/utils.py</ExpandedItemName>
     </ProjectBrowserState>
     <ProjectBrowserState name="forms"/>
     <ProjectBrowserState name="resources"/>

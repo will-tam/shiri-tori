@@ -28,10 +28,18 @@ class Engine():
 
     DIALOGS = {'no_want_play_bye' : "Peut-etre plus tard ?",
                'shuffle' : "Mélange des joueurs",
+               'won_rounds' : "tours gagnés",
+               'lost_rounds' : "tours perdus",
                'check_word' : "Vérification ... {} ...",
-               'loose_turn' : "Désolé {}, vous perdez ce tour !",
-               'losse_turn_1_pt' : "+1 point perdu pour vour, +1 point gagné pour les autres",
-               'a_player_leave' : "{} voulais s'enfuire !!!",}
+               'turn_lost' : "Désolé {}, vous perdez ce tour !",
+               'turn_lost_1_pt' : "+1 point perdu pour vour, +1 point gagné pour les autres",
+               'a player leave' : "{} voulais s'enfuire !!!",
+               'ending_winner' : "Et {} :",
+               'ending_looser' : "Donc, {} :",
+               '1winner' : "le gagnant est",
+               '1looser' : "le perdant est",
+               'several_winners' : "les gagnants sont",
+               'several_loosers' : "les perdants sont",}
 
     # Private attributes.
 
@@ -55,6 +63,18 @@ class Engine():
 #
 #    @.setter #Setter
 #    pass
+
+    def win_loose_annouce(self, nb_winners, nb_loosers):
+        """
+        Winners and loosers players annoucement.
+        @parameters : nb_winners = number of winners.
+                      nb_loosers = number of loosers.
+        @return : a tuple (winners annoucement, loosers annoucement).
+        """
+        w_annouce = self.DIALOGS['several_winners'] if nb_winners > 1 else self.DIALOGS['1winner']
+        l_annouce = self.DIALOGS['several_loosers'] if nb_loosers > 1 else self.DIALOGS['1looser']
+
+        return (w_annouce, l_annouce)
 
 
     # Private methods.

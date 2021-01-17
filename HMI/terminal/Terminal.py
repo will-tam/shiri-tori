@@ -8,6 +8,7 @@ import sys
 
 # Project library import.
 
+
 ######################
 
 class Terminal():
@@ -91,6 +92,61 @@ class Terminal():
 
         return nicknames
 
+    def display_points(self):
+        """
+        Display the win and loose points as a table
+        @parameters : none.
+        @return : none.
+        """
+        won_string = self.game_engine.DIALOGS['won_rounds']
+        lost_string = self.game_engine.DIALOGS['lost_rounds']
+        won_string_len = len(won_string)
+        lost_string_len = len(lost_string)
+
+        # Take the length of the longest nicknames.
+        all_nicknames_len = [len(self.game_engine.players.players[p_id]['nickname']) for p_id in self.game_engine.players.p_id]
+        max_str_len = max(all_nicknames_len)
+
+        # Add the lenth of the 2 strings won_string and lost_string.
+        width = max_str_len + won_string_len + lost_string_len
+
+        # Add the border, beetween the 2 strings, beetween nickname and the table body.
+        width += 10
+
+        print(width * "*")
+        print("* {} * {} * {} *".format(max_str_len * " ", won_string, lost_string))
+
+        for p_id in self.game_engine.players.p_id:
+            nickname = self.game_engine.players.players[p_id]['nickname']
+            won_rounds = self.game_engine.players.players[p_id]['won_rounds']
+            lost_rounds = self.game_engine.players.players[p_id]['lost_rounds']
+
+            pfs = max_str_len - len(nickname)    # Number of white spaces after the nickname.
+            wfs = won_string_len - len(str(won_rounds))  # After the won points.
+            plr = lost_string_len - len(str(lost_rounds))   # At last the lost points.
+            print("* {pn}{pfs} * {pwr}{wfs} * {plr}{lfs} *".format(pn = nickname,
+                                                                   pfs = pfs * " ",
+                                                                   pwr = won_rounds,
+                                                                   wfs = wfs * " ",
+                                                                   plr = lost_rounds,
+                                                                   lfs = plr * " "))
+
+        print(width * "*", self.EOL)
+
+        # Annoucement,with grammatical correction, according find winners and loosers players.
+        winners, loosers = self.game_engine.players.win_loose()
+        winners_str, loosers_str = self.game_engine.win_loose_annouce(len(winners), len(loosers))
+
+        print(self.game_engine.DIALOGS['ending_winner'].format(winners_str))
+        for winner in winners:
+            print("\t{}".format(winner))
+
+        print(self.game_engine.DIALOGS['ending_looser'].format(loosers_str))
+        for looser in loosers:
+            print("\t{}".format(looser))
+
+        print(self.EOL)
+
     def main(self):
         """
         Main function of the terminal IHM.
@@ -120,9 +176,10 @@ class Terminal():
 
             else:
                 print("{}{} would to get away !!!\n".format(5 * "\n", nickname_away))
-
-        display_points(playersI)
         """
+
+        self.display_points()
+
 
         return 0
 
