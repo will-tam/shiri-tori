@@ -135,15 +135,19 @@ class Terminal():
 
         # Annoucement,with grammatical correction, according find winners and loosers players.
         winners, loosers = self.game_engine.players.win_loose()
-        winners_str, loosers_str = self.game_engine.win_loose_annouce(len(winners), len(loosers))
+        if not loosers:
+            print(self.game_engine.DIALOGS['equality'])
 
-        print(self.game_engine.DIALOGS['ending_winner'].format(winners_str))
-        for winner in winners:
-            print("\t{}".format(winner))
+        else:
+            winners_str, loosers_str = self.game_engine.win_loose_annouce(len(winners), len(loosers))
 
-        print(self.game_engine.DIALOGS['ending_looser'].format(loosers_str))
-        for looser in loosers:
-            print("\t{}".format(looser))
+            print(self.game_engine.DIALOGS['ending_winner'].format(winners_str))
+            for winner in winners:
+                print("\t{}".format(winner))
+
+            print(self.game_engine.DIALOGS['ending_looser'].format(loosers_str))
+            for looser in loosers:
+                print("\t{}".format(looser))
 
         print(self.EOL)
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project shiri-tori -->
-<!-- Saved: 2021-01-17, 18:37:50 -->
+<!-- Saved: 2021-01-17, 20:49:44 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="3" uid="{48087807-b27c-43fa-bd4f-b2c557a32044}">
@@ -47,24 +47,6 @@
     <Resource>
       <Filename>shiri-tori.py</Filename>
       <Linenumber>91</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="3" uid="{3c1d7312-8beb-41b0-b758-055f85b7e915}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-01-17, 18:31:31</Created>
-    <Resource>
-      <Filename>engine/Engine.py</Filename>
-      <Linenumber>3</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="3" uid="{24ab1201-a4c7-4889-b1fa-9e2bf8629c8a}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-01-17, 18:31:31</Created>
-    <Resource>
-      <Filename>engine/Players.py</Filename>
-      <Linenumber>3</Linenumber>
     </Resource>
   </Task>
   <Task priority="1" completed="False" type="3" uid="{72b79f81-439e-4f5b-b170-30b11da8217d}">
@@ -137,24 +119,6 @@
     <Resource>
       <Filename>__init__.py</Filename>
       <Linenumber>4</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="3" uid="{f781711c-a647-422e-82f4-ac1e1300064f}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-01-17, 18:31:31</Created>
-    <Resource>
-      <Filename>engine/Engine.py</Filename>
-      <Linenumber>3</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="3" uid="{65f8e487-1496-4df3-8b65-48bd4019341f}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-01-17, 18:31:31</Created>
-    <Resource>
-      <Filename>engine/Players.py</Filename>
-      <Linenumber>3</Linenumber>
     </Resource>
   </Task>
   <Task priority="1" completed="False" type="3" uid="{b6b6da25-165c-4b2c-ace4-0080dff7c330}">
@@ -244,6 +208,24 @@
     <Created>2021-01-17, 18:37:47</Created>
     <Resource>
       <Filename>engine/AI_like.py</Filename>
+      <Linenumber>3</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3" uid="{1aef0897-bdc2-4405-b69b-8d4460c38432}">
+    <Summary>NOTE: uncomment to debug</Summary>
+    <Description></Description>
+    <Created>2021-01-17, 19:07:50</Created>
+    <Resource>
+      <Filename>engine/Engine.py</Filename>
+      <Linenumber>3</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3" uid="{b311d81e-126d-4c4c-96c9-954094421258}">
+    <Summary>NOTE: uncomment to debug</Summary>
+    <Description></Description>
+    <Created>2021-01-17, 20:49:42</Created>
+    <Resource>
+      <Filename>engine/Players.py</Filename>
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>

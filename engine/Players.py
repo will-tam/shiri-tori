@@ -110,6 +110,18 @@ class Players():
         winners = [self.players[p_id]['nickname'] for p_id in self.p_id if self.players[p_id]['won_rounds'] == max_win_points]
         loosers = [self.players[p_id]['nickname'] for p_id in self.p_id if self.players[p_id]['lost_rounds'] == max_loose_points]
 
+        # Check if equality.
+        old_pt = self.players[self.p_id[0]]['won_rounds']
+        equality = True
+        for p_id in self.p_id:
+            if self.players[p_id]['won_rounds'] != old_pt:
+                equality = False
+                break
+            old_pt = self.players[p_id]['won_rounds']
+
+        if equality:
+            loosers = None      # If all equality, so no looser. No ?
+
         return (winners, loosers)
 
     # Private methods.

@@ -39,7 +39,8 @@ class Engine():
                '1winner' : "le gagnant est",
                '1looser' : "le perdant est",
                'several_winners' : "les gagnants sont",
-               'several_loosers' : "les perdants sont",}
+               'several_loosers' : "les perdants sont",
+               'equality' : "Égalité !!!"}
 
     # Private attributes.
 
