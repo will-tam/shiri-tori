@@ -79,7 +79,7 @@ def main(args):
     if args.terminal:
 #       NOTE: uncomment to debug
         print("Go terminal")
-        return hmiterm.Terminal(game_engine).main()
+        return hmiterm.Terminal().main()
 
     if args.gfx:
 #       NOTE: uncomment to debug

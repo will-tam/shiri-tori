@@ -58,12 +58,48 @@ class Engine():
         self.players = Players.Players()
         self.ai_like = AI_like.AI_like()
 
-    # Properties
-#    @property  # Getter
-#    pass
-#
-#    @.setter #Setter
-#    pass
+    def ask_number_of_players(self):
+        """
+        Init common _dialog_question.
+        Just Ask the number of player(s).
+        Check no more than 5 included.
+        0 means end of game.
+        @parameters : none.
+        @return : the answer.
+        """
+        dialog_question_keys = ['nb_players_question_0',
+                                'nb_players_question_1',
+                                'nb_players_question_2',
+                                'nb_players_question_3',
+                                'nb_players_question_4']
+
+        self._dialog_question = [self.players.DIALOGS[dqk] for dqk in dialog_question_keys]
+
+    def ask_nickname(self, nb_players):
+        """
+        Just ask the nickname of each player.
+        If there is only one, a second one is adding, the computer it-self.
+        @parameters : nb_players = number of player(s).
+        @return : an player(s) instance(s) list.
+        """
+        pass
+
+    def main_loop(self, playersI, nb_players):
+        """
+        The game main loop.
+        @parameters : playersI = intance of the players.
+                      nb_players = number of players.
+        @return : name of the player who gets away.
+        """
+        pass
+
+    def display_points(self, playersI):
+        """
+        Display the win and loose points as a table
+        @parameters : playersI = instances' array of players.
+        @return : none.
+        """
+        pass
 
     def win_loose_annouce(self, nb_winners, nb_loosers):
         """

@@ -7,11 +7,11 @@ import sys
 # Third-part library import.
 
 # Project library import.
-
+from ..engine import Engine
 
 ######################
 
-class Terminal():
+class Terminal(Engine.Engine):
     """
     Class to manage terminal part of shiri-tori.
 
@@ -22,13 +22,13 @@ class Terminal():
     EOL = "\n"
     WAIT_ASK = " >>> "
 
-    def __init__(self, game_engine):
+    def __init__(self):
         """
         __init__ : initiate class
-        @parameters : game_engine = engine instance address.
+        @parameters : none.
         @return : none.
         """
-        self.game_engine = game_engine
+        super().__init__()
 
     def ask_number_of_players(self):
         """
@@ -38,16 +38,10 @@ class Terminal():
         @parameters : none.
         @return : the answer.
         """
-        dialog_question_keys = ['nb_players_question_0',
-                                'nb_players_question_1',
-                                'nb_players_question_2',
-                                'nb_players_question_3',
-                                'nb_players_question_4']
-
-        dialog_question = [self.game_engine.players.DIALOGS[dqk] for dqk in dialog_question_keys]
+        super().ask_number_of_players()     # init _dialog_question from parent class ask_number_of_players()
 
         question = self.EOL
-        question += self.EOL.join(dialog_question)
+        question += self.EOL.join(self._dialog_question)
         question += self.WAIT_ASK
 
         nb_players = 6  # We directely enter inside next loop.
@@ -70,24 +64,35 @@ class Terminal():
         nicknames = []
 
         if nb_players == 1:
-            print("{0}{1}{0}".format(self.EOL, self.game_engine.ai_like.DIALOGS['just_us']))
-            nicknames.append(input(self.game_engine.players.DIALOGS['ask_nickname'] + self.WAIT_ASK))
+            print("{0}{1}{0}".format(self.EOL, self.ai_like.DIALOGS['just_us']))
+
+            nn = input(self.players.DIALOGS['ask_nickname'] + self.WAIT_ASK)
+
             # Manage the unknown player in single player mode.
-            if nicknames[0] == "":
-                nicknames[0] = self.game_engine.players.find_me_a_nickname(0)
+            if nn == "":
+                nn = self.players.find_me_a_nickname(0)
+
+            nicknames.append(nn)
+
             nicknames.append("The Best IA")     # For 1 player mode, also computer plays.
+
         else:
-            for i in range(1, nb_players + 1):
+            for i in range(1, nb_players + 1):      # this i index will be used in next code.
                 unique_name = False
                 while not unique_name:
-                    nn = input(self.game_engine.players.DIALOGS['ask_nickname_multi'].format(i)  + self.WAIT_ASK)
+
+                    nn = input(self.players.DIALOGS['ask_nickname_multi'].format(i)  + self.WAIT_ASK)
+
                     # Manage the unknown player in several players mode.
                     if nn == "":
-                        nn = self.game_engine.players.find_me_a_nickname(i)
+                        nn = self.players.find_me_a_nickname(i)
+
                     if nn in nicknames:
-                        print(self.game_engine.players.DIALOGS['already_choosen'].format(nn) + " ", end='')
+                        print(self.players.DIALOGS['already_choosen'].format(nn) + " ", end='')
+
                     else:
                         unique_name = True
+
                 nicknames.append(nn)
 
         return nicknames
@@ -165,11 +170,13 @@ class Terminal():
 
         # Actually, nobody wants to play T_T !
         if nb_players == 0:
-            print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['no_want_play_bye']))
+            print("{0}{1}{0}".format(self.EOL, self.DIALOGS['no_want_play_bye']))
             return 0
 
         # Register all players.
-        self.game_engine.players.register_players(self.ask_nickname(nb_players))
+#        self.game_engine.players.register_players(self.ask_nickname(nb_players))
+        print(self.ask_nickname(nb_players))
+        return 0
 
         # The 1st player should be not the 1st to play.
         print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['shuffle']))
