@@ -7,7 +7,7 @@ print("{}.{}".format(__package__,__name__))
 import sys
 
 # Third libraries import.
-
+from lib.nihongo_hatsuon.hiragana import *
 
 # Projet modules import.
 from . import SQLManage
@@ -24,8 +24,32 @@ class Rules():
 
     """
 
+    EOL = "\n"
+    DIALOGS = {'reminder' : """Dans ce jeu, un 1er joueur écrit un mot en japonais.
+Un 2ème, écrit un autre mot, dont le début est la fin du mot du 1er joueur.
+Et ainsi de suite, le mot du joueur courant étant la fin du mot du joueur précédent.
+Ex : ことば --> ばいく --> くだもの --> ...
+Les mots seront seulement en hiragana.
+
+Si le mot du joueur se termine par ん, c'est perdu. Ex : かんたん.
+
+Dans cette version, les mots interdis sont :
+    - les mots d'une seule more. Ex : い(胃) - stomach / か(蚊) - mosquito) ;
+    - les acronymes. Ex : ヴィップ - VIP ;
+    - les mots écrits en katakana. Ex : アルバイト - travail temps partiel /　イノシシ - sanglier ;
+    - les "mots" commençant par ん. Ex : んです. On ne sait jamais ^^ ;
+    - les mots contenant "ー" ou "・". Ex : ルール - règle / ちきん・なげっと or チキン・ナゲット - chicken nugget.
+""",
+               'with_ai_like' : ["Je suis bon Seigneur, je vous laisse commencer {}.",
+                                 "Si vous êtes trop effrayé, entrez 0 ou cliquez",
+                                 "'Je préfère fuire !!!' (en mode graphique)",
+                                 "maintenat ou quand vous le souhaitez!"],
+               'only_humans' : ["Si l'un d'entre vous est trop froussard, entrez 0 ou cliquez",
+                                "'Je préfère fuire !!!' (en mode graphique) lors de votre tour.",
+                                "",
+                                "Bien, le hasard à décidé que le premier d'entre vous sera {}"],}
+
     # Private attributes.
-    #__hirahana = 52 sounds and some adds of hiragana.
     #__dejavu = already played words.
     #__previous = just the end of one of the players previous answer.
     # __sqlmanage = sqlmanage instance adresses.
@@ -41,36 +65,6 @@ class Rules():
         self.__sqlmanage = sqlmanage
         self.__previous = ""
         self.__dejavu = []
-        self.__hirahana = [
-            'あ', 'い', 'う', 'え', 'お',
-            'か', 'き', 'く', 'け', 'こ',
-            'が', 'ぎ', 'ぐ', 'げ', 'ご',
-            'さ', 'し', 'す', 'せ', 'そ',
-            'ざ', 'じ', 'ず', 'ぜ', 'ぞ',
-            'しゃ', 'しゅ', 'しょ',
-            'じゃ', 'じゅ', 'じょ',
-            'た', 'ち', 'つ', 'て', 'と',
-            'だ', 'ぢ', 'づ', 'で', 'ど',
-            'な', 'に', 'ぬ', 'ね', 'の',
-            'は', 'ひ', 'ふ', 'へ', 'ほ',
-            'ば', 'び', 'ぶ', 'べ', 'ぼ',
-            'ぱ', 'ぴ', 'ぷ', 'ぺ', 'ぽ',
-            'ひゃ', 'ひゅ', 'ひょ',
-            'びゃ', 'びゅ', 'びょ',
-            'ぴゃ', 'ぴゅ', 'ぴょ',
-            'ま', 'み', 'む', 'め', 'も',
-            'や', 'ゆ', 'よ',
-            'ゃ', 'ゅ', 'ょ',
-            'ぁ', 'ぃ','ぅ', 'ぇ', 'ぉ',
-            'ら', 'り', 'る', 'れ', 'ろ',
-            'わ', 'を', 'ん',
-            'きゃ', 'きゅ', 'きょ',
-            'ぎゃ', 'ぎゅ', 'ぎょ',
-            'ちゃ', 'ちゅ', 'ちょ',
-            'にゃ', 'にゅ', 'にょ',
-            'みゃ', 'みゅ', 'みょ',
-            'りゃ', 'りゅ', 'りょ',
-            'っ']
 
     def check_answer(self, answer):
         """
@@ -150,29 +144,7 @@ class Rules():
 
         return (True,  explain)
 
-    def reminder(self):
-        """
-        Remind the rules.
-        @parameters : none.
-        @return : the rules sting.
-        """
-        return """Dans ce jeu, un 1er joueur écrit un mot en japonais.
-Un 2ème, écrit un autre mot, dont le début est la fin du mot du 1er joueur.
-Et ainsi de suite, le mot du joueur courant étant la fin du mot du joueur précédent.
-Ex : ことば --> ばいく --> くだもの --> ...
-Les mots seront seulement en hiragana.
-
-Si le mot du joueur se termine par ん, c'est perdu. Ex : かんたん.
-
-Dans cette version, les mots interdis sont :
-    - les mots d'une seule more. Ex : い(胃) - stomach / か(蚊) - mosquito) ;
-    - les acronymes. Ex : ヴィップ - VIP ;
-    - les mots écrits en katakana. Ex : アルバイト - travail temps partiel /　イノシシ - sanglier ;
-    - les "mots" commençant par ん. Ex : んです. On ne sait jamais ^^ ;
-    - les mots contenant "ー" ou "・". Ex : ルール - règle / ちきん・なげっと or チキン・ナゲット - chicken nugget.
-"""
-
-    def before_to_play(nb_players, now_player, playersI):
+    def before_to_play(self, nb_players, nickname):
         """
         Return the how to depending the number of players
         @parameters : nb_players = number of players.
@@ -181,16 +153,11 @@ Dans cette version, les mots interdis sont :
         @return : the how to.
         """
         if nb_players == 1:
-            btp = "Je suis bon Seigneur, je vous laisse commencer {}.\n".format(playersI[0].nickname)
-            btp += "Si vous êtes trop effrayé, entrez ou cliquez\n"
-            btp += "'Je préfère fuire !!!' (en mode graphique)\n"
-            btp += "maintenat ou quand vous le souhaitez!" + 2 * "\n"
+            btp = self.EOL.join(self.DIALOGS['with_ai_like']).format(nickname)
+            btp += 2 * self.EOL
         else:
-            btp = "Bien, laissons le hasard décider qui commence.\n"
-            btp += "Si l'un d'entre vous est trop froussard, entrez 0 ou cliquez\n"
-            btp += "'Je préfère fuire !!!' (en mode graphique) lors de votre tour.\n\n"
-            btp += "Bien, le premier d'entre vous sera {}".format(playersI[now_player].nickname)
-            btp += 2 * "\n"
+            btp = self.EOL.join(self.DIALOGS['only_humans']).format(nickname)
+            btp += 2 * self.EOL
 
         return btp
 
@@ -202,7 +169,7 @@ Dans cette version, les mots interdis sont :
         @parameters : answer = the player answer.
         @return : True = ok, False = not only Hiragana.
         """
-        check_hiragana = [h in self.__hirahana for h in answer]
+        check_hiragana = [h in hirahana for h in answer]
         # True if a False is found, so it's inverted to be False.
         return not False in check_hiragana
 
