@@ -110,10 +110,10 @@ class Terminal(Engine.Engine):
         @parameters : none.
         @return : none.
         """
-        won_string = self.DIALOGS['won_rounds']
-        lost_string = self.DIALOGS['lost_rounds']
-        won_string_len = len(won_string)
-        lost_string_len = len(lost_string)
+        super().display_points()
+
+        won_string_len = len(self._won_string)
+        lost_string_len = len(self._lost_string)
 
         # Take the length of the longest nicknames.
         all_nicknames_len = [len(self.players.players[p_id]['nickname']) for p_id in self.players.p_id]
@@ -126,7 +126,7 @@ class Terminal(Engine.Engine):
         width += 10
 
         print(width * "*")
-        print("* {} * {} * {} *".format(max_str_len * " ", won_string, lost_string))
+        print("* {} * {} * {} *".format(max_str_len * " ", self._won_string, self._lost_string))
 
         for p_id in self.players.p_id:
             nickname = self.players.players[p_id]['nickname']

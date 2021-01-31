@@ -94,13 +94,15 @@ class Engine():
         """
         pass
 
-    def display_points(self, playersI):
+    def display_points(self, ):
         """
+        Init common attributes.
         Display the win and loose points as a table
-        @parameters : playersI = instances' array of players.
+        @parameters : none.
         @return : none.
         """
-        pass
+        self._won_string = self.DIALOGS['won_rounds']
+        self._lost_string = self.DIALOGS['lost_rounds']
 
     def win_loose_annouce(self, nb_winners, nb_loosers):
         """

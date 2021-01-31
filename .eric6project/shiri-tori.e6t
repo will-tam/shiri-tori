@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project shiri-tori -->
-<!-- Saved: 2021-01-31, 15:47:10 -->
+<!-- Saved: 2021-01-31, 16:22:28 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="3" uid="{00cddb66-d724-4905-b1a7-cce36bf66d45}">
@@ -175,21 +175,21 @@
       <Linenumber>91</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{30219e40-3a72-4f30-910b-802d5fa64499}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-01-31, 15:42:14</Created>
-    <Resource>
-      <Filename>engine/Engine.py</Filename>
-      <Linenumber>3</Linenumber>
-    </Resource>
-  </Task>
   <Task priority="1" completed="False" type="3" uid="{d3f038c6-99a1-4e2d-8d72-dd58d9322b03}">
     <Summary>NOTE: uncomment to debug</Summary>
     <Description></Description>
     <Created>2021-01-31, 15:47:07</Created>
     <Resource>
       <Filename>engine/Players.py</Filename>
+      <Linenumber>3</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3" uid="{99446d38-d984-42f1-bd0f-93c97011bf33}">
+    <Summary>NOTE: uncomment to debug</Summary>
+    <Description></Description>
+    <Created>2021-01-31, 16:20:39</Created>
+    <Resource>
+      <Filename>engine/Engine.py</Filename>
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
