@@ -75,14 +75,15 @@ class Engine():
 
         self._dialog_question = [self.players.DIALOGS[dqk] for dqk in dialog_question_keys]
 
-    def ask_nickname(self, nb_players):
+    def ask_nickname(self):
         """
+        Init common _nicknames.
         Just ask the nickname of each player.
         If there is only one, a second one is adding, the computer it-self.
-        @parameters : nb_players = number of player(s).
-        @return : an player(s) instance(s) list.
+        @parameters : none.
+        @return : none.
         """
-        pass
+        self._nicknames = []
 
     def main_loop(self, playersI, nb_players):
         """

@@ -61,41 +61,48 @@ class Terminal(Engine.Engine):
         @parameters : nb_players = number of player(s).
         @return : the nicknames.
         """
-        nicknames = []
+        super().ask_nickname()
 
         if nb_players == 1:
+            self._nicknames.append("The Best IA")     # For 1 player mode, also computer plays.
             print("{0}{1}{0}".format(self.EOL, self.ai_like.DIALOGS['just_us']))
 
-            nn = input(self.players.DIALOGS['ask_nickname'] + self.WAIT_ASK)
+            unique_name = False
+            while not unique_name:
+                nn = input(self.players.DIALOGS['ask_nickname'] + self.WAIT_ASK)
 
-            # Manage the unknown player in single player mode.
-            if nn == "":
-                nn = self.players.find_me_a_nickname(0)
+                # Manage the unknown player in single player mode.
+                if nn == "":
+                    nn = self.players.find_me_a_nickname(0)
 
-            nicknames.append(nn)
+                if nn in self._nicknames:
+                            print(self.players.DIALOGS['already_choosen'].format(nn) + " ", end='')
 
-            nicknames.append("The Best IA")     # For 1 player mode, also computer plays.
+                else:
+                    unique_name = True
+
+            self._nicknames.append(nn)
 
         else:
             for i in range(1, nb_players + 1):      # this i index will be used in next code.
+
                 unique_name = False
                 while not unique_name:
-
                     nn = input(self.players.DIALOGS['ask_nickname_multi'].format(i)  + self.WAIT_ASK)
 
                     # Manage the unknown player in several players mode.
                     if nn == "":
                         nn = self.players.find_me_a_nickname(i)
 
-                    if nn in nicknames:
+                    if nn in self._nicknames:
                         print(self.players.DIALOGS['already_choosen'].format(nn) + " ", end='')
 
                     else:
                         unique_name = True
 
-                nicknames.append(nn)
+                self._nicknames.append(nn)
 
-        return nicknames
+        return self._nicknames
 
     def display_points(self):
         """
@@ -103,13 +110,13 @@ class Terminal(Engine.Engine):
         @parameters : none.
         @return : none.
         """
-        won_string = self.game_engine.DIALOGS['won_rounds']
-        lost_string = self.game_engine.DIALOGS['lost_rounds']
+        won_string = self.DIALOGS['won_rounds']
+        lost_string = self.DIALOGS['lost_rounds']
         won_string_len = len(won_string)
         lost_string_len = len(lost_string)
 
         # Take the length of the longest nicknames.
-        all_nicknames_len = [len(self.game_engine.players.players[p_id]['nickname']) for p_id in self.game_engine.players.p_id]
+        all_nicknames_len = [len(self.players.players[p_id]['nickname']) for p_id in self.players.p_id]
         max_str_len = max(all_nicknames_len)
 
         # Add the lenth of the 2 strings won_string and lost_string.
@@ -121,10 +128,10 @@ class Terminal(Engine.Engine):
         print(width * "*")
         print("* {} * {} * {} *".format(max_str_len * " ", won_string, lost_string))
 
-        for p_id in self.game_engine.players.p_id:
-            nickname = self.game_engine.players.players[p_id]['nickname']
-            won_rounds = self.game_engine.players.players[p_id]['won_rounds']
-            lost_rounds = self.game_engine.players.players[p_id]['lost_rounds']
+        for p_id in self.players.p_id:
+            nickname = self.players.players[p_id]['nickname']
+            won_rounds = self.players.players[p_id]['won_rounds']
+            lost_rounds = self.players.players[p_id]['lost_rounds']
 
             pfs = max_str_len - len(nickname)    # Number of white spaces after the nickname.
             wfs = won_string_len - len(str(won_rounds))  # After the won points.
@@ -139,18 +146,18 @@ class Terminal(Engine.Engine):
         print(width * "*", self.EOL)
 
         # Annoucement,with grammatical correction, according find winners and loosers players.
-        winners, loosers = self.game_engine.players.win_loose()
+        winners, loosers = self.players.win_loose()
         if not loosers:
-            print(self.game_engine.DIALOGS['equality'])
+            print(self.DIALOGS['equality'])
 
         else:
-            winners_str, loosers_str = self.game_engine.win_loose_annouce(len(winners), len(loosers))
+            winners_str, loosers_str = self.win_loose_annouce(len(winners), len(loosers))
 
-            print(self.game_engine.DIALOGS['ending_winner'].format(winners_str))
+            print(self.DIALOGS['ending_winner'].format(winners_str))
             for winner in winners:
                 print("\t{}".format(winner))
 
-            print(self.game_engine.DIALOGS['ending_looser'].format(loosers_str))
+            print(self.DIALOGS['ending_looser'].format(loosers_str))
             for looser in loosers:
                 print("\t{}".format(looser))
 
@@ -174,24 +181,22 @@ class Terminal(Engine.Engine):
             return 0
 
         # Register all players.
-#        self.game_engine.players.register_players(self.ask_nickname(nb_players))
-        print(self.ask_nickname(nb_players))
-        return 0
+        self.players.register_players(self.ask_nickname(nb_players))
 
         # The 1st player should be not the 1st to play.
-        print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['shuffle']))
-        self.game_engine.players.shuffle()
+        print("{0}{1}{0}".format(self.EOL, self.DIALOGS['shuffle']))
+        self.players.shuffle()
 
-        nickname_away = self.game_engine.players.players[self.game_engine.players.p_id[0]]['nickname']
+        nickname_away = self.players.players[self.players.p_id[0]]['nickname']
 #        nickname_away = main_loop(playersI, nb_players)
 
         if nickname_away:
             if nb_players == 1:
-                print("{}{}{}".format(5 * self.EOL, self.game_engine.ai_like.DIALOGS['sly_bye'], self.EOL))
+                print("{}{}{}".format(5 * self.EOL, self.ai_like.DIALOGS['sly_bye'], self.EOL))
 
             else:
                 to_diag = 5 * self.EOL
-                to_diag += self.game_engine.DIALOGS['a_player_leave'].format(nickname_away)
+                to_diag += self.DIALOGS['a_player_leave'].format(nickname_away)
                 to_diag += self.EOL
                 print(to_diag)
 

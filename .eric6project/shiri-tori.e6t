@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project shiri-tori -->
-<!-- Saved: 2021-01-31, 12:16:16 -->
+<!-- Saved: 2021-01-31, 15:47:10 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="3" uid="{48c0f083-16b2-4018-8898-ae9d10374a32}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-01-31, 11:30:13</Created>
-    <Resource>
-      <Filename>engine/Players.py</Filename>
-      <Linenumber>3</Linenumber>
-    </Resource>
-  </Task>
   <Task priority="1" completed="False" type="3" uid="{00cddb66-d724-4905-b1a7-cce36bf66d45}">
     <Summary>NOTE: uncomment to debug</Summary>
     <Description></Description>
@@ -103,15 +94,6 @@
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{a4bc1938-46cc-4c6b-bea6-40450dde10e4}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-01-31, 11:30:13</Created>
-    <Resource>
-      <Filename>engine/Players.py</Filename>
-      <Linenumber>3</Linenumber>
-    </Resource>
-  </Task>
   <Task priority="1" completed="False" type="3" uid="{3db86d81-c602-4d9c-837f-d8612fc49ef5}">
     <Summary>NOTE: uncomment to debug</Summary>
     <Description></Description>
@@ -193,12 +175,21 @@
       <Linenumber>91</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{0836f488-44f2-42f4-9e0a-cc82d4a3cb88}">
+  <Task priority="1" completed="False" type="3" uid="{30219e40-3a72-4f30-910b-802d5fa64499}">
     <Summary>NOTE: uncomment to debug</Summary>
     <Description></Description>
-    <Created>2021-01-31, 12:16:13</Created>
+    <Created>2021-01-31, 15:42:14</Created>
     <Resource>
       <Filename>engine/Engine.py</Filename>
+      <Linenumber>3</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3" uid="{d3f038c6-99a1-4e2d-8d72-dd58d9322b03}">
+    <Summary>NOTE: uncomment to debug</Summary>
+    <Description></Description>
+    <Created>2021-01-31, 15:47:07</Created>
+    <Resource>
+      <Filename>engine/Players.py</Filename>
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
