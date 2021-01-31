@@ -58,14 +58,10 @@ class Engine():
         self.players = Players.Players()
         self.ai_like = AI_like.AI_like()
 
-    # Properties
-#    @property  # Getter
-#    pass
-#
-#    @.setter #Setter
-#    pass
 
-    def win_loose_annouce(self, nb_winners, nb_loosers):
+
+
+    def win_loose_annouce_adjust(self, nb_winners, nb_loosers):
         """
         Winners and loosers players annoucement.
         @parameters : nb_winners = number of winners.

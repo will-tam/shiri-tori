@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2021-01-12, 23:22:54 -->
+<!-- Saved: 2021-01-31, 11:28:06 -->
 <!-- Copyright (C) 2021 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
@@ -39,6 +39,8 @@
     <Source>engine/SQLManage.py</Source>
     <Source>engine/__init__.py</Source>
     <Source>engine/goi.sqlite</Source>
+    <Source>lib/nihongo_hatsuon/hiragana.py</Source>
+    <Source>lib/nihongo_hatsuon/katakana.py</Source>
     <Source>shiri-tori.py</Source>
     <Source>test/test_almostAI.py</Source>
     <Source>test/test_console_mode.py</Source>

@@ -92,6 +92,27 @@ class Terminal():
 
         return nicknames
 
+    def main_loop(self, nb_players):
+        """
+        The game main loop.
+        @parameters : nb_players = number of players.
+        @return : name of the player who gets away.
+        """
+        # Prepare game's how to according number of player.
+        if nb_players == 1:
+            now_player = 0
+            computer = self.game_engine.ai_like # If only 1 human, add the computer player.
+        else:
+            now_player = self.game_engine.players.p_id[0]
+
+        print(3 * self.EOL)
+        print(self.game_engine.rules.DIALOGS['reminder'])
+
+        print(2 * self.EOL)
+        print(self.game_engine.rules.before_to_play(nb_players, self.game_engine.players.players[self.game_engine.players.p_id[0]]['nickname']))
+
+
+
     def display_points(self):
         """
         Display the win and loose points as a table
@@ -139,7 +160,7 @@ class Terminal():
             print(self.game_engine.DIALOGS['equality'])
 
         else:
-            winners_str, loosers_str = self.game_engine.win_loose_annouce(len(winners), len(loosers))
+            winners_str, loosers_str = self.game_engine.win_loose_annouce_adjust(len(winners), len(loosers))
 
             print(self.game_engine.DIALOGS['ending_winner'].format(winners_str))
             for winner in winners:
@@ -171,12 +192,18 @@ class Terminal():
         # Register all players.
         self.game_engine.players.register_players(self.ask_nickname(nb_players))
 
-        # The 1st player should be not the 1st to play.
-        print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['shuffle']))
-        self.game_engine.players.shuffle()
+        # The 1st player should be not the 1st to play if several players.
+        if nb_players > 1:
+            print("{0}{1}{0}".format(self.EOL, self.game_engine.DIALOGS['shuffle']))
+            self.game_engine.players.shuffle()
 
-        nickname_away = self.game_engine.players.players[self.game_engine.players.p_id[0]]['nickname']
-#        nickname_away = main_loop(playersI, nb_players)
+#        nickname_away = self.game_engine.players.players[self.game_engine.players.p_id[0]]['nickname']
+        # TODO : a effacer quand code de la psudo IA !
+        if nb_players > 1:
+            nickname_away = self.main_loop(nb_players)  # TODO : juste ça d'utile !
+        else:
+            print("IA non impléméntée")
+            nickname_away = self.game_engine.players.players[self.game_engine.players.p_id[0]]['nickname']
 
         if nickname_away:
             if nb_players == 1:
