@@ -25,6 +25,7 @@ class Rules():
     """
 
     EOL = "\n"
+    TAB = "\t"
     DIALOGS = {'reminder' : """Dans ce jeu, un 1er joueur écrit un mot en japonais.
 Un 2ème, écrit un autre mot, dont le début est la fin du mot du 1er joueur.
 Et ainsi de suite, le mot du joueur courant étant la fin du mot du joueur précédent.
@@ -47,7 +48,22 @@ Dans cette version, les mots interdis sont :
                'only_humans' : ["Si l'un d'entre vous est trop froussard, entrez 0 ou cliquez",
                                 "'Je préfère fuire !!!' (en mode graphique) lors de votre tour.",
                                 "",
-                                "Bien, le hasard à décidé que le premier d'entre vous sera {}"],}
+                                "Bien, le hasard à décidé que le premier d'entre vous sera {}"],
+                'yes' : "Oui",
+                'no' : "Non",
+                'empty_string' : " Votre réponse est vide !",
+                'hiragana_only' : "Hiragana seulement ? ",
+                'n_finish' : "Le mot fini par ん",
+                'n_begin' : "Le mot commence par ん",
+#                'katakana_rep' : "Presence de ー ? ",
+#                'point_presence' : "Presence of ・ ? ",
+                'only_one_mora' : "Seulement une more !! Désolé, mais trop peu pour accepter !!",
+                'end_begin_not_match' : "La fin du mot précédant et début de ce mot sont différents",
+                'DB_found' : "trouvée dans goi.sqlite ? ",
+                'already_played' : "Déjà joué ? ",
+                'not_yet' : "Pas encore.",
+                'try_remember' : "Essyaez de vous souvenir de ce mot.",
+                }
 
     # Private attributes.
     #__dejavu = already played words.
@@ -75,66 +91,70 @@ Dans cette version, les mots interdis sont :
             I also should raise an exception if not good, but i prefer use return statement
             in function.
         """
+        # Check if no answer.
+        if answer == "":
+            return (False, self.DIALOGS['empty_string'])
+
         explain = ""        # Explain what wrong or not.
 
         # Check if the answer if full in hiragana.
-        explain += "\n\tOnly Hiragana ? "
+        explain += "{}{}{}".format(self.EOL, self.TAB, self.DIALOGS['hiragana_only'])
         if not self.__only_hiragana(answer):
-            explain += "No\n"
+            explain += "{}{}".format(self.DIALOGS['no'], self.EOL)
             return (False, explain)
-        explain += "Yes\n"
+        explain += "{}{}".format(self.DIALOGS['yes'], self.EOL)
 
         # Resolve the little hirigana entry problem.
         answer = self.__explode_and_correct_hiragana(answer)
 
         # Check if the end of the answer is "ん" or"ン". Yes, normally hiragana. But ...
         if answer[len(answer) - 1] in ["ん", "ン"]:
-            explain += "\tThe answer finishes with ん\n"
+            explain += "{}{}{}".format(self.TAB, self.DIALOGS['n_finish'], self.EOL)
             return (False, explain)
 
         # Check if the begining of the answer is "ん" or"ン".
         if answer[0] in ["ん", "ン"]:
-            explain += "\tThe answer begins with ん\n"
+            explain += "{}{}{}".format(self.TAB, self.DIALOGS['n_begin'], self.EOL)
             return (False, explain)
 
-        #Check if "ー" is in the word.
-        explain += "\tPresence of ー ? "
-        if not False in [c == "ー" for c in answer]:
-            explain = "Yes\n"
-            return (False, explain)
-        explain += "No\n"
-
-        # Check if "・" is in the word.
-        explain += "\tPresence of ・ ? "
-        if not False in [c == "・" for c in answer]:
-            explain += "Yes\n"
-            return (False, explain)
-        explain += "No\n"
+#        #Check if "ー" is in the word.
+#        explain += "{}{}".format(self.TAB, self.DIALOGS['katakana_rep'])
+#        if not False in [c == "ー" for c in answer]:
+#            explain = "{}{}".format(self.DIALOGS['yes'], self.EOL)
+#            return (False, explain)
+#        explain += "{}{}".format(self.DIALOGS['no'], self.EOL)
+#
+#        # Check if "・" is in the word.
+#        explain += "{}{}".format(self.TAB, self.DIALOGS['point_presence'])
+#        if not False in [c == "・" for c in answer]:
+#            explain += "{}{}".format(self.DIALOGS['yes'], self.EOL)
+#            return (False, explain)
+#        explain += "{}{}".format(self.DIALOGS['no'], self.EOL)
 
         # Check if the lenght of the answer is not only one mora.
         if len(answer) == 1:
-            explain += "Only one mora !! Sorry, to easy to be accepted !!"
+            explain += "{}".format(self.DIALOGS['only_one_mora'])
             return (False, explain)
 
         # Check if the begining of the answer is the then same as the end of the previous one.
         # Should be check after the 1st turn.
-        if self.playing and answer[0] != self.__previous:
-            explain += "\tThe end of previous answer and the beginning of these are different.\n"
+        if self.__previous != "" and answer[0] != self.__previous:
+            explain += "{}{}{}".format(self.TAB, self.DIALOGS['end_begin_not_match'], self.EOL)
             return (False, explain)
 
         # Check if the word is inside the sqlite DB dictionnary.
-        explain += "\t{} found in goi.sqlite ? ".format("".join(answer))
+        explain += "{}{}{}".format(self.TAB, "".join(answer), self.DIALOGS['DB_found'])
         if not self.__sqlmanage.ask_if_exist_kana("".join(answer)):
-            explain += "No\n"
+            explain += "{}{}".format(self.DIALOGS['no'], self.EOL)
             return (False, explain)
-        explain += "Yes\n"
+        explain += "{}{}".format(self.DIALOGS['yes'], self.EOL)
 
         # Check if the playing word wasn't already played before.
-        explain += "\t{} already played ? ".format("".join(answer))
+        explain += "{}{}{}".format(self.TAB, "".join(answer), self.DIALOGS['already_played'])
         if True in [a == answer for a in self.__dejavu]:
-            explain += "Yes\n"
+            explain += "{}{}".format(self.DIALOGS['yes'], self.EOL)
             return (False, explain)
-        explain += "Not yet.\n\t\tTry to rememeber this word.\n"
+        explain +=  "{}{}{}{}{}{}".format(self.DIALOGS['not_yet'], self.EOL, self.TAB, self.TAB, self.DIALOGS['try_remember'], self.EOL)
 
         self.__previous = answer[-1]    # Don't need a "" answer.
 
@@ -169,7 +189,7 @@ Dans cette version, les mots interdis sont :
         @parameters : answer = the player answer.
         @return : True = ok, False = not only Hiragana.
         """
-        check_hiragana = [h in hirahana for h in answer]
+        check_hiragana = [h in hiragana for h in answer]
         # True if a False is found, so it's inverted to be False.
         return not False in check_hiragana
 

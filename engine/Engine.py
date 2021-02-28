@@ -24,6 +24,8 @@ class Engine():
 
     Public attributes.
         players, rules, sql, ai_like = instances of the corresponding components.
+        p_answer = answer of a player
+        now_palyer_idx = index of player who is playing.
     """
 
     DIALOGS = {'no_want_play_bye' : "Peut-etre plus tard ?",
@@ -67,11 +69,11 @@ class Engine():
         @parameters : none.
         @return : the answer.
         """
-        dialog_question_keys = ['nb_players_question_0',
-                                'nb_players_question_1',
-                                'nb_players_question_2',
-                                'nb_players_question_3',
-                                'nb_players_question_4']
+        dialog_question_keys = ['nb_players_question_part_0',
+                                'nb_players_question_part_1',
+                                'nb_players_question_part_2',
+                                'nb_players_question_part_3',
+                                'nb_players_question_part_4']
 
         self._dialog_question = [self.players.DIALOGS[dqk] for dqk in dialog_question_keys]
 
@@ -85,14 +87,13 @@ class Engine():
         """
         self._nicknames = []
 
-    def main_loop(self, playersI, nb_players):
+    def main_loop(self):
         """
         The game main loop.
-        @parameters : playersI = intance of the players.
-                      nb_players = number of players.
+        @parameters : none.
         @return : name of the player who gets away.
         """
-        pass
+        self.p_answer = ""      # No player's answer to enter in main game loop below.
 
     def display_points(self, ):
         """

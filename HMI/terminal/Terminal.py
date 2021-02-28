@@ -54,17 +54,17 @@ class Terminal(Engine.Engine):
 
         return nb_players
 
-    def ask_nickname(self, nb_players):
+    def ask_nickname(self, nb_human_players):
         """
         Just ask the nickname of each player.
         If there is only one, a second one is adding, the computer it-self.
-        @parameters : nb_players = number of player(s).
+        @parameters : nb_human_players = number of human player(s).
         @return : the nicknames.
         """
         super().ask_nickname()
 
-        if nb_players == 1:
-            self._nicknames.append("The Best IA")     # For 1 player mode, also computer plays.
+        if nb_human_players == 1:
+            self._nicknames.append(self.ai_like.AI_PSEUDO)     # For 1 player mode, also computer plays.
             print("{0}{1}{0}".format(self.EOL, self.ai_like.DIALOGS['just_us']))
 
             unique_name = False
@@ -84,7 +84,7 @@ class Terminal(Engine.Engine):
             self._nicknames.append(nn)
 
         else:
-            for i in range(1, nb_players + 1):      # this i index will be used in next code.
+            for i in range(1, nb_human_players + 1):      # this i index will be used in next code.
 
                 unique_name = False
                 while not unique_name:
@@ -103,6 +103,130 @@ class Terminal(Engine.Engine):
                 self._nicknames.append(nn)
 
         return self._nicknames
+
+    def main_loop(self, nb_human_players):
+        """
+        The game main loop.
+        @parameters : nb_human_players = number of human players.
+        @return : name of the player who gets away.
+        """
+        super().main_loop()
+
+         # NOTE : retirer le # suivant, après mise au point.
+    #    print("\x1b[2J\x1b[;H")
+
+        # THE main loop itconsole_mode.py-self.
+        now_player = iter(self.players.p_id)
+
+        while self.p_answer != "0":
+            #p_id = self.players.p_id[self.now_palyer_idx]
+            try:
+                p_id = next(now_player)
+
+                nickname = self.players.players[p_id]["nickname"]
+                # NOTE: uncomment to debug
+#                print(nb_human_players)
+#                print(p_id)
+
+                if nb_human_players == 1 and nickname == self.ai_like.AI_PSEUDO:     # Only 1 player, and it's computer's turn.
+                    self.p_answer = self.ai_like.choice(self.p_answer[-1]) if self.p_answer else self.ai_like.choice()
+                    print("My turn >>> {}".format(self.p_answer))
+                else:   # everelse it's player turn (it runs for 1 or several human players).
+                    print("{}, your turn >>>".format(nickname), end='')
+                    self.p_answer = input(" ")
+                    if self.p_answer == "0":         # 0 means exit game.
+                        return nickname
+
+                print("Check it ...", self.p_answer, "...", end="")
+
+                ca = self.rules.check_answer(self.p_answer)
+                print(ca[1])
+
+                ### VERIF à partir ici
+                if not ca[0]:     # bad answer !
+                    if nb_players == 1 and now_player == 1:         # Only 1 player and it's the computer's turn.
+                        print("\tOooh sh... you win {} !\n".format(playersI[0].nickname))
+                        print("\t+1 win point for you, +1 loose point for ... me !\n")
+
+                    elif nb_players == 1 and now_player == 0:       # Only 1 player and it's the human's turn.
+                        print("\tI win, you loose {}\n".format(playersI[0].nickname))
+                        print("\t+1 win point for me, +1 loose point for YOU !\n")
+
+                    else:       # Several human players.
+                        print("\tSorry {}, you loose the turn !\n".format(playersI[now_player].nickname))
+                        print("\t+1 loose point for you, +1 win point for the others\n")
+
+                    # Update win and loose points for each players.
+                    for pI, lostV in enumerate(playersI):
+                        if pI == now_player:
+                            playersI[pI].loose_rounds += 1
+                        else:
+                            playersI[pI].win_rounds += 1
+                    game.playing = False    # The next turn will be a new game.
+                    game.p_answer = ""      # As it was a bad answer, avoid to enter in infinite loop in Almost_AI.choice()
+
+                else:
+                    game.playing = True     # The players are playing.
+                    print("\n")
+
+
+                # NOTE: uncomment to debug
+    #            self.p_answer = "0"
+
+                print("")
+
+            except StopIteration:
+                now_player = iter(self.players.p_id)
+
+        """
+    while game.p_answer != "0":
+        if nb_players == 1 and now_player == 1:     # Only 1 player, and it's computer's turn.
+            game.p_answer = computer.choice(game.p_answer[-1]) if game.p_answer else computer.choice()
+            print("My turn >>> {}".format(game.p_answer))
+        else:   # everelse it's player turn (it runs for 1 or several human players).
+            print("{}, your turn >>>".format(playersI[now_player].nickname), end='')
+            game.p_answer = input(" ")
+            if game.p_answer == "0":         # 0 means exit game.
+                return playersI[now_player].nickname
+
+        print("Check it ...", game.p_answer, "...", end="")
+
+        ca = game.check_answer()
+        print(ca[1])
+
+        if not ca[0]:     # bad answer !
+            if nb_players == 1 and now_player == 1:         # Only 1 player and it's the computer's turn.
+                print("\tOooh sh... you win {} !\n".format(playersI[0].nickname))
+                print("\t+1 win point for you, +1 loose point for ... me !\n")
+
+            elif nb_players == 1 and now_player == 0:       # Only 1 player and it's the human's turn.
+                print("\tI win, you loose {}\n".format(playersI[0].nickname))
+                print("\t+1 win point for me, +1 loose point for YOU !\n")
+
+            else:       # Several human players.
+                print("\tSorry {}, you loose the turn !\n".format(playersI[now_player].nickname))
+                print("\t+1 loose point for you, +1 win point for the others\n")
+
+            # Update win and loose points for each players.
+            for pI, lostV in enumerate(playersI):
+                if pI == now_player:
+                    playersI[pI].loose_rounds += 1
+                else:
+                    playersI[pI].win_rounds += 1
+            game.playing = False    # The next turn will be a new game.
+            game.p_answer = ""      # As it was a bad answer, avoid to enter in infinite loop in Almost_AI.choice()
+
+        else:
+            game.playing = True     # The players are playing.
+            print("\n")
+
+        # Go to the next palyer.
+        if nb_players == 1:     # 1 player case.
+            now_player = xor(now_player, 1) # Or player[0] or  player[1] ONLY !!!
+        else:
+            now_player = 0 if now_player == nb_players - 1 else now_player + 1  # Several players case.
+        """
+
 
     def display_points(self):
         """
@@ -173,25 +297,25 @@ class Terminal(Engine.Engine):
     #    print("\x1b[2J\x1b[;H")
 
         # How many players want to play.
-        nb_players = self.ask_number_of_players()
+        nb_human_players = self.ask_number_of_players()
 
         # Actually, nobody wants to play T_T !
-        if nb_players == 0:
+        if nb_human_players == 0:
             print("{0}{1}{0}".format(self.EOL, self.DIALOGS['no_want_play_bye']))
             return 0
 
         # Register all players.
-        self.players.register_players(self.ask_nickname(nb_players))
+        self.players.register_players(self.ask_nickname(nb_human_players))
 
         # The 1st player should be not the 1st to play.
         print("{0}{1}{0}".format(self.EOL, self.DIALOGS['shuffle']))
         self.players.shuffle()
 
-        nickname_away = self.players.players[self.players.p_id[0]]['nickname']
-#        nickname_away = main_loop(playersI, nb_players)
+#        nickname_away = self.players.players[self.players.p_id[0]]['nickname']
+        nickname_away = self.main_loop(nb_human_players)
 
         if nickname_away:
-            if nb_players == 1:
+            if nb_human_players == 1:
                 print("{}{}{}".format(5 * self.EOL, self.ai_like.DIALOGS['sly_bye'], self.EOL))
 
             else:

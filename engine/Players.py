@@ -27,15 +27,14 @@ class Players():
                 'won_rounds' : interger,
                 'lost_rounds': interger,
                 'turn' : boolean,
-                'answer' : string,
             }}
     """
 
-    DIALOGS = {'nb_players_question_0' : "Nombre de joueurs entre 0 et 5 inclus",
-               'nb_players_question_1' : "0 pour vous enfuire loin de moi. ",
-               'nb_players_question_2' : "1 signifiant 2 joueurs, vous et ... moi. ",
-               'nb_players_question_3' : "Pas plus de 5 joueurs.",
-               'nb_players_question_4' : "Alors ?",
+    DIALOGS = {'nb_players_question_part_0' : "Nombre de joueurs entre 0 et 5 inclus",
+               'nb_players_question_part_1' : "0 pour vous enfuire loin de moi. ",
+               'nb_players_question_part_2' : "1 signifiant 2 joueurs, vous et ... moi. ",
+               'nb_players_question_part_3' : "Pas plus de 5 joueurs.",
+               'nb_players_question_part_4' : "Alors ?",
                'ask_nickname' : "Donnez-moi votre pseudo s'il vous plait.",
                'ask_nickname_multi' : "Joueur {}, votre pseudo s'il vous plait.",
                'player_name_turn' : "Joueur {}, à vous.",
@@ -70,8 +69,7 @@ class Players():
                                     {'nickname' : nickname,
                                      'won_rounds' : 0,
                                      'lost_rounds' : 0,
-                                     'turn' : False,
-                                     'answer': ""}})
+                                     'turn' : False,}})
 
     def shuffle(self):
         """

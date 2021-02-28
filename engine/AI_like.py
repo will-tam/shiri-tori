@@ -5,6 +5,8 @@ print("{}.{}".format(__package__,__name__))
 
 # Standard libraries import.
 import sys
+import random as rnd
+import time
 
 # Third libraries import.
 
@@ -46,6 +48,49 @@ class AI_like():
         """
         pass
 
+    def choice(self, first_hiragana=""):
+        """
+        The choice of the computer.
+        !!!!!!! NO AI YET, just random choice !!!!!!
+        @parameters : first_hiragana = 1st hiragana of the world shoud be choosen.
+                                       Not an AI, but not so stupid.
+        @return : the choosen computer word.
+        """
+        answer = "a"
+        return answer
+
+        while answer[0] != first_hiragana:
+            # Maybe one day, randrange() should be removed.
+            rowid = rnd.randrange(1, self.__nb_rows + 1)
+            #TODO : TypeError: 'NoneType' object is not subscriptable <--- WHY ?
+            try:
+                answer = self.sqlmgt.what_at_rowid(rowid)
+            except:
+                answer = "a"
+            if not first_hiragana:
+                break
+
+        return answer
+
+    def HMI_turn(self, game_hmi, p_answer):
+        """
+        Update the player number who it's the turn.
+        @parameters : game_hmi = the hmi game instance.
+                      p_answer = previous player's answer.
+        @result : none.
+        """
+        pass
+#        p_answer = self.choice(p_answer[-1]) if p_answer else self.choice()
+#
+#        game_hmi.player_answer.SetValue(p_answer)
+#        # Need both of them to appear in game_hmi.player_answer !!!
+#        game_hmi.player_answer.Refresh()
+#        game_hmi.player_answer.Update()
+#
+#        time.sleep(5)
+#
+#        game_hmi.press_btn_validate()
+#
 
     # Private methods.
 
