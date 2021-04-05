@@ -8,6 +8,7 @@ import sys
 
 # Third libraries import.
 from lib.nihongo_hatsuon.hiragana import *
+from lib.nihongo_hatsuon.katakana import *
 
 # Projet modules import.
 from . import SQLManage
@@ -55,12 +56,10 @@ Dans cette version, les mots interdis sont :
                 'hiragana_only' : "Hiragana seulement ? ",
                 'n_finish' : "Le mot fini par ん",
                 'n_begin' : "Le mot commence par ん",
-#                'katakana_rep' : "Presence de ー ? ",
-#                'point_presence' : "Presence of ・ ? ",
                 'only_one_mora' : "Seulement une more !! Désolé, mais trop peu pour accepter !!",
                 'end_begin_not_match' : "La fin du mot précédant et début de ce mot sont différents",
                 'DB_found' : "trouvée dans goi.sqlite ? ",
-                'already_played' : "Déjà joué ? ",
+                'already_played' : "Déjà joué ! ",
                 'not_yet' : "Pas encore.",
                 'try_remember' : "Essyaez de vous souvenir de ce mot.",
                 }
@@ -82,15 +81,19 @@ Dans cette version, les mots interdis sont :
         self.__previous = ""
         self.__dejavu = []
 
-    def check_answer(self, answer):
+    def check_answer(self, answer, first_answer):
         """
         Check for rule :
         @parameters : answer = the player answer.
+                      first_answer = True if it's a first answer (1st game or after a player has lost). False if next player turn.
         @return : tuple (True, explain) if answer is accepted, everelse (False, explain).
             explain => just to explain this result.
             I also should raise an exception if not good, but i prefer use return statement
             in function.
         """
+        if first_answer:
+            self.__previous = "" # It's a new game.
+
         # Check if no answer.
         if answer == "":
             return (False, self.DIALOGS['empty_string'])
@@ -116,20 +119,6 @@ Dans cette version, les mots interdis sont :
         if answer[0] in ["ん", "ン"]:
             explain += "{}{}{}".format(self.TAB, self.DIALOGS['n_begin'], self.EOL)
             return (False, explain)
-
-#        #Check if "ー" is in the word.
-#        explain += "{}{}".format(self.TAB, self.DIALOGS['katakana_rep'])
-#        if not False in [c == "ー" for c in answer]:
-#            explain = "{}{}".format(self.DIALOGS['yes'], self.EOL)
-#            return (False, explain)
-#        explain += "{}{}".format(self.DIALOGS['no'], self.EOL)
-#
-#        # Check if "・" is in the word.
-#        explain += "{}{}".format(self.TAB, self.DIALOGS['point_presence'])
-#        if not False in [c == "・" for c in answer]:
-#            explain += "{}{}".format(self.DIALOGS['yes'], self.EOL)
-#            return (False, explain)
-#        explain += "{}{}".format(self.DIALOGS['no'], self.EOL)
 
         # Check if the lenght of the answer is not only one mora.
         if len(answer) == 1:

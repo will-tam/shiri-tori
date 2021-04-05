@@ -2,20 +2,20 @@
 <!DOCTYPE Session SYSTEM "Session-6.2.dtd">
 <!-- eric6 session file for project shiri-tori -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2021-02-28, 18:33:05 -->
+<!-- Saved: 2021-04-04, 00:02:43 -->
 <Session version="6.2">
   <ViewManagerSplits count="1" orientation="2"/>
   <Filenames>
     <Filename cline="69" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/will/data/programmation/python/shiri-tori/shiri-tori.py</Filename>
-    <Filename cline="144" cindex="38" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</Filename>
-    <Filename cline="140" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/will/data/programmation/python/shiri-tori/engine/Rules.py</Filename>
-    <Filename cline="96" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="5">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</Filename>
-    <Filename cline="71" cindex="55" folds="" zoom="0" cloned="0" splitindex="0" editorindex="6">/home/will/data/programmation/python/shiri-tori/engine/Players.py</Filename>
-    <Filename cline="21" cindex="22" folds="" zoom="0" cloned="0" splitindex="0" editorindex="7">/home/will/data/programmation/python/shiri-tori/engine/SQLManage.py</Filename>
-    <Filename cline="60" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="8">/home/will/data/programmation/python/shiri-tori/engine/AI_like.py</Filename>
-    <Filename cline="0" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="9">/home/will/data/programmation/python/shiri-tori/utils.py</Filename>
+    <Filename cline="150" cindex="61" folds="" zoom="0" cloned="0" splitindex="0" editorindex="1">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</Filename>
+    <Filename cline="9" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/will/data/programmation/python/shiri-tori/engine/Rules.py</Filename>
+    <Filename cline="96" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/will/data/programmation/python/shiri-tori/engine/Engine.py</Filename>
+    <Filename cline="71" cindex="55" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/will/data/programmation/python/shiri-tori/engine/Players.py</Filename>
+    <Filename cline="21" cindex="22" folds="" zoom="0" cloned="0" splitindex="0" editorindex="5">/home/will/data/programmation/python/shiri-tori/engine/SQLManage.py</Filename>
+    <Filename cline="60" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="6">/home/will/data/programmation/python/shiri-tori/engine/AI_like.py</Filename>
+    <Filename cline="0" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="7">/home/will/data/programmation/python/shiri-tori/utils.py</Filename>
   </Filenames>
-  <ActiveWindow cline="144" cindex="38">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</ActiveWindow>
+  <ActiveWindow cline="150" cindex="61">/home/will/data/programmation/python/shiri-tori/HMI/terminal/Terminal.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -50,7 +50,7 @@
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Players.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Players.py@@18</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Rules.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Rules.py@@18</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/Rules.py@@19</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/SQLManage.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/engine/SQLManage.py@@18</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/shiri-tori/__init__.py</ExpandedItemName>

@@ -117,6 +117,7 @@ class Terminal(Engine.Engine):
 
         # THE main loop itconsole_mode.py-self.
         now_player = iter(self.players.p_id)
+        first_answer = True
 
         while self.p_answer != "0":
             #p_id = self.players.p_id[self.now_palyer_idx]
@@ -133,42 +134,45 @@ class Terminal(Engine.Engine):
                     print("My turn >>> {}".format(self.p_answer))
                 else:   # everelse it's player turn (it runs for 1 or several human players).
                     print("{}, your turn >>>".format(nickname), end='')
-                    self.p_answer = input(" ")
+                    repeat_question = True
+                    if repeat_question:
+                        try:
+                            self.p_answer = input(" ")
+                            repeat_question = False
+                        except UnicodeDecodeError:
+                            repeat_question = True
                     if self.p_answer == "0":         # 0 means exit game.
                         return nickname
 
                 print("Check it ...", self.p_answer, "...", end="")
 
-                ca = self.rules.check_answer(self.p_answer)
-                print(ca[1])
+                checked_answer = self.rules.check_answer(self.p_answer, first_answer)
+                print(checked_answer[1])
 
-                ### VERIF à partir ici
-                if not ca[0]:     # bad answer !
-                    if nb_players == 1 and now_player == 1:         # Only 1 player and it's the computer's turn.
-                        print("\tOooh sh... you win {} !\n".format(playersI[0].nickname))
+                if not checked_answer[0]:     # bad answer !
+                    if nb_human_players == 1 and nickname == self.ai_like.AI_PSEUDO:         # Only 1 player and it's the computer's turn.
+                        print("\tOooh sh... you win {} !\n".format(nickname))
                         print("\t+1 win point for you, +1 loose point for ... me !\n")
 
-                    elif nb_players == 1 and now_player == 0:       # Only 1 player and it's the human's turn.
-                        print("\tI win, you loose {}\n".format(playersI[0].nickname))
+                    elif nb_human_players == 1 and nickname != self.ai_like.AI_PSEUDO:       # Only 1 player and it's the human's turn.
+                        print("\tI win, you loose {}\n".format(nickname))
                         print("\t+1 win point for me, +1 loose point for YOU !\n")
 
                     else:       # Several human players.
-                        print("\tSorry {}, you loose the turn !\n".format(playersI[now_player].nickname))
+                        print("\tSorry {}, you loose the turn !\n".format(nickname))
                         print("\t+1 loose point for you, +1 win point for the others\n")
 
                     # Update win and loose points for each players.
-                    for pI, lostV in enumerate(playersI):
-                        if pI == now_player:
-                            playersI[pI].loose_rounds += 1
+                    for player_id in self.players.players.keys():
+                        if player_id == p_id:
+                            self.players.players[player_id]['lost_rounds'] += 1
                         else:
-                            playersI[pI].win_rounds += 1
-                    game.playing = False    # The next turn will be a new game.
-                    game.p_answer = ""      # As it was a bad answer, avoid to enter in infinite loop in Almost_AI.choice()
-
+                            self.players.players[player_id]['won_rounds'] += 1
+                    self.p_answer = ""      # As it was a bad answer, avoid to enter in infinite loop in Almost_AI.choice()
+                    first_answer = True
                 else:
-                    game.playing = True     # The players are playing.
+                    first_answer = False    # The players are playing.
                     print("\n")
-
 
                 # NOTE: uncomment to debug
     #            self.p_answer = "0"
@@ -177,56 +181,6 @@ class Terminal(Engine.Engine):
 
             except StopIteration:
                 now_player = iter(self.players.p_id)
-
-        """
-    while game.p_answer != "0":
-        if nb_players == 1 and now_player == 1:     # Only 1 player, and it's computer's turn.
-            game.p_answer = computer.choice(game.p_answer[-1]) if game.p_answer else computer.choice()
-            print("My turn >>> {}".format(game.p_answer))
-        else:   # everelse it's player turn (it runs for 1 or several human players).
-            print("{}, your turn >>>".format(playersI[now_player].nickname), end='')
-            game.p_answer = input(" ")
-            if game.p_answer == "0":         # 0 means exit game.
-                return playersI[now_player].nickname
-
-        print("Check it ...", game.p_answer, "...", end="")
-
-        ca = game.check_answer()
-        print(ca[1])
-
-        if not ca[0]:     # bad answer !
-            if nb_players == 1 and now_player == 1:         # Only 1 player and it's the computer's turn.
-                print("\tOooh sh... you win {} !\n".format(playersI[0].nickname))
-                print("\t+1 win point for you, +1 loose point for ... me !\n")
-
-            elif nb_players == 1 and now_player == 0:       # Only 1 player and it's the human's turn.
-                print("\tI win, you loose {}\n".format(playersI[0].nickname))
-                print("\t+1 win point for me, +1 loose point for YOU !\n")
-
-            else:       # Several human players.
-                print("\tSorry {}, you loose the turn !\n".format(playersI[now_player].nickname))
-                print("\t+1 loose point for you, +1 win point for the others\n")
-
-            # Update win and loose points for each players.
-            for pI, lostV in enumerate(playersI):
-                if pI == now_player:
-                    playersI[pI].loose_rounds += 1
-                else:
-                    playersI[pI].win_rounds += 1
-            game.playing = False    # The next turn will be a new game.
-            game.p_answer = ""      # As it was a bad answer, avoid to enter in infinite loop in Almost_AI.choice()
-
-        else:
-            game.playing = True     # The players are playing.
-            print("\n")
-
-        # Go to the next palyer.
-        if nb_players == 1:     # 1 player case.
-            now_player = xor(now_player, 1) # Or player[0] or  player[1] ONLY !!!
-        else:
-            now_player = 0 if now_player == nb_players - 1 else now_player + 1  # Several players case.
-        """
-
 
     def display_points(self):
         """
