@@ -72,7 +72,7 @@ def main(args):
 
     print(args.__dict__)
 
-    game_engine = gengine.Engine()
+#    game_engine = gengine.Engine()
 #    NOTE: uncomment to debug
 #    print(game_engine)
 

@@ -28,11 +28,13 @@ class Engine():
         now_palyer_idx = index of player who is playing.
     """
 
-    DIALOGS = {'no_want_play_bye' : "Peut-etre plus tard ?",
+    DIALOGS = {'only_number' : "Désolé, mais j'aimerais un nombre seulement.",
+               'no_want_play_bye' : "Peut-etre plus tard ?",
                'shuffle' : "Mélange des joueurs",
+               'your_turn' : "à vous",
                'won_rounds' : "tours gagnés",
                'lost_rounds' : "tours perdus",
-               'check_word' : "Vérification ... {} ...",
+               'check_word' : "Vérification",
                'turn_lost' : "Désolé {}, vous perdez ce tour !",
                'turn_lost_1_pt' : "+1 point perdu pour vour, +1 point gagné pour les autres",
                'a_player_leave' : "{} voulais s'enfuire !!!",
@@ -56,9 +58,9 @@ class Engine():
         @return : none.
         """
         self.sqlmanage = SQLManage.SQLManage()
-        self.rules = Rules.Rules(self.sqlmanage)
         self.players = Players.Players()
-        self.ai_like = AI_like.AI_like()
+        self.rules = Rules.Rules(self.sqlmanage)
+        self.ai_like = AI_like.AI_like(self.sqlmanage)
 
     def ask_number_of_players(self):
         """

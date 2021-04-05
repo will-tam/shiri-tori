@@ -20,6 +20,7 @@ class Terminal(Engine.Engine):
     """
 
     EOL = "\n"
+    TAB = "\t"
     WAIT_ASK = " >>> "
 
     def __init__(self):
@@ -50,7 +51,7 @@ class Terminal(Engine.Engine):
             try:
                 nb_players = int(input(question))   # Only int expected.
             except:
-                print("\n\tDésolé, mais j'aimerais un nombre seulement.\n")
+                print("{0}{1}{2}{0}".format(self.EOL, self.TAB, self.DIALOGS['only_number']))
 
         return nb_players
 
@@ -112,9 +113,6 @@ class Terminal(Engine.Engine):
         """
         super().main_loop()
 
-         # NOTE : retirer le # suivant, après mise au point.
-    #    print("\x1b[2J\x1b[;H")
-
         # THE main loop itconsole_mode.py-self.
         now_player = iter(self.players.p_id)
         first_answer = True
@@ -131,9 +129,9 @@ class Terminal(Engine.Engine):
 
                 if nb_human_players == 1 and nickname == self.ai_like.AI_PSEUDO:     # Only 1 player, and it's computer's turn.
                     self.p_answer = self.ai_like.choice(self.p_answer[-1]) if self.p_answer else self.ai_like.choice()
-                    print("My turn >>> {}".format(self.p_answer))
+                    print("{} >>> {}".format(self.ai_like.DIALOGS['my_turn'], self.p_answer))
                 else:   # everelse it's player turn (it runs for 1 or several human players).
-                    print("{}, your turn >>>".format(nickname), end='')
+                    print("{}, {} >>>".format(nickname, self.DIALOGS['your_turn']), end='')
                     repeat_question = True
                     if repeat_question:
                         try:
@@ -144,23 +142,28 @@ class Terminal(Engine.Engine):
                     if self.p_answer == "0":         # 0 means exit game.
                         return nickname
 
-                print("Check it ...", self.p_answer, "...", end="")
+                print("{} ... {} ...".format(self.DIALOGS['check_word'], self.p_answer), end="")
 
                 checked_answer = self.rules.check_answer(self.p_answer, first_answer)
                 print(checked_answer[1])
 
                 if not checked_answer[0]:     # bad answer !
                     if nb_human_players == 1 and nickname == self.ai_like.AI_PSEUDO:         # Only 1 player and it's the computer's turn.
-                        print("\tOooh sh... you win {} !\n".format(nickname))
-                        print("\t+1 win point for you, +1 loose point for ... me !\n")
+                        to_diag = "{}{}".format(self.TAB, self.ai_like.DIALOGS['i_loose'])
+                        to_diag += "{0}{1}{2}{0}".format(self.EOL, self.TAB, self.ai_like.DIALOGS['i_loose_1_pt'])
 
                     elif nb_human_players == 1 and nickname != self.ai_like.AI_PSEUDO:       # Only 1 player and it's the human's turn.
-                        print("\tI win, you loose {}\n".format(nickname))
-                        print("\t+1 win point for me, +1 loose point for YOU !\n")
+                        to_diag = self.TAB
+                        to_diag += self.ai_like.DIALOGS['i_win'].format(nickname)
+                        to_diag += "{0}{1}{2}{0}".format(self.EOL, self.TAB, self.ai_like.DIALOGS['i_win_1_pt'])
 
                     else:       # Several human players.
-                        print("\tSorry {}, you loose the turn !\n".format(nickname))
-                        print("\t+1 loose point for you, +1 win point for the others\n")
+                        to_diag = self.TAB
+                        to_diag += self.DIALOGS['turn_lost'].format(nickname)
+
+                        to_diag += "{2}{0}{1}{2}".format(self.TAB, self.DIALOGS['turn_lost_1_pt'], self.EOL)
+
+                    print(to_diag)
 
                     # Update win and loose points for each players.
                     for player_id in self.players.players.keys():
@@ -247,8 +250,7 @@ class Terminal(Engine.Engine):
         @parameters : none.
         @return : 0 = all was good.
         """
-        # NOTE : retirer le # suivant, après mise au point.
-    #    print("\x1b[2J\x1b[;H")
+        print("\x1b[2J\x1b[;H")
 
         # How many players want to play.
         nb_human_players = self.ask_number_of_players()

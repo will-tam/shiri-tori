@@ -26,8 +26,8 @@ class AI_like():
     """
 
     DIALOGS = {'just_us' : "Ok, c'est juste entre vous et moi !",
-               'my_turn' : "My turn",
-               'i_loose' : "Et m... vous gagnez {} !",
+               'my_turn' : "À mon tour",
+               'i_loose' : "Et m... vous gagnez !",
                'i_loose_1_pt' : "+1 point gagné pour vous, +1 point perdu pour ... moi !",
                'i_win' : "Je gagne, vous perdez {}! ",
                'i_win_1_pt' : "+1 point gagné pour MOI, +1 point perdu pour ... VOUS !",
@@ -40,13 +40,14 @@ class AI_like():
 
     # Public methods.
 
-    def __init__(self):
+    def __init__(self, sqlmanage):
         """
         __init__ : initiate class
-        @parameters : none.
+        @parameters : sqlmanage = sqlmanage instance address.
         @return : none.
         """
-        pass
+        self.__sqlmanage = sqlmanage
+        self.__nb_rows = self.__sqlmanage.number_of_row()
 
     def choice(self, first_hiragana=""):
         """
@@ -57,14 +58,13 @@ class AI_like():
         @return : the choosen computer word.
         """
         answer = "a"
-        return answer
 
         while answer[0] != first_hiragana:
             # Maybe one day, randrange() should be removed.
             rowid = rnd.randrange(1, self.__nb_rows + 1)
             #TODO : TypeError: 'NoneType' object is not subscriptable <--- WHY ?
             try:
-                answer = self.sqlmgt.what_at_rowid(rowid)
+                answer = self.__sqlmanage.what_at_rowid(rowid)
             except:
                 answer = "a"
             if not first_hiragana:
@@ -72,25 +72,6 @@ class AI_like():
 
         return answer
 
-    def HMI_turn(self, game_hmi, p_answer):
-        """
-        Update the player number who it's the turn.
-        @parameters : game_hmi = the hmi game instance.
-                      p_answer = previous player's answer.
-        @result : none.
-        """
-        pass
-#        p_answer = self.choice(p_answer[-1]) if p_answer else self.choice()
-#
-#        game_hmi.player_answer.SetValue(p_answer)
-#        # Need both of them to appear in game_hmi.player_answer !!!
-#        game_hmi.player_answer.Refresh()
-#        game_hmi.player_answer.Update()
-#
-#        time.sleep(5)
-#
-#        game_hmi.press_btn_validate()
-#
 
     # Private methods.
 

@@ -11,7 +11,6 @@ from lib.nihongo_hatsuon.hiragana import *
 from lib.nihongo_hatsuon.katakana import *
 
 # Projet modules import.
-from . import SQLManage
 
 
 ######################
@@ -58,10 +57,10 @@ Dans cette version, les mots interdis sont :
                 'n_begin' : "Le mot commence par ん",
                 'only_one_mora' : "Seulement une more !! Désolé, mais trop peu pour accepter !!",
                 'end_begin_not_match' : "La fin du mot précédant et début de ce mot sont différents",
-                'DB_found' : "trouvée dans goi.sqlite ? ",
-                'already_played' : "Déjà joué ! ",
+                'DB_found' : " trouvée dans goi.sqlite ? ",
+                'already_played' : " déjà joué ? ",
                 'not_yet' : "Pas encore.",
-                'try_remember' : "Essyaez de vous souvenir de ce mot.",
+                'try_remember' : "Essayez de vous souvenir de ce mot.",
                 }
 
     # Private attributes.
