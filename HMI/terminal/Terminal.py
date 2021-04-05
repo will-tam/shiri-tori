@@ -16,7 +16,6 @@ class Terminal(Engine.Engine):
     Class to manage terminal part of shiri-tori.
 
     Public attributes.
-        game_engine = instances of the game engine.
     """
 
     EOL = "\n"

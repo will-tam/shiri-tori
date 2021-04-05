@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2021-01-12, 23:22:54 -->
+<!-- Saved: 2021-04-05, 19:21:48 -->
 <!-- Copyright (C) 2021 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
@@ -20,8 +20,8 @@
     <Source>HMI/ex_boa/HallOfFames.py</Source>
     <Source>HMI/ex_boa/NbPlayers.py</Source>
     <Source>HMI/ex_boa/PlayersNickname.py</Source>
+    <Source>HMI/gfx/Gfx.py</Source>
     <Source>HMI/gfx/__init__.py</Source>
-    <Source>HMI/gfx/gfx-TODO.py</Source>
     <Source>HMI/net/__init__.py</Source>
     <Source>HMI/net/net-TODO.py</Source>
     <Source>HMI/terminal/Terminal.py</Source>

@@ -13,6 +13,7 @@ import argparse
 import __init__
 import engine.Engine as gengine
 import HMI.terminal.Terminal as hmiterm
+import HMI.gfx.Gfx as hmigfx
 
 
 ######################
@@ -84,8 +85,7 @@ def main(args):
     if args.gfx:
 #       NOTE: uncomment to debug
         print("Go wxPython")
-
-        return 0
+        return hmigfx.Gfx().main()
 
     if args.server:
 #       NOTE: uncomment to debug
