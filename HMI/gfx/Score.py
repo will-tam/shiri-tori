@@ -85,22 +85,19 @@ class Hall_of_fames(wx.Frame):
 
     # Private attributes.
     # __playersI = instance of players.
-    # __nb_players = number of players.
     # __nickname_away = Whose player wants to be away.
 
     # Public methods.
-    def __init__(self, parent, playersI, nb_players, nickname_away):
+    def __init__(self, parent, playersId, nickname_away):
         """
         __init__ : initiate class
         @parameters : parent = parent of this widget.
-                      playersI = instance of players.
-                      nb_players = number of players.
+                      playersId = players Id.
                       nickname_away = Whose player wants to be away.
         @return : none.
         """
-        self.__playersI = playersI
+        self.__playersId = playersId
         self.__nickname_away = nickname_away
-        self.__nb_players = nb_players
 
         # Main frame.
         wx.Frame.__init__(self,
@@ -192,16 +189,15 @@ class Hall_of_fames(wx.Frame):
 
 ######################
 
-def hall_of_fame(wx_app, playersI, nb_players, nickname_away):
+def hall_of_fame(wx_app, playersId, nickname_away):
     """
     Display Hall of Fame widget.
     @parameters : wx_app = the wx application instance.
-                  playersI = instance of players.
-                  nb_players = number of players.
+                  playersId = players Id.
                   nickname_away = Whose player wants to be away.
     @return : none.
     """
-    hof = Hall_of_fames(None, playersI, nb_players, nickname_away)
+    hof = Hall_of_fames(None, playersId, nickname_away)
     hof.Show()
 
     wx_app.MainLoop()

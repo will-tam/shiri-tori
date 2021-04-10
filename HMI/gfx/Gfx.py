@@ -74,9 +74,11 @@ class Gfx(Engine.Engine):
         print(self.players.players)
 
         # Playing !
-#        nickname_away = HMI_Game.ze_GAME(self.wx_app, playersI, nb_players)
+        nickname_away = HMI_Game.ze_GAME(self.wx_app, self.players.p_id, nb_players, self)
 
-#        HoF.hall_of_fame(self.wx_app, playersI, nb_players, nickname_away)
+        print(nickname_away)
+
+        HoF.hall_of_fame(self.wx_app, self.players.p_id, nickname_away)
 
         self.say_bye()
 

@@ -157,7 +157,6 @@ Dans cette version, les mots interdis sont :
         Return the how to depending the number of players
         @parameters : nb_players = number of players.
                       now_player = the player who will begin.
-                      playersI = players' instance.
         @return : the how to.
         """
         if nb_players == 1:

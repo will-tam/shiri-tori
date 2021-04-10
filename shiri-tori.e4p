@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project shiri-tori -->
-<!-- Saved: 2021-04-06, 00:10:31 -->
+<!-- Saved: 2021-04-10, 17:51:00 -->
 <!-- Copyright (C) 2021 Will_tam,  -->
 <Project version="5.1">
   <Language></Language>
@@ -14,7 +14,11 @@
   <Eol index="0"/>
   <Sources>
     <Source>HMI/__init__.py</Source>
+    <Source>HMI/gfx/Ask_nickname.py</Source>
+    <Source>HMI/gfx/Game.py</Source>
     <Source>HMI/gfx/Gfx.py</Source>
+    <Source>HMI/gfx/Nb_players.py</Source>
+    <Source>HMI/gfx/Score.py</Source>
     <Source>HMI/gfx/__init__.py</Source>
     <Source>HMI/net/__init__.py</Source>
     <Source>HMI/net/net-TODO.py</Source>

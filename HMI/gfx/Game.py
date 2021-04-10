@@ -29,38 +29,42 @@ class Game(wx.Frame):
         now_player = the player who plays now.
         simu_player = the simulate player instance.
     """
+    EOL = "\n"
+    CAPTIONS = {'before_to_play' : "Avant de jouer",
+                'here_we_go' : "C'est parti !"}
 
     # Private attributes.
     # __game = the one_game instance.
-    # __nb_players = number of players.
-    # __playersI = instance of players.
+    # __nb_human_players = number of players.
+    # __playersId = Players Id.
     # __computer = the computer player.
+    # self.__game_engine = engine instance.
 
 
     # Public methods.
-    def __init__(self, parent, playersI, nb_players):
+    def __init__(self, parent, playersId, nb_human_players, game_engine):
         """
         __init__ : initiate class
         @parameters : parent = parent of this widget.
-                      playersI = instance of players.
-                      nb_players = number of players.
+                      playersId = Players Id.
+                      nb_human_players = number of players.
+                      game_engine = engine of the game instance address.
         @return : none.
         """
-        self.__game = one_game.One_Game()     # The one_game instance.
-
-        self.__nb_players = nb_players
-        self.__playersI = playersI
+        self.__nb_human_players = nb_human_players
+        self.__playersId = playersId
+        self.__game_engine = game_engine
 
         self.nickname_away = ""
 
         # Prepare game's how to according number of player.
-        if self.__nb_players == 1:
-            self.now_player = 0
-            self.__computer = almostAI.Almost_AI() # If only 1 human, add the computer "brain".
+        if self.__nb_human_players == 1:
+            self.now_player = self.__game_engine.players.p_id[0]  # 1st player
+            self.__computer = self.__game_engine.ai_like # If only 1 human, add the computer "brain".
             self.simu_player = None # The simulate player it-self.
 
         else:
-            self.now_player = rnd.randrange(nb_players)  # 1st player is a random choice.
+            self.now_player = self.__game_engine.players.p_id[0]  # 1st player is a random choice.
 
         # Main frame.
         wx.Frame.__init__(self,
@@ -77,20 +81,20 @@ class Game(wx.Frame):
 
         # Create the answer part.
         # Create a StaticBox widget aka label.
-        lbl_player_your_turn = "So, first round {}".format(self.__playersI[self.now_player].nickname)
+#        lbl_player_your_turn = "So, first round {}".format(self.__playersI[self.now_player].nickname)
         self.panel_answer = wx.Panel(parent=self,
                                      id=wx.ID_ANY,
                                      pos=wx.Point(5, 288),
                                      size=wx.Size(547, 120),
                                      style=0)
-
-        self.player_your_turn = wx.StaticBox(parent=self.panel_answer,
-                                             id=wx.ID_ANY,
-                                             label=lbl_player_your_turn,
-                                             pos=wx.Point(0, 0),
-                                             size=wx.Size(547, 120),
-                                             style=0)
-
+#
+#        self.player_your_turn = wx.StaticBox(parent=self.panel_answer,
+#                                             id=wx.ID_ANY,
+#                                             label=lbl_player_your_turn,
+#                                             pos=wx.Point(0, 0),
+#                                             size=wx.Size(547, 120),
+#                                             style=0)
+#
         self.player_answer = wx.TextCtrl(parent=self.panel_answer,
                                          id=wx.ID_ANY,
                                          pos=wx.Point(0, 10),
@@ -99,8 +103,8 @@ class Game(wx.Frame):
         self.player_answer.Center(wx.BOTH)
 
         # Create the score part. Calling the as-for class.
-        self.score = HMI_Score.Score(self, self.__playersI)
-        self.score.Show()
+#        self.score = HMI_Score.Score(self, self.__playersI)
+#        self.score.Show()
 
         # Create the validation and leaving buttons.
         self.btn_validate = wx.Button(parent=self.panel_answer,
@@ -153,7 +157,7 @@ class Game(wx.Frame):
         self.__update_checking_part()
 
         # Next player is the computer. Will play after this event.
-        if self.__nb_players == 1 and self.now_player == 0:
+        if self.__nb_human_players == 1 and self.now_player == 0:
             wx.CallAfter(self.__computer.HMI_turn, self, self.__game.p_answer)
 
         self.player_your_turn.Label = self.__update_player()
@@ -170,7 +174,7 @@ class Game(wx.Frame):
         @parameters : event = the event which called this function.
         @return : none
         """
-        self.nickname_away = self.__playersI[self.now_player].nickname
+        self.nickname_away = self.__game_engine.players.players[self.__game_engine.players.p_id[0]]['nickname']
         self.Destroy()  # the window.
         event.Skip()
 
@@ -182,14 +186,27 @@ class Game(wx.Frame):
         @result : none.
         """
         if first_time:
+            # Modal to explain rules.
+            r = "{1}{0}".format(self.EOL, self.__game_engine.rules.DIALOGS['reminder'])
+            rules_reminder = wx.MessageDialog(parent=None,
+                                              message=r,
+                                              caption=self.CAPTIONS['before_to_play'],
+                                              style=wx.OK | wx.ICON_INFORMATION)
+            rules_reminder.ShowModal()
+            rules_reminder.Destroy()
+
+            # Write something start the game.
+            r = self.__game_engine.rules.before_to_play(self.__nb_human_players,
+                                                        self.__game_engine.players.players[self.__game_engine.players.p_id[0]]['nickname'])
+
             self.previous_player_answer = wx.StaticBox(parent=self,
                                                        id=wx.ID_ANY,
-                                                       label="Before to play",
+                                                       label=self.CAPTIONS['here_we_go'],
                                                        pos=wx.Point(5, 5),
                                                        size=wx.Size(547, 280),
                                                        style=0)
             self.inside = wx.StaticText(parent=self.previous_player_answer,
-                                        label=rules.before_to_play(self.__nb_players, self.now_player, self.__playersI),
+                                        label=r,
                                         pos=wx.Point(70, 55),
                                         style=0)
             self.inside.Center(wx.BOTH)
@@ -223,7 +240,7 @@ class Game(wx.Frame):
         @result : the nick name of player.
         """
         # Go to the next palyer.
-        if self.__nb_players == 1:     # 1 player case.
+        if self.__nb_human_players == 1:     # 1 player case.
             self.now_player = xor(self.now_player, 1) # Or player[0] or  player[1] ONLY !!!
             if self.now_player == 1:
                 player_turn_nn= "My turn"
@@ -232,22 +249,23 @@ class Game(wx.Frame):
 
         else:
             # Several players case.
-            self.now_player = 0 if self.now_player == self.__nb_players - 1 else self.now_player + 1
+            self.now_player = 0 if self.now_player == self.__nb_human_players - 1 else self.now_player + 1
             player_turn_nn = "{}, your turn".format(self.__playersI[self.now_player].nickname)
 
         return player_turn_nn
 
 ######################
 
-def ze_GAME(wx_app, playersI, nb_players):
+def ze_GAME(wx_app, playersId, nb_human_players, game_engine):
     """
     Entry point of the HMI.
     @parameters : wx_app = the wx application instance.
-                  playersI = instance of players.
-                  nb_players = number of players who asking the nickname.
+                  playersId = Players Id.
+                  nb_human_players = number of players who asking the nickname.
+                  game_engine = engine of the game instance address.
     @return : who stop the game.
     """
-    game_hmi = Game(None, playersI, nb_players)
+    game_hmi = Game(None, playersId, nb_human_players, game_engine)
 
     game_hmi.Show()
 
