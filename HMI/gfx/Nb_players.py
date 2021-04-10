@@ -7,6 +7,7 @@ import sys
 import wx
 
 # Projet modules import.
+from ..engine import Engine
 
 ######################
 
@@ -23,16 +24,18 @@ class Nb_players(wx.Frame):
         exit = True if the player wants to leave, everelse False.
     """
 
+    EOL = "\n"
     CAPTIONS = {'number_of_players' : "Nombre de joueurs",}
 
     # Private attributes.
 
 
     # Public methods.
-    def __init__(self, parent):
+    def __init__(self, parent, game_engine):
         """
         __init__ : initiate class
         @parameters : parents = the parent widget.
+                      game_engine = engine of the game instance address.
         @return : none.
         """
         self.nb_players = 0     # No player by default. 0 means "quit game".
@@ -49,13 +52,14 @@ class Nb_players(wx.Frame):
         self.Center(wx.BOTH)
 
         #Create a StaticText widget aka label.
-        label = """Enter the number of player(s) (no more than 5 included)
-        \n1 means 2 players, you and ... me !"""
+        label = """{0}{1}{1}{2}""".format(game_engine.players.DIALOGS['nb_players_question_part_0'],
+                                          self.EOL,
+                                          game_engine.players.DIALOGS['nb_players_question_part_2'])
         self.st_label = wx.StaticText(parent=self,
                                       id=-1,
                                       label=label,
                                       pos=wx.Point(40, 16),
-                                      size=wx.Size(368, 45),
+                                      size=wx.Size(368, 80),
                                       style=0)
 
         # Create a SpinCtrl widget to enter the number of players.
@@ -91,12 +95,32 @@ class Nb_players(wx.Frame):
                            handler=self.__on_btn_exit,
                            id=wx.ID_EXIT)
 
+        # Bind keys to buttons events.
+        self.Bind(wx.EVT_CHAR_HOOK, self.__onKey)
+
         # Bind to close window event.
         # By the the way, it should appear it doesn't need to bind this. But, it's sure of react.
         self.Bind(wx.EVT_CLOSE, self.__on_btn_exit)  # Same as user press quit button.
 
 
     # Private methods.
+    def __onKey(self, event):
+        """
+        On keypress event, bind on the right function.
+        @parameters : event = the event which called this function.
+        @return : none
+        """
+        keys_allowed = {wx.WXK_RETURN : self.__on_btn_ok,
+                        wx.WXK_ESCAPE : self.__on_btn_exit,
+                        81 : self.__on_btn_exit
+                        }
+
+        e = event.GetKeyCode()
+        if e in keys_allowed.keys():
+            keys_allowed[e](event)
+        else:
+            event.Skip()
+
     def __on_btn_ok(self, event):
         """
         On btn_ok click event :
@@ -121,13 +145,14 @@ class Nb_players(wx.Frame):
 
 ######################
 
-def ask_number_of_players(wx_app):
+def ask_number_of_players(wx_app, game_engine):
     """
     Entry point of the HMI.
     @parameters : wx_app = the wx application instance.
+                  game_engine = engine of the game instance address.
     @return : number of player choosen.
     """
-    nb_players_hmi = Nb_players(None)
+    nb_players_hmi = Nb_players(None, game_engine)
     nb_players_hmi.Show()
 
     wx_app.MainLoop()

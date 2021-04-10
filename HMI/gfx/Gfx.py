@@ -60,13 +60,18 @@ class Gfx(Engine.Engine):
         """
 
         # Prepare game's how to according number of player.
-        nb_players = HMI_Nb_players.ask_number_of_players(self.wx_app)
+        nb_players = HMI_Nb_players.ask_number_of_players(self.wx_app, self)
+
         if nb_players == 0:
             self.say_bye()
             return 0
 
         # Who are players ?
-#        playersI = HMI_Ask_nickname.ask_nickname(self.wx_app, nb_players)
+        self.players.register_players(HMI_Ask_nickname.ask_nickname(self.wx_app, nb_players, self))
+        self.players.shuffle()
+
+        print(self.players.p_id)
+        print(self.players.players)
 
         # Playing !
 #        nickname_away = HMI_Game.ze_GAME(self.wx_app, playersI, nb_players)

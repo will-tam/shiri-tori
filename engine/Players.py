@@ -21,7 +21,7 @@ class Players():
 
     Public attributes.
         p_id : list of interger of unique players' id
-        players : dictionnary dictionnaries of players
+         : dictionnary dictionnaries of players
             {p_id : {
                 'nickname' : string,
                 'won_rounds' : interger,
@@ -30,7 +30,7 @@ class Players():
             }}
     """
 
-    DIALOGS = {'nb_players_question_part_0' : "Nombre de joueurs entre 0 et 5 inclus",
+    DIALOGS = {'nb_players_question_part_0' : "Nombre de joueurs entre 1 et 5 inclus",
                'nb_players_question_part_1' : "0 pour vous enfuire loin de moi. ",
                'nb_players_question_part_2' : "1 signifiant 2 joueurs, vous et ... moi. ",
                'nb_players_question_part_3' : "Pas plus de 5 joueurs.",
