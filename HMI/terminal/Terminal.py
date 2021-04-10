@@ -114,6 +114,9 @@ class Terminal(Engine.Engine):
 
         # THE main loop itconsole_mode.py-self.
         now_player = iter(self.players.p_id)
+        if nb_human_players == 1:
+            next(now_player)
+
         first_answer = True
 
         while self.p_answer != "0":
@@ -262,15 +265,20 @@ class Terminal(Engine.Engine):
         # Register all players.
         self.players.register_players(self.ask_nickname(nb_human_players))
 
-        print("{}{}".format(self.EOL, self.rules.DIALOGS['reminder']))
+        # The 1st player should be not the 1st to play, if the whole players are human.
+        if nb_human_players > 1:
+            print("{0}{1}{0}".format(self.EOL, self.DIALOGS['shuffle']))
+            self.players.shuffle()
 
-        # The 1st player should be not the 1st to play.
-        print("{0}{1}{0}".format(self.EOL, self.DIALOGS['shuffle']))
-        self.players.shuffle()
+        # Display the rules.
+        r = "{0}{1}{0}".format(self.EOL, self.rules.DIALOGS['reminder'])
+        r += self.rules.before_to_play(nb_human_players, self.players.players[self.players.p_id[1]]['nickname'])
+        print(r)
 
-#        nickname_away = self.players.players[self.players.p_id[0]]['nickname']
+        # Main game loop.
         nickname_away = self.main_loop(nb_human_players)
 
+        # A player want to go away, display HOF.
         if nickname_away:
             if nb_human_players == 1:
                 print("{}{}{}".format(5 * self.EOL, self.ai_like.DIALOGS['sly_bye'], self.EOL))
