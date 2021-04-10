@@ -64,7 +64,6 @@ class Terminal(Engine.Engine):
         super().ask_nickname()
 
         if nb_human_players == 1:
-            self._nicknames.append(self.ai_like.AI_PSEUDO)     # For 1 player mode, also computer plays.
             print("{0}{1}{0}".format(self.EOL, self.ai_like.DIALOGS['just_us']))
 
             unique_name = False
@@ -82,6 +81,7 @@ class Terminal(Engine.Engine):
                     unique_name = True
 
             self._nicknames.append(nn)
+            self._nicknames.append(self.ai_like.AI_PSEUDO)     # For 1 player mode, also computer plays.
 
         else:
             for i in range(1, nb_human_players + 1):      # this i index will be used in next code.
@@ -114,13 +114,10 @@ class Terminal(Engine.Engine):
 
         # THE main loop itconsole_mode.py-self.
         now_player = iter(self.players.p_id)
-        if nb_human_players == 1:
-            next(now_player)
 
         first_answer = True
 
         while self.p_answer != "0":
-            #p_id = self.players.p_id[self.now_palyer_idx]
             try:
                 p_id = next(now_player)
 
@@ -270,9 +267,12 @@ class Terminal(Engine.Engine):
             print("{0}{1}{0}".format(self.EOL, self.DIALOGS['shuffle']))
             self.players.shuffle()
 
+        print(self.players.p_id)
+        print(self.players.players)
+
         # Display the rules.
         r = "{0}{1}{0}".format(self.EOL, self.rules.DIALOGS['reminder'])
-        r += self.rules.before_to_play(nb_human_players, self.players.players[self.players.p_id[1]]['nickname'])
+        r += self.rules.before_to_play(nb_human_players, self.players.players[self.players.p_id[0]]['nickname'])
         print(r)
 
         # Main game loop.
