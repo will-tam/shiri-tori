@@ -262,6 +262,8 @@ class Terminal(Engine.Engine):
         # Register all players.
         self.players.register_players(self.ask_nickname(nb_human_players))
 
+        print("{}{}".format(self.EOL, self.rules.DIALOGS['reminder']))
+
         # The 1st player should be not the 1st to play.
         print("{0}{1}{0}".format(self.EOL, self.DIALOGS['shuffle']))
         self.players.shuffle()
