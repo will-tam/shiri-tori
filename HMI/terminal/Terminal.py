@@ -208,10 +208,10 @@ class Terminal(Engine.Engine):
         print(width * "*")
         print("* {} * {} * {} *".format(max_str_len * " ", self._won_string, self._lost_string))
 
-        for p_id in self.players.p_id:
-            nickname = self.players.players[p_id]['nickname']
-            won_rounds = self.players.players[p_id]['won_rounds']
-            lost_rounds = self.players.players[p_id]['lost_rounds']
+        for player in self.players.players.values():
+            nickname = player['nickname']
+            won_rounds = player['won_rounds']
+            lost_rounds = player['lost_rounds']
 
             pfs = max_str_len - len(nickname)    # Number of white spaces after the nickname.
             wfs = won_string_len - len(str(won_rounds))  # After the won points.
