@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project shiri-tori -->
-<!-- Saved: 2021-04-10, 21:54:00 -->
+<!-- Saved: 2021-04-11, 22:42:00 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="3" uid="{29c389a1-c818-483b-a85e-f97ad6fbfbe5}">
@@ -47,15 +47,6 @@
     <Resource>
       <Filename>shiri-tori.py</Filename>
       <Linenumber>91</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="3" uid="{d26d1e80-ebd8-48b5-8234-12143e50712d}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-04-08, 22:23:23</Created>
-    <Resource>
-      <Filename>engine/Engine.py</Filename>
-      <Linenumber>3</Linenumber>
     </Resource>
   </Task>
   <Task priority="1" completed="False" type="3" uid="{1a75373f-4b23-4aab-936e-ea53849efb25}">
@@ -127,15 +118,6 @@
     <Created>2021-04-08, 22:23:23</Created>
     <Resource>
       <Filename>engine/AI_like.py</Filename>
-      <Linenumber>3</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="3" uid="{daba91e3-af86-45a6-af1e-8a8ca0e30138}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-04-08, 22:23:23</Created>
-    <Resource>
-      <Filename>engine/Engine.py</Filename>
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
@@ -211,15 +193,6 @@
       <Linenumber>91</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{dec6cad0-2cac-4847-b69b-0eb5e1bf55db}">
-    <Summary>NOTE: uncomment to debug</Summary>
-    <Description></Description>
-    <Created>2021-04-10, 17:34:13</Created>
-    <Resource>
-      <Filename>engine/Players.py</Filename>
-      <Linenumber>3</Linenumber>
-    </Resource>
-  </Task>
   <Task priority="1" completed="False" type="3" uid="{e6054851-8c2b-4746-8a7e-ee1fdcd72464}">
     <Summary>NOTE: uncomment to debug</Summary>
     <Description></Description>
@@ -238,22 +211,40 @@
       <Linenumber>3</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{f97046ad-f36b-4684-bf95-912e6813557d}">
+  <Task priority="1" completed="False" type="3" uid="{fb699b89-fe1f-4ab6-9f96-b03ea5728bd6}">
     <Summary>NOTE: uncomment to debug</Summary>
     <Description></Description>
-    <Created>2021-04-10, 21:53:57</Created>
+    <Created>2021-04-10, 23:55:30</Created>
+    <Resource>
+      <Filename>engine/Players.py</Filename>
+      <Linenumber>3</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3" uid="{7dd245ed-2c95-4539-a455-1ace71f15680}">
+    <Summary>NOTE: uncomment to debug</Summary>
+    <Description></Description>
+    <Created>2021-04-11, 15:30:36</Created>
     <Resource>
       <Filename>HMI/terminal/Terminal.py</Filename>
       <Linenumber>125</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{8fcedf37-bbc0-4159-bf1c-e3ff1990cb16}">
+  <Task priority="1" completed="False" type="3" uid="{03a81efa-94cf-4c86-b7a0-bac3c60d9096}">
     <Summary>NOTE: uncomment to debug</Summary>
     <Description></Description>
-    <Created>2021-04-10, 21:53:57</Created>
+    <Created>2021-04-11, 15:30:36</Created>
     <Resource>
       <Filename>HMI/terminal/Terminal.py</Filename>
       <Linenumber>179</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3" uid="{b0d948ec-7a88-408d-b749-4e77a34d86fa}">
+    <Summary>NOTE: uncomment to debug</Summary>
+    <Description></Description>
+    <Created>2021-04-11, 18:19:57</Created>
+    <Resource>
+      <Filename>engine/Engine.py</Filename>
+      <Linenumber>3</Linenumber>
     </Resource>
   </Task>
 </Tasks>

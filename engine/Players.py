@@ -21,7 +21,7 @@ class Players():
 
     Public attributes.
         p_id : list of interger of unique players' id
-         : dictionnary dictionnaries of players
+        players : dictionnary dictionnaries of players
             {p_id : {
                 'nickname' : string,
                 'won_rounds' : interger,

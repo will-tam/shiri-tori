@@ -60,25 +60,31 @@ class Gfx(Engine.Engine):
         """
 
         # Prepare game's how to according number of player.
-        nb_players = HMI_Nb_players.ask_number_of_players(self.wx_app, self)
+        nb_human_players = HMI_Nb_players.ask_number_of_players(self.wx_app, self)
 
-        if nb_players == 0:
+        if nb_human_players == 0:
             self.say_bye()
             return 0
 
         # Who are players ?
-        self.players.register_players(HMI_Ask_nickname.ask_nickname(self.wx_app, nb_players, self))
-        self.players.shuffle()
+        self.players.register_players(HMI_Ask_nickname.ask_nickname(self.wx_app, nb_human_players, self))
 
-        print(self.players.p_id)
-        print(self.players.players)
+        # The 1st player should be not the 1st to play, if the whole players are human.
+        if nb_human_players > 1:
+            print("{0}{1}{0}".format(self.EOL, self.DIALOGS['shuffle']))
+            self.players.shuffle()
+
+#        print(self.players.p_id)
+#        print(self.players.players)
 
         # Playing !
-        nickname_away = HMI_Game.ze_GAME(self.wx_app, self.players.p_id, nb_players, self)
+        nickname_away = HMI_Game.ze_GAME(self.wx_app, self.players.p_id, nb_human_players, self)
 
-        print(nickname_away)
+#        print(nickname_away)
 
-        HoF.hall_of_fame(self.wx_app, self.players.p_id, nickname_away)
+        return 0
+
+        HoF.hall_of_fame(self.wx_app, self.players.p_id, nickname_away, nb_human_players, self)
 
         self.say_bye()
 

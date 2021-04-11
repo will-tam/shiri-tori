@@ -19,47 +19,72 @@ class Score(wx.Panel):
     The scores' panel.
 
     Public attributes.
+        size = Width and Heigh size of Score widget dictionnary.
     """
 
-    # Private attributes.
-    # __playersI = instance of players.
+    EOL = "\n"
+    CAPTIONS = {'players' : "Joueurs",
+                'won' : "Gagnées",
+                'lost' : "Perdues"}
 
-    w = 238     # Easy to change width of Panel and ListCtrl.
+    # Private attributes.
+    # __playersiId = Players Id address.
+    # __game_engine = engine instance.
+    # __font_size_listCtrl_w = font size width of listCtrl widget
+    # __font_size_listCtrl_h = font size heigh of listCtrl widget
 
     # Public methods.
-    def __init__(self, parent, playersI, panel_pos=wx.Point(568, 16)):
+    def __init__(self, parent, playersiId, game_engine, panel_pos=wx.Point(568, 16)):
         """
         __init__ : initiate class
         @parameters : parent = parent of this widget.
-                      playersI = instance of players.
+                      playersiId = Players Id addresse.
+                      game_engine = engine of the game instance address.
         @return : none.
         """
-        self.__playersI = playersI
+        self.__playersiId = playersiId
+        self.__game_engine = game_engine
 
         wx.Panel.__init__(self,
                           parent=parent,
                           id=-1,
                           pos=panel_pos,
-                          size=wx.Size(Score.w, 424),
                           style=wx.SIMPLE_BORDER | wx.RAISED_BORDER)
 
-        titles= ["Players", "Won","Lost"]
+        titles = [self.CAPTIONS["players"],
+                  self.CAPTIONS["won"],
+                  self.CAPTIONS["lost"]]
 
         self.__listCtrl = wx.ListCtrl(parent=self,
                                       id=-1,
                                       pos=wx.Point(0, 0),
-                                      size=wx.Size(Score.w, 552),
+                                      size=(1, 1),
                                       style=wx.LC_REPORT)
 
-        for c, t in enumerate(titles):
-            w = 38 if c > 0 else 159    # Width is not same according 1st columns and others.
+        # Need for futur column width ajustment.
+        self.__font_size_listCtrl_w, self.__font_size_listCtrl_h = self.__listCtrl.GetFont().GetPixelSize()
 
+        # Prepare headers.
+        for c, t in enumerate(titles):
             self.__listCtrl.InsertColumn(col=c,
                                          format=wx.LIST_FORMAT_CENTER,
-                                         heading=t,
-                                         width=w)
+                                         heading=t)
+            self.__listCtrl.SetColumnWidth(c, self.__font_size_listCtrl_w * len(t) + 10)
 
         self.update()
+
+        # Adjust widgets size.
+        w = 0
+        for i in range(0, len(titles)):
+            w += self.__listCtrl.GetColumnWidth(i)
+        h = self.__font_size_listCtrl_h * 8 + 10   # 5 players, header and add a marge.
+
+        self.__listCtrl.SetSize(wx.Size(w, h))
+        self.SetSize(wx.Size(w, h))
+
+        # And save it for further use.
+        self.size = {}
+        self.size['w'], self.size['h'] = self.GetSize()
 
     def update(self):
         """
@@ -69,8 +94,18 @@ class Score(wx.Panel):
         """
         self.__listCtrl.DeleteAllItems()
 
-        for p in self.__playersI:
-            self.__listCtrl.Append(p.tuple_it())
+        old_len = 0     # To adjust column width for ListCtrl.
+        for player in self.__game_engine.players.players.values():
+            player_nn = player['nickname']
+            tuple_it = (player_nn, player['won_rounds'], player['lost_rounds'])
+
+            # Adjust column 0 width, if need.
+            if old_len < len(player_nn):
+                old_len = len(player_nn)
+                self.__listCtrl.SetColumnWidth(0, self.__font_size_listCtrl_w * old_len)
+
+            self.__listCtrl.Append(tuple_it)
+
 
 ######################
 
@@ -83,49 +118,61 @@ class Hall_of_fames(wx.Frame):
     Public attributes.
     """
 
+    EOL = "\n"
+    CAPTIONS = {'hall_of_fames' : "Tableau des scores",
+                'here_we_go' : "C'est parti !"}
+
     # Private attributes.
     # __playersI = instance of players.
     # __nickname_away = Whose player wants to be away.
 
     # Public methods.
-    def __init__(self, parent, playersId, nickname_away):
+    def __init__(self, parent, playersId, nickname_away, nb_human_players, game_engine):
         """
         __init__ : initiate class
         @parameters : parent = parent of this widget.
                       playersId = players Id.
                       nickname_away = Whose player wants to be away.
+                      nb_human_players = number of players.
+                      game_engine = engine of the game instance address.
         @return : none.
         """
         self.__playersId = playersId
         self.__nickname_away = nickname_away
+        self.__game_engine = game_engine
 
         # Main frame.
         wx.Frame.__init__(self,
                           parent=parent,
                           id=-1,
-                          title="Hall of fames",
-                          pos=wx.Point(548, 155),
+                          title=self.CAPTIONS['hall_of_fames'],
+#                          pos=wx.Point(548, 155),
                           size=wx.Size(568, 515),
                           style=wx.ALWAYS_SHOW_SB)
         self.Center(wx.BOTH)
 
         # Create the score part. Calling the as-for class.
-        Score(self, self.__playersI, panel_pos=wx.Point(0, 0))
+        score = Score(self, self.__playersId, game_engine, panel_pos=wx.Point(0, 0))
 
         # Create Hall of fames it-self.
         self.__info_panel = wx.Panel(self,
                                      id=-1,
-                                     pos=wx.Point(Score.w + 2, 8),
-                                     size=wx.Size(568 - Score.w, 400),
-                                     style=0)
+                                     pos=wx.Point(score.size['w'] + 2, 8),
+                                     size=wx.Size(568 - score.size['w'], 400),
+                                     style=wx.SIMPLE_BORDER | wx.RAISED_BORDER)
 
-        label = "Of course, you have feel i was the strongest !" if self.__nb_players == 1\
-                else "{} would to get away !!!".format(self.__nickname_away)
+        label = "{}".format(game_engine.ai_like.DIALOGS['sly_bye']) if nb_human_players == 1\
+                else game_engine.DIALOGS['a_player_leave'].format(self.__nickname_away)
 
-        wx.StaticText(parent=self.__info_panel,
-                      id=-1,
-                      label=label,
-                      style=0).Center(wx.HORIZONTAL)
+        statictext = wx.StaticText(parent=self.__info_panel,
+                                   id=-1,
+                                   pos=(0, 0),
+                                   label=label,
+                                   style=0)
+        # Cut text length by 2.
+        label_half_len = len(label) >> 1
+        statictext.Wrap(label_half_len * statictext.GetFont().GetPixelSize()[0])
+        statictext.Center(wx.HORIZONTAL)
 
         winners_sw = wx.adv.SashWindow(parent=self.__info_panel,
                                        id=-1,
@@ -140,24 +187,25 @@ class Hall_of_fames(wx.Frame):
                                        style=wx.SIMPLE_BORDER | wx.CLIP_CHILDREN)
 
         # Annoucement,with grammatical correction, according find winners and loosers players.
-        winners, loosers = win_loose(playersI)
-        winners_str, loosers_str = win_loose_annouce(len(winners), len(loosers))
-
-        win_lbl="\n\tAnd the {}\n\n".format(winners_str)
-        for winner in winners:
-            win_lbl += "\t\t" + winner + "\n"
-
-        wx.StaticText(parent=winners_sw,
-                      id=-1,
-                      label=win_lbl)
-
-        lost_lbl="\n\tSo, the {}\n\n".format(loosers_str)
-        for looser in loosers:
-            lost_lbl += "\t\t" + looser + "\n"
-
-        wx.StaticText(parent=loosers_sw,
-                      id=-1,
-                      label=lost_lbl)
+        winners, loosers = game_engine.players.win_loose()
+        print(winners, loosers)
+#        winners_str, loosers_str = game_engine.win_loose_annouce(len(winners), len(loosers))
+#
+#        win_lbl="\n\tAnd the {}\n\n".format(winners_str)
+#        for winner in winners:
+#            win_lbl += "\t\t" + winner + "\n"
+#
+#        wx.StaticText(parent=winners_sw,
+#                      id=-1,
+#                      label=win_lbl)
+#
+#        lost_lbl="\n\tSo, the {}\n\n".format(loosers_str)
+#        for looser in loosers:
+#            lost_lbl += "\t\t" + looser + "\n"
+#
+#        wx.StaticText(parent=loosers_sw,
+#                      id=-1,
+#                      label=lost_lbl)
 
         # The close buttons creation.
         self.__btn_close = wx.Button(parent=self,
@@ -175,6 +223,10 @@ class Hall_of_fames(wx.Frame):
         # Bind to close window event.
         self.Bind(wx.EVT_CLOSE, self.__on_btn_close)  # Same as user press quit button.
 
+        # Size adjustement.
+        statictext_size = statictext.DoGetSize()
+        print(statictext_size)
+
     # Private methods.
     def __on_btn_close(self, event):
         """
@@ -189,15 +241,17 @@ class Hall_of_fames(wx.Frame):
 
 ######################
 
-def hall_of_fame(wx_app, playersId, nickname_away):
+def hall_of_fame(wx_app, playersId, nickname_away, nb_human_players, game_engine):
     """
     Display Hall of Fame widget.
     @parameters : wx_app = the wx application instance.
                   playersId = players Id.
                   nickname_away = Whose player wants to be away.
+                  nb_human_players = number of players.
+                  game_engine = engine of the game instance address.
     @return : none.
     """
-    hof = Hall_of_fames(None, playersId, nickname_away)
+    hof = Hall_of_fames(None, playersId, nickname_away, nb_human_players, game_engine)
     hof.Show()
 
     wx_app.MainLoop()

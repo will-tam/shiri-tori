@@ -267,9 +267,6 @@ class Terminal(Engine.Engine):
             print("{0}{1}{0}".format(self.EOL, self.DIALOGS['shuffle']))
             self.players.shuffle()
 
-        print(self.players.p_id)
-        print(self.players.players)
-
         # Display the rules.
         r = "{0}{1}{0}".format(self.EOL, self.rules.DIALOGS['reminder'])
         r += self.rules.before_to_play(nb_human_players, self.players.players[self.players.p_id[0]]['nickname'])
