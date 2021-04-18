@@ -1,15 +1,6 @@
 + || ++ A FAIRE
 - || -- FAIT
 
-+ REFONTE DU TODO /!\
-
--- Version console seule >
- -- Vérification éxistance fichier BdD dictionnaire
- -- Changer nom du fichier BdD dictionnaire : dict.sqlite -> goi.sqlite
- -- Écrire remerciement pour ce dico dans le README
- -- Ajout liscence
- -- Liste des mots déjà utilisés
--- Version graphique
 + Version serveur
 
 + NETTOYAGE :
@@ -20,23 +11,5 @@
 + Ajout de commentaires pertinants.
 + Vérifier les docstring des classes et fonctions
 
-- Rêgles pour one_game.py:
- --Être dans le dico.
- --À partir du 2ème mot, COMMENCE TOUJOURS par la FIN du mot du joueur précédent (PROG)
- --Pas de mot finissant par ん ou ン ==> perdu (PROG)
- --Les mots d'une seule more sont INTERDITS (PROG)
- --Les mots commençant par ん sont INTERDITS (PROG)
- --Utilisation des HIRAGANA seulement (PROG)
- --Pas de mots contenant ー (PROG + nettoyage)
- --Pas de mots contenant ・(PROG + nettoyage)
- --Les acronymes sont INTERDITS (nettoyage)
-
-
--Refaire un nettoyage BdD moins profond pour que l'ordi se trompe si mauvais choix:
- --Mots mono mores
- --Acronymes
- --Doublons
- --Mots contenant ー
- --Mots contenant ・
- --Les tables non utilisées quand sûr
++ Ajout d'un jeu par thèmes (nouriture, animaux, ...)
 
