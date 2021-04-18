@@ -69,9 +69,9 @@ def main(args):
         return opt_args(helpme=True)
 
 #    NOTE: uncomment to debug
-    print(args)
+#    print(args)
 
-    print(args.__dict__)
+#    print(args.__dict__)
 
 #    game_engine = gengine.Engine()
 #    NOTE: uncomment to debug
@@ -79,12 +79,12 @@ def main(args):
 
     if args.terminal:
 #       NOTE: uncomment to debug
-        print("Go terminal")
+#        print("Go terminal")
         return hmiterm.Terminal().main()
 
     if args.gfx:
 #       NOTE: uncomment to debug
-        print("Go wxPython")
+#        print("Go wxPython")
         return hmigfx.Gfx().main()
 
     if args.server:

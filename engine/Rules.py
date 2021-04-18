@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # NOTE: uncomment to debug
-print("{}.{}".format(__package__,__name__))
+#print("{}.{}".format(__package__,__name__))
 
 # Standard libraries import.
 import sys

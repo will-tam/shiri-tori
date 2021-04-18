@@ -78,7 +78,6 @@ class Game(wx.Frame):
 #            self.__p_id = self.__game_engine.players.p_id[0]  # 1st player is a random choice.
 
         self.__player_nn = self.__game_engine.players.players[self.__p_id]['nickname']
-        print("__init__():", self.__p_id, self.__player_nn)
 
         # Main frame.
         wx.Frame.__init__(self,
@@ -170,7 +169,7 @@ class Game(wx.Frame):
         @parameters : event = the event which called this function.
         @return : none
         """
-        keys_allowed = {wx.WXK_ESCAPE : self.__on_btn_leave
+        keys_allowed = {wx.WXK_ESCAPE : self.__on_btn_leave,
                        }
 
         e = event.GetKeyCode()
@@ -183,17 +182,16 @@ class Game(wx.Frame):
         """
         On btn_validate click event.
         @parameters : event = the event which called this function.
-        @return : none
+        @return : none.
         """
         self.__game_engine.p_answer = self.player_answer.GetLineText(0)
-
         self.__update_checking_part()
 
-        # Next player is the computer. Will play after this event.
-        if self.__nb_human_players == 1 and self.__p_id == 0:
-            wx.CallAfter(self.__computer.HMI_turn, self, self.__game_engine.p_answer)
-
         self.player_your_turn.Label = self.__update_player()
+
+#        # Next player is the computer. Will play after this event.
+        if self.__nb_human_players == 1 and self.__p_id == self.__game_engine.players.p_id[1]:
+            wx.CallAfter(self.__game_engine.ai_like.HMI_turn, self, self.__game_engine.p_answer)
 
         self.score.update()
 
@@ -205,7 +203,7 @@ class Game(wx.Frame):
         On btn_leave click event.
             TODO : COMPLET WHAT HAPPED ON CLICK !!!
         @parameters : event = the event which called this function.
-        @return : none
+        @return : none.
         """
         self.nickname_away = self.__player_nn
         self.Destroy()  # the window.
@@ -275,19 +273,17 @@ class Game(wx.Frame):
         @result : the nick name of player.
         """
         # Go to the next palyer.
-        print(self.__game_engine.players.p_id)
-        print(self.__game_engine.players.players)
-
         try:
             self.__p_id = next(self.__now_player)
-        except StopIteration:
+        except StopIteration as e:
             self.__now_player = iter(self.__playersId)
             self.__p_id = next(self.__now_player)
 
         self.__player_nn = self.__game_engine.players.players[self.__p_id]['nickname']
 
-        if self.__nb_human_players == 1 and self.__p_id == 1:
+        if self.__nb_human_players == 1 and self.__p_id == self.__game_engine.players.p_id[1]:
                 player_turn_nn = self.__game_engine.ai_like.DIALOGS['my_turn']
+
 #            else:
 #                player_turn_nn = self.__game_engine.players.DIALOGS['player_name_turn'].format(self.__player_nn)
 
@@ -295,8 +291,6 @@ class Game(wx.Frame):
             # Several players case.
 #            self.p_id = 0 if self.p_id == self.__nb_human_players - 1 else self.p_id + 1
             player_turn_nn = self.__game_engine.players.DIALOGS['player_name_turn'].format(self.__player_nn)
-
-        print("__update_player():", self.__p_id, self.__player_nn)
 
         return player_turn_nn
 

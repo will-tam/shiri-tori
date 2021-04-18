@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # NOTE: uncomment to debug
-print("{}.{}".format(__package__,__name__))
+#print("{}.{}".format(__package__,__name__))
 
 # Standard libraries import.
 import sys
@@ -31,7 +31,8 @@ class AI_like():
                'i_loose_1_pt' : "+1 point gagné pour vous, +1 point perdu pour ... moi !",
                'i_win' : "Je gagne, vous perdez {}! ",
                'i_win_1_pt' : "+1 point gagné pour MOI, +1 point perdu pour ... VOUS !",
-               'sly_bye' : "Forcément, vous avez senti que j'étais le plus fort !",}
+               'sly_bye' : "Forcément, vous avez senti que j'étais le plus fort !",
+               'thinking' : "Je réfléchis"}
 
     AI_PSEUDO = "The Best AI"
 
@@ -72,6 +73,23 @@ class AI_like():
 
         return answer
 
+    def HMI_turn(self, game_hmi, p_answer):
+        """
+        Update the player number who it's the turn.
+        @parameters : game_hmi = the hmi game instance.
+                      p_answer = previous player's answer.
+        @result : none.
+        """
+        p_answer = self.choice(p_answer[-1]) if p_answer else self.choice()
+
+        time.sleep(5)   # Time to read previous message.
+
+        game_hmi.player_answer.SetValue(p_answer)
+        # Need both of them to appear in game_hmi.player_answer !!!
+        game_hmi.player_answer.Refresh()
+        game_hmi.player_answer.Update()
+
+        game_hmi.press_btn_validate()
 
     # Private methods.
 

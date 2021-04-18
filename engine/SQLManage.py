@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # NOTE: uncomment to debug
-print("{}.{}".format(__package__,__name__))
+#print("{}.{}".format(__package__,__name__))
 
 # Standard libraries import.
 import sys
@@ -35,7 +35,7 @@ class SQLManage():
         @return : none.
         """
 #       NOTE: uncomment to debug
-        print("SQL init")
+#        print("SQL init")
 
         if not os.path.isfile(SQLManage.__DB_NAME):
             raise OSError("{} introuvable".format(SQLManage.__DB_NAME))
