@@ -34,13 +34,13 @@ def opt_args(helpme=False):
     parser.add_argument('-x','--gfx',
                         action="store_true",
                         default=False,
-                        help="Run game with wxPython. /!\ Not implemented yet /!\ ")
+                        help="Run game with wxPython.")
 
     parser.add_argument('-s','--server',
                         type=int,
                         nargs='?',
                         default=False,
-                        help="Run server game. /!\ Not implemented yet /!\ ")
+                        help="Run server game. /!\ Soon, very soon /!\ ")
 
     parser.add_argument('--version',
                         action='version',
