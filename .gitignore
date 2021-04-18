@@ -3,4 +3,5 @@
 __pycache__
 utils/*
 HMI/ex_boa/*
+utils.py
 
